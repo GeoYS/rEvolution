@@ -6,6 +6,7 @@
 
 package revolution.client;
 
+import revolution.client.screen.ClientScreenManager;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -21,21 +22,28 @@ import revolution.ui.ScreenManager;
 public class Client {
     private Socket socket;
     private ScreenManager screenManager;
+    private boolean connected = false;
     
     public Client(int port) throws UnknownHostException, IOException{
         socket = new Socket(InetAddress.getLocalHost().getHostName(),
             port,
             GROUP_NAME,
             GROUP_PORT);
-        screenManager = new ScreenManager();
+        screenManager = new ClientScreenManager();
         // add screens
+    }
+    
+    public ScreenManager getScreenManager(){
+        return screenManager;
     }
     
     public void lobby(){
         // checks the socket for server broadcasts
     }
     
-    // public void render(){}
+    public boolean isConnected(){
+        return connected;
+    }
     
     public void connect(){
         while(true){

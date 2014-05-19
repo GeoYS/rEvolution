@@ -38,16 +38,15 @@ public class Server {
         // when server is started from a saved session/game
     }
     
-    public void start(){
-        while(true){
-            receive();
-            sendWorldInfo();
-            sendInvitationBroadcast();
-            // later on it will also need to render server UI
-        }
+    public void update(long delta){
+        receive();
+        sendWorldInfo();
+        sendInvitationBroadcast();
     }
     
-    // public void render(){}
+    // public Info getInfo()
+    // Returns information about the gameworld so that the Screen can output 
+    // appropriate information
     
     public void receive(){
         // recieves object from socket
