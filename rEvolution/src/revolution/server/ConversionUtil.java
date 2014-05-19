@@ -6,12 +6,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-/**
- * A simple class with generic serialize and deserialize method implementations
- * 
- * @author pankaj
- * 
- */
 public class ConversionUtil {
 
 	// deserialize to Object from given file

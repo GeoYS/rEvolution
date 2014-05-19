@@ -69,10 +69,7 @@ public class UserFactory {
 
 			System.out.println("File saved to specified path!");
 
-		} catch (ParserConfigurationException pce) {
-			pce.printStackTrace();
-		} catch (TransformerException tfe) {
-			tfe.printStackTrace();
+		} catch (ParserConfigurationException | TransformerException pce) {
 		}
 	}
     public static HashMap<String, User> loadUser(){
@@ -91,20 +88,16 @@ public class UserFactory {
                         
 
 		
-        doSomething(doc.getDocumentElement());
+        Iterate(doc.getDocumentElement());
             }catch(ParserConfigurationException pce){
-                pce.printStackTrace();
-            }catch(SAXException saxe){
-                saxe.printStackTrace();
-            }catch(IOException ioe){
-                ioe.printStackTrace();
+            }catch(SAXException | IOException saxe){
             }
         
         return accounts;        
     }
     
-    private static void doSomething(Node node) {
-        if(node.getNodeName() != "Accounts"){
+    private static void Iterate(Node node) {
+        if(!"Accounts".equals(node.getNodeName())){
             //probaly looking in the wrong folder
             accounts.put(node.getNodeName(), DeserializeUser.Convert(node.getNodeName()));
         }
@@ -114,7 +107,7 @@ public class UserFactory {
             Node currentNode = nodeList.item(i);
             if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
                 //calls this method for all the children which is Element
-                doSomething(currentNode);
+                Iterate(currentNode);
             }
         }
     }
