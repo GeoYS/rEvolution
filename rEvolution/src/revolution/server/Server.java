@@ -6,13 +6,14 @@
 
 package revolution.server;
 
-import revolution.net.Socket;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
+import revolution.net.Socket;
 
 /**
  *
@@ -61,9 +62,12 @@ public class Server {
         // send lobby broadcast
     }
     
-    public void saveToXML(){
-        // should be called when server shuts down
-        // save everything to xml
+    public void save(){
+        UserFactory.saveUser(accounts);
+    }  
+    
+    public void load(){
+        accounts = UserFactory.loadUser();
     }  
 }
 

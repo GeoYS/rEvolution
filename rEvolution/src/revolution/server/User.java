@@ -18,8 +18,6 @@ public class User implements Serializable{
     public String userName, password;
     public String hostName;
     public String pathToXML = null;
-    
-    public HashMap<String, Object> data = new HashMap<>();
 
     public User(String pathToXML){
         this.pathToXML = pathToXML;
@@ -44,5 +42,5 @@ public class User implements Serializable{
 
     public void save(){
         // save to a XML file
-    }
+    }   
 }
