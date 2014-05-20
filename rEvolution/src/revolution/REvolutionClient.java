@@ -10,7 +10,6 @@ import java.net.UnknownHostException;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 import revolution.client.Client;
-import revolution.client.screen.ClientScreenManager;
 
 /**
  *
@@ -26,8 +25,7 @@ public class REvolutionClient {
         while(!available(port)){
             port ++;
         }
-        Client.session = new Client(port);
-        AppGameContainer app = new AppGameContainer(new ClientScreenManager());
+        AppGameContainer app = new AppGameContainer(new Client(port).getScreenManager());
         app.setDisplayMode(640, 640, false);
         app.setTargetFrameRate(40);
         app.setUpdateOnlyWhenVisible(false);
