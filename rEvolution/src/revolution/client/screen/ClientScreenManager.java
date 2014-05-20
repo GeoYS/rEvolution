@@ -17,7 +17,7 @@ public class ClientScreenManager extends ScreenManager{
     }
     @Override
     public void initStatesList(GameContainer gc) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.addScreen(new MainClientScreen(this));
     }
     
 }

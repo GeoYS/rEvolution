@@ -17,28 +17,28 @@ import revolution.ui.ScreenManager;
  */
 public class MainClientScreen extends Screen{
     
+    public static final int ID = 1;
+        
     public MainClientScreen(ScreenManager sm) {
         super(sm);
     }
     
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        grphcs.drawString("rEvolution", 100, 100);
     }
 
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public int getID() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return ID;
     }
     
 }
