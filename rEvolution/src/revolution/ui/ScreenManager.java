@@ -6,9 +6,7 @@
 
 package revolution.ui;
 
-import java.util.HashMap;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.Transition;
 

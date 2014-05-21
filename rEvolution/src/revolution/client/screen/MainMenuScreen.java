@@ -6,9 +6,11 @@ package revolution.client.screen;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import revolution.client.screen.components.MainMenu;
+import revolution.res.Images;
 import revolution.ui.Screen;
 import revolution.ui.ScreenManager;
 
@@ -35,6 +37,7 @@ public class MainMenuScreen extends Screen{
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
         grphcs.drawString("rEvolution", 100, 100);
         menu.renderComponents(gc, sbg, grphcs);
+        grphcs.drawImage(new Image("res/sampleButtonPressed.png"), 10, 10);
     }
 
     @Override

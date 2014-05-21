@@ -21,12 +21,11 @@ import org.newdawn.slick.gui.MouseOverArea;
  */
 public abstract class Button extends MouseOverArea{
     
-    private boolean isHovering = false, isPressed = false;
-    
     public Button(GUIContext gc, Image normal,
             Image pressed, Image hover,
             Shape shape){
         super(gc, normal, shape);
+        this.setNormalImage(normal);
         this.setMouseDownImage(pressed);
         this.setMouseOverImage(hover);
     }
@@ -34,6 +33,7 @@ public abstract class Button extends MouseOverArea{
     public Button(GUIContext gc, Image normal,
             Image pressed, Image hover, int x, int y, int width, int height){
         super(gc, normal, x, y, width, height);
+        this.setNormalImage(normal);
         this.setMouseDownImage(pressed);
         this.setMouseOverImage(hover);
     }
@@ -41,7 +41,9 @@ public abstract class Button extends MouseOverArea{
     @Override
     public void mouseClicked(int button, int x, int y, int clickCount) {
         super.mouseClicked(button, x, y, clickCount);
-        onClick();
+        if(this.isMouseOver()){
+            onClick();
+        }
     }
     
     public abstract void onClick();

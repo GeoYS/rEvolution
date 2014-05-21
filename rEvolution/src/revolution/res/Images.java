@@ -16,8 +16,11 @@ import org.newdawn.slick.SlickException;
 public class Images {
     
     // List of image names for later referencing.
+    // Make sure they are all unique.
     // Add to this list whenever we add a new image to load.
-    public static String IMAGE_NAME = "myImage"; // example
+    public static String SAMPLE_BUTTON_HOVER = "sampleButtonHover"; // example
+    public static String SAMPLE_BUTTON_NORMAL = "sampleButtonHover"; // example
+    public static String SAMPLE_BUTTON_PRESSED = "sampleButtonHover"; // example
     
     private static HashMap<String, Image> images = new HashMap<>();    
     private static Stack<DeferredImage> toLoad = new Stack<>();
@@ -31,8 +34,10 @@ public class Images {
      * Call before calling loadNext.
      */
     public static void initiateLoading(){
-        toLoad.add(new DeferredImage("myImage", "../myImage.png")); // example
-        totalImages = 1;
+        toLoad.add(new DeferredImage(SAMPLE_BUTTON_HOVER, "res/sampleButtonHover.png")); // example
+        toLoad.add(new DeferredImage(SAMPLE_BUTTON_PRESSED, "res/sampleButtonPressed.png")); // example
+        toLoad.add(new DeferredImage(SAMPLE_BUTTON_NORMAL, "res/sampleButtonNormal.png")); // example
+        totalImages = toLoad.size();
     }
     
     /**
