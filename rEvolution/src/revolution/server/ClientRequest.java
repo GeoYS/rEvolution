@@ -11,12 +11,9 @@ package revolution.server;
  * @author Chris
  */
 public class ClientRequest {
-    public int port;
-    public String hostName, username, password;   
-    public ClientRequest(int port, String hostName, String username, String password){
-        this.hostName = hostName;
+    public String username, password;   
+    public ClientRequest(String username, String password){
         this.password = password;
-        this.port = port;
         this.username = username;
     }
 }

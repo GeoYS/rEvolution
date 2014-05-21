@@ -8,6 +8,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+import revolution.client.screen.components.MainMenu;
 import revolution.ui.Screen;
 import revolution.ui.ScreenManager;
 
@@ -15,12 +16,15 @@ import revolution.ui.ScreenManager;
  *
  * @author GeoYS_2
  */
-public class MainClientScreen extends Screen{
+public class MainMenuScreen extends Screen{
     
     public static final int ID = 1;
+    
+    private MainMenu menu;
         
-    public MainClientScreen(ScreenManager sm) {
+    public MainMenuScreen(ScreenManager sm) {
         super(sm);
+        menu = new MainMenu(sm.getContainer(), sm);
     }
     
     @Override
@@ -30,6 +34,7 @@ public class MainClientScreen extends Screen{
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
         grphcs.drawString("rEvolution", 100, 100);
+        menu.renderComponents(gc, sbg, grphcs);
     }
 
     @Override

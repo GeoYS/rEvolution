@@ -123,8 +123,6 @@ public class Client {
         }
         socket.send(
                 new ClientRequest(
-                    socket.getPort(),
-                    socket.getAddress().getHostName(),
                     username,
                     password),
                 hostName,

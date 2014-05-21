@@ -17,7 +17,7 @@ public class ClientScreenManager extends ScreenManager{
     }
     @Override
     public void initStatesList(GameContainer gc) {
-        this.addScreen(new MainClientScreen(this));
+        this.addScreen(new MainMenuScreen(this));
     }
     
 }
