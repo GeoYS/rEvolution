@@ -5,19 +5,29 @@
 package revolution.ui;
 
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.MouseListener;
 import org.newdawn.slick.geom.Shape;
+import org.newdawn.slick.gui.AbstractComponent;
+import org.newdawn.slick.gui.GUIContext;
+import org.newdawn.slick.gui.MouseOverArea;
 
 /**
  * A simple definition of a GUI (click-able) button 
  * that can be added to a screen and rendered.
- * Be careful
+ * Be careful of overlapping buttons.
+ * 
+ * CURRENTLY NON-FUNCTIONAL!
  * @author geshe9243
  */
-public abstract class Button implements MouseListener{
+public abstract class Button extends MouseOverArea{
     
     private boolean isHovering = false, isPressed = false;
+    
+    public Button(GUIContext gc, Image img, Shape shape){
+        super(gc,img, shape);
+    }
     
     public abstract Shape getButtonShape();
     public abstract void onHoverOn();
@@ -26,7 +36,6 @@ public abstract class Button implements MouseListener{
     public abstract void onRelease();
     public abstract void onClick();
     public abstract void render(Graphics g);
-    public abstract void update(long delta);
 
     @Override
     public void mouseWheelMoved(int i) {
