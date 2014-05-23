@@ -4,6 +4,8 @@
  */
 package revolution;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.UnknownHostException;
@@ -17,19 +19,21 @@ import revolution.client.screen.ClientScreenManager;
  * @author chsto9228
  */
 public class REvolutionClient {
-
+    static Dimension screen;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SlickException, IOException{
+        screen = Toolkit.getDefaultToolkit().getScreenSize();
         int port = 1000;
         while(!available(port)){
             port ++;
         }
         Client.session = new Client(port);
         AppGameContainer app = new AppGameContainer(new ClientScreenManager());
-        app.setDisplayMode(640, 640, false);
+        app.setDisplayMode((int) screen.getWidth(), (int) screen.getHeight(), true);
         app.setTargetFrameRate(40);
+        app.setShowFPS(true);
         app.setUpdateOnlyWhenVisible(false);
         app.setAlwaysRender(true);
         app.start();
