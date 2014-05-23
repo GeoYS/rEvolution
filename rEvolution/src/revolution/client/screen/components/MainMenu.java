@@ -11,9 +11,12 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.gui.GUIContext;
 import org.newdawn.slick.state.transition.EmptyTransition;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.state.transition.HorizontalSplitTransition;
+import revolution.client.screen.LobbyScreen;
 import revolution.client.screen.MainMenuScreen;
-import revolution.res.Images;
+import revolution.res.ClientImages;
 import revolution.ui.Button;
 import revolution.ui.ComponentGroup;
 import revolution.ui.ScreenManager;
@@ -23,17 +26,32 @@ import revolution.ui.ScreenManager;
  * @author geshe9243
  */
 public class MainMenu extends ComponentGroup{
+    
+    private Button lobby1, lobby2;
+    
     public MainMenu(GUIContext context, final ScreenManager sm){
         super(context, 0, 0);
-        this.addComponent(new Button(context, 
-                Images.getImage(Images.SAMPLE_BUTTON_NORMAL),
-                Images.getImage(Images.SAMPLE_BUTTON_HOVER),
-                Images.getImage(Images.SAMPLE_BUTTON_PRESSED),
+        lobby1 = new Button(context, 
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
+                100, 200, 64, 32){
+            @Override
+            public void onClick() {
+                sm.changeScreen(LobbyScreen.ID, new EmptyTransition(), new HorizontalSplitTransition());
+            }
+        };
+        lobby2 = new Button(context, 
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
                 100, 300, 64, 32){
             @Override
             public void onClick() {
-                sm.changeScreen(MainMenuScreen.ID, new EmptyTransition(), new HorizontalSplitTransition());
+                sm.changeScreen(LobbyScreen.ID, new FadeOutTransition(), new FadeInTransition());
             }
-        });
+        };
+        this.addComponent(lobby1);
+        this.addComponent(lobby2);
     }
 }

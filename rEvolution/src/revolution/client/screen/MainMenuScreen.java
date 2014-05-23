@@ -4,13 +4,14 @@
  */
 package revolution.client.screen;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import revolution.client.screen.components.MainMenu;
-import revolution.res.Images;
+import revolution.res.ClientImages;
 import revolution.ui.Screen;
 import revolution.ui.ScreenManager;
 
@@ -26,18 +27,22 @@ public class MainMenuScreen extends Screen{
         
     public MainMenuScreen(ScreenManager sm) {
         super(sm);
-        menu = new MainMenu(sm.getContainer(), sm);
     }
     
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+        this.clearComponents(); // if this screen had been previously initialised.
+        menu = new MainMenu(this.getScreenManager().getContainer(), this.getScreenManager());
+        this.addComponent(menu);
     }
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
+        grphcs.setBackground(Color.yellow);
         grphcs.drawString("rEvolution", 100, 100);
-        menu.renderComponents(gc, sbg, grphcs);
-        grphcs.drawImage(new Image("res/sampleButtonPressed.png"), 10, 10);
+        menu.render(gc, grphcs);
+        grphcs.drawString("Horizontal Split Transition", 200, 200);
+        grphcs.drawString("Fade Transition", 200, 300);
     }
 
     @Override

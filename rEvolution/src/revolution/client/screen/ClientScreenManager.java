@@ -21,16 +21,9 @@ public class ClientScreenManager extends ScreenManager{
     @Override
     public void initStatesList(GameContainer gc) {
         // Add screens
-        this.addScreen(new MainMenuScreen(this));
         this.addScreen(new LoadingScreen(this));
-        
-        // Init screens
-        try {
-            this.getState(MainMenuScreen.ID).init(gc, this);
-            this.getState(LoadingScreen.ID).init(gc, this);
-        } catch (SlickException ex) {
-            Logger.getLogger(ClientScreenManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.addScreen(new MainMenuScreen(this));
+        this.addScreen(new LobbyScreen(this));
         
         // Enter first screen
         this.enterState(LoadingScreen.ID);
