@@ -28,6 +28,12 @@ public abstract class Button extends MouseOverArea{
         this.setNormalImage(normal);
         this.setMouseDownImage(pressed);
         this.setMouseOverImage(hover);
+                
+        // PROBABLY BAD CONVENTION, BUT THIS IS NECESSARY FOR ALL (!) 
+        // COMPONENTS SO THAT THEY WORK CORRECTLY WITH SCREENS AND 
+        // TRANSITIONS. MAKE SURE THIS LINE OF CODE IS IN ANY CLASS THAT 
+        // IMPLEMENTS THE SLICK ABSTRACTCOMPONENT CLASS!!!!!!
+        gc.getInput().removeListener(this);
     }
     
     public Button(GUIContext gc, Image normal,
@@ -36,10 +42,17 @@ public abstract class Button extends MouseOverArea{
         this.setNormalImage(normal);
         this.setMouseDownImage(pressed);
         this.setMouseOverImage(hover);
+                
+        // PROBABLY BAD CONVENTION, BUT THIS IS NECESSARY FOR ALL (!) 
+        // COMPONENTS SO THAT THEY WORK CORRECTLY WITH SCREENS AND 
+        // TRANSITIONS. MAKE SURE THIS LINE OF CODE IS IN ANY CLASS THAT 
+        // IMPLEMENTS THE SLICK ABSTRACTCOMPONENT CLASS!!!!!!
+        gc.getInput().removeListener(this);
     }
 
     @Override
-    public void mouseClicked(int button, int x, int y, int clickCount) {
+    public void mouseClicked(int button, int x, int y, int clickCount) {        
+        System.out.println("Mouse clicked.");
         super.mouseClicked(button, x, y, clickCount);
         if(this.isMouseOver()){
             onClick();

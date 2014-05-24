@@ -7,6 +7,7 @@
 package revolution.ui;
 
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.Transition;
@@ -34,9 +35,24 @@ public abstract class ScreenManager extends StateBasedGame{
      * be called after all loading is done.
      */
     public void reInitScreens() throws SlickException{
-        this.getContainer().getInput().removeAllListeners();
         this.init(this.getContainer());
     }
+
     @Override
-    public abstract void initStatesList(GameContainer gc);
+    public void keyPressed(int key, char c) {
+        System.out.println("Key pressed.");
+        super.keyReleased(key, c);
+        if(key == Input.KEY_ESCAPE){
+            this.getContainer().exit();
+        }
+    }
+
+    @Override
+    public void mouseMoved(int oldx, int oldy, int newx, int newy) {
+        super.mouseMoved(oldx, oldy, newx, newy);
+    }
+    @Override
+    public void mousePressed(int button, int x, int y) {
+        super.mousePressed(button, x, y);
+    }
 }

@@ -7,6 +7,7 @@ package revolution.ui;
 import java.util.ArrayList;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.InputListener;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.GUIContext;
@@ -24,6 +25,7 @@ public abstract class ComponentGroup extends AbstractComponent{
     
     private ArrayList<AbstractComponent> components;
     private int xOffset, yOffset;
+    private GUIContext gc;
     
     /**
      * A new empty group of components.
@@ -36,6 +38,16 @@ public abstract class ComponentGroup extends AbstractComponent{
         components = new ArrayList<>();
         this.xOffset = xOffset;
         this.yOffset = yOffset;
+        this.gc = gc;
+        
+        // PROBABLY BAD CONVENTION, BUT THIS IS NECESSARY FOR ALL (!) 
+        // COMPONENTS SO THAT THEY WORK CORRECTLY WITH SCREENS AND 
+        // TRANSITIONS. MAKE SURE THIS LINE OF CODE IS IN ANY CLASS THAT 
+        // IMPLEMENTS THE SLICK ABSTRACTCOMPONENT CLASS!!!!!!
+        // THE REASON IS BECAUSE COMPONENTS LIKE BUTTONS SHOULD
+        // NOT BE PRIMARY LISTENERS TO INPUT; RATHER THEY SHOULD BE ADDED 
+        // TO "SCREENS" (THAT'S HOW I SET IT UP).
+        gc.getInput().removeListener(this);
     }
 
     /**
@@ -65,6 +77,71 @@ public abstract class ComponentGroup extends AbstractComponent{
     public void setLocation(int xOffset, int yOffset) {
         this.xOffset = xOffset;
         this.yOffset = yOffset;
+    }
+    
+    
+    @Override
+    public void keyPressed(int key, char c) {
+        super.keyPressed(key, c);
+        for(InputListener il : this.getComponents()){
+            il.keyPressed(key, c);
+        }
+    }
+
+    @Override
+    public void keyReleased(int key, char c) {
+        super.keyReleased(key, c);        
+        for(InputListener il : this.getComponents()){
+            il.keyReleased(key, c);
+        }
+    }
+
+    @Override
+    public void mouseClicked(int button, int x, int y, int clickCount) {
+        super.mouseClicked(button, x, y, clickCount);
+        for(InputListener il : this.getComponents()){
+            il.mouseClicked(button, x, y, clickCount);
+        }        
+    }
+
+    @Override
+    public void mouseDragged(int oldx, int oldy, int newx, int newy) {
+        super.mouseDragged(oldx, oldy, newx, newy);
+        for(InputListener il : this.getComponents()){
+            il.mouseDragged(oldx, oldy, newx, newy);
+        }        
+    }
+
+    @Override
+    public void mouseMoved(int oldx, int oldy, int newx, int newy) {
+        super.mouseMoved(oldx, oldy, newx, newy);
+        for(InputListener il : this.getComponents()){
+            il.mouseMoved(oldx, oldy, newx, newy);
+        }        
+    }
+
+    @Override
+    public void mousePressed(int button, int x, int y) {
+        super.mousePressed(button, x, y);
+        for(InputListener il : this.getComponents()){
+            il.mousePressed(button, x, y);
+        }        
+    }
+
+    @Override
+    public void mouseReleased(int button, int x, int y) {
+        super.mouseReleased(button, x, y);
+        for(InputListener il : this.getComponents()){
+            il.mouseReleased(button, x, y);
+        }        
+    }
+
+    @Override
+    public void mouseWheelMoved(int newValue) {
+        super.mouseWheelMoved(newValue);
+        for(InputListener il : this.getComponents()){
+            il.mouseWheelMoved(newValue);
+        }        
     }
 
     @Override

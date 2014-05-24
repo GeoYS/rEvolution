@@ -31,9 +31,9 @@ public class MainMenuScreen extends Screen{
     
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        this.clearComponents(); // if this screen had been previously initialised.
+        this.clearListeners(); // if this screen had been previously initialised.
         menu = new MainMenu(this.getScreenManager().getContainer(), this.getScreenManager());
-        this.addComponent(menu);
+        this.addListener(menu);
     }
 
     @Override

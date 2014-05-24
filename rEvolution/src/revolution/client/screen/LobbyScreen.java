@@ -42,7 +42,7 @@ public class LobbyScreen extends Screen{
 
     @Override
     public void init(GameContainer gc, final StateBasedGame sbg) throws SlickException {
-        this.clearComponents();
+        this.clearListeners();
         back1 = new Button(gc, 
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
@@ -67,8 +67,8 @@ public class LobbyScreen extends Screen{
                         new VerticalSplitTransition());
             }
         };
-        this.addComponent(back1);
-        this.addComponent(back2);
+        this.addListener(back1);
+        this.addListener(back2);
     }
 
     @Override

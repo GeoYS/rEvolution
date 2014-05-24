@@ -24,14 +24,15 @@ public class REvolutionClient {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SlickException, IOException{
-        screen = Toolkit.getDefaultToolkit().getScreenSize();
+        //screen = Toolkit.getDefaultToolkit().getScreenSize();
         int port = 1000;
         while(!available(port)){
             port ++;
         }
         Client.session = new Client(port);
         AppGameContainer app = new AppGameContainer(new ClientScreenManager());
-        app.setDisplayMode((int) screen.getWidth(), (int) screen.getHeight(), true);
+        //app.setDisplayMode((int) screen.getWidth(), (int) screen.getHeight(), true);
+        app.setDisplayMode(600, 480, false);
         app.setTargetFrameRate(40);
         app.setShowFPS(true);
         app.setUpdateOnlyWhenVisible(false);
