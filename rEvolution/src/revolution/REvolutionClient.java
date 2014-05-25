@@ -33,7 +33,7 @@ public class REvolutionClient {
         AppGameContainer app = new AppGameContainer(new ClientScreenManager());
         //app.setDisplayMode((int) screen.getWidth(), (int) screen.getHeight(), true);
         app.setDisplayMode(600, 480, false);
-        app.setTargetFrameRate(40);
+        app.setTargetFrameRate(60);
         app.setShowFPS(true);
         app.setUpdateOnlyWhenVisible(false);
         app.setAlwaysRender(true);
