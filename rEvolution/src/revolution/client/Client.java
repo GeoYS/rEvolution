@@ -28,6 +28,7 @@ import revolution.util.Stopwatch;
 public class Client {
     
     public static Client session;
+    
     private static final long RECEIVE_BROADCAST_TIMEOUT = 500,
             CONNECTION_TIMEOUT = 10000; // milliseconds
     
@@ -44,19 +45,19 @@ public class Client {
     }
     
     /**
-     * Receives any broadcasts that are sent out for 0.5 seconds.
+     * Receives any broadcasts that are sent out for duration of 0.5 seconds.
      * @return ArrayList of all ServerInfo's it receives
      */
     public ArrayList<ServerInfo> receiveServerBroadcasts() throws IOException{
         long last = System.currentTimeMillis();
         ArrayList<ServerInfo> servers = new ArrayList<>();
         do{
-            Object o = socket.receiveMulticast();
-            if(o instanceof ServerInfo){
-                servers.add((ServerInfo)o);
+            ObjectPacket o = socket.receiveMulticast();
+            if(o != null && o.object instanceof ServerInfo){
+                servers.add((ServerInfo)o.object);
             }
-        }while(last - System.currentTimeMillis() < RECEIVE_BROADCAST_TIMEOUT);
-        return servers;
+        }while(System.currentTimeMillis() - last< RECEIVE_BROADCAST_TIMEOUT);
+        return servers;//socket.receiveMulticast();
     }
     
     /**
@@ -88,7 +89,7 @@ public class Client {
         if(connected && lastData.time() >= Client.CONNECTION_TIMEOUT){
             disconnected = true;
         }
-        return connected && lastData.time() < Client.CONNECTION_TIMEOUT;
+        return !disconnected && connected && lastData.time() < Client.CONNECTION_TIMEOUT;
     }
     
     /**
@@ -111,7 +112,8 @@ public class Client {
      * @throws IOException 
      * @return requestSent
      */
-    public boolean connect(int port, String hostName, String username, String password) throws IOException{
+    public boolean connect(int port, String hostName,
+            String username, String password, boolean newUser) throws IOException{
         if(connectionStart.isRunning()){
             if(connectionStart.time() > CONNECTION_TIMEOUT){
                 connectionStart.stop();
@@ -124,7 +126,7 @@ public class Client {
         socket.send(
                 new ClientRequest(
                     username,
-                    password),
+                    password, newUser),
                 hostName,
                 port);
         return true;

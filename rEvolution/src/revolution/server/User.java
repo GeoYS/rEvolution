@@ -23,9 +23,10 @@ public class User implements Serializable{
         this.pathToXML = pathToXML;
     }
 
-    public User(int port, String hostName){
+    public User(int port, String hostName, String password){
         this.port = port;
         this.hostName = hostName;
+        this.password = password;
     }
 
     public void setPort(int port){            

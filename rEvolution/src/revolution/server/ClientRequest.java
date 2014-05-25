@@ -6,14 +6,18 @@
 
 package revolution.server;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Chris
  */
-public class ClientRequest {
-    public String username, password;   
-    public ClientRequest(String username, String password){
+public class ClientRequest implements Serializable{
+    public String username, password; 
+    public boolean newUser;
+    public ClientRequest(String username, String password, boolean newUser){
         this.password = password;
         this.username = username;
+        this.newUser = newUser;
     }
 }
