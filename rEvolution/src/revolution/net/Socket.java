@@ -69,6 +69,7 @@ public class Socket {
                 int groupPort
             ) throws SocketException, UnknownHostException, IOException{
         socket = new DatagramSocket(localPort, InetAddress.getByName(localName));
+        socket.setSoTimeout(TIMEOUT);
         multicastAddress = groupName;
         multicastPort = groupPort;
         groupSocket = new MulticastSocket(groupPort);
@@ -110,7 +111,7 @@ public class Socket {
             socket.receive(packet);
         }
         catch(IOException e){
-            System.out.println("Debugging: Nothing to receive.");
+            //System.out.println("Debugging: Nothing to receive.");
             return null;
         }
         
@@ -204,12 +205,38 @@ public class Socket {
         socket.send(packet);
     }   
     
+    /**
+     * Set time for a receive() call to block.
+     * @param millis
+     * @throws SocketException 
+     */
+    public void setTimeout(int millis) throws SocketException{
+        socket.setSoTimeout(millis);
+    }
+    
+    /**
+     * Set multicast time to live for sent packets.
+     * @param millis 
+     */
+    public void setMulticastTTL(int millis) throws IOException{
+        groupSocket.setTimeToLive(TTL);
+    }
+    
+    /**
+     * Set time for a receiveMulticast() call to block.
+     * @param millis
+     * @throws SocketException 
+     */
+    public void setMulticastTimeout(int millis) throws SocketException{
+        groupSocket.setSoTimeout(millis);
+    }
+    
     public InetAddress getAddress(){
-        return this.socket.getInetAddress();
+        return this.socket.getLocalAddress();
     }
     
     public int getPort(){
-        return this.socket.getPort();
+        return this.socket.getLocalPort();
     }
     
     public void setSocket(int port, String localName) throws UnknownHostException, SocketException{
