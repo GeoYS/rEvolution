@@ -4,7 +4,6 @@
  */
 package revolution.client.screen;
 
-import com.sun.org.apache.xpath.internal.axes.OneStepIterator;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;

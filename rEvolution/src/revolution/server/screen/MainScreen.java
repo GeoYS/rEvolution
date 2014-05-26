@@ -4,10 +4,12 @@
  */
 package revolution.server.screen;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+import revolution.server.screen.components.MainMenu;
 import revolution.ui.Screen;
 import revolution.ui.ScreenManager;
 
@@ -20,28 +22,38 @@ import revolution.ui.ScreenManager;
  */
 public class MainScreen extends Screen{
     
+    public static final int ID = 0;
+    
+    private MainMenu menu;
+    
     public MainScreen(ScreenManager sm){
         super(sm);
     }
     
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.clearListeners(); // if this screen had been previously initialised.
+        menu = new MainMenu(this.getScreenManager().getContainer(), this.getScreenManager());
+        this.addListener(menu);
     }
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        grphcs.setBackground(Color.blue);
+        grphcs.drawString("MainScreen", 100, 100);
+        menu.render(gc, grphcs);
+        grphcs.drawString("New Server Screen", 200, 200);
+        grphcs.drawString("Load Server Screen", 200, 300);
     }
 
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
     }
 
     @Override
     public int getID() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return ID;
     }
     
 }

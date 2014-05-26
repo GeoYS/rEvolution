@@ -15,14 +15,14 @@ import revolution.server.screen.ServerScreenManager;
  * @author GeoYS_2
  */
 public class REvolutionServer {
-
+    static Dimension screen;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SlickException {   
-        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        screen = Toolkit.getDefaultToolkit().getScreenSize();
         AppGameContainer app = new AppGameContainer(new ServerScreenManager());
-        app.setDisplayMode((int) screen.getWidth(), (int) screen.getHeight(), true);
+        app.setDisplayMode((int) screen.getWidth(), (int) screen.getHeight(), false);
         app.setTargetFrameRate(60);
         app.setShowFPS(false);
         app.setUpdateOnlyWhenVisible(false);

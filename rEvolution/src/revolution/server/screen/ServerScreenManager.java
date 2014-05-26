@@ -19,7 +19,11 @@ public class ServerScreenManager extends ScreenManager{
     
     @Override
     public void initStatesList(GameContainer gc) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.addScreen(new MainScreen(this));
+        this.addScreen(new NewServerScreen(this));
+        this.addScreen(new SavedServerScreen(this));
+        
+        this.enterState(MainScreen.ID);
     }
     
 }
