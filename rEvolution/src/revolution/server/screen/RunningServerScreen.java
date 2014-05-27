@@ -4,10 +4,18 @@
  */
 package revolution.server.screen;
 
+import java.io.IOException;
+import java.net.SocketException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+import revolution.server.Server;
+import revolution.server.screen.components.MainMenu;
+import revolution.server.screen.components.RunningServerMenu;
 import revolution.ui.Screen;
 import revolution.ui.ScreenManager;
 
@@ -18,28 +26,56 @@ import revolution.ui.ScreenManager;
  */
 public class RunningServerScreen extends Screen{
     
+    public static final int ID = 3;
+    
+    private RunningServerMenu menu;
+    
+    private static Server server;
+    
     public RunningServerScreen(ScreenManager sm){
         super(sm);
     }
     
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            server = new Server(/* port */ 7999);
+        } catch (SocketException ex) {
+            Logger.getLogger(RunningServerScreen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(RunningServerScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        this.clearListeners(); // if this screen had been previously initialised.
+        menu = new RunningServerMenu(this.getScreenManager().getContainer(), this.getScreenManager());
+        this.addListener(menu);
     }
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        grphcs.setBackground(Color.blue);
+        grphcs.drawString("RunningServerScreen", 100, 100);
+        menu.render(gc, grphcs);
+        grphcs.drawString("Server Info (not implemented)", 200, 200);
+        grphcs.drawString("Stop (not implemented)", 200, 300);
     }
 
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            // update
+            server.update(0);
+        } catch (IOException ex) {
+            Logger.getLogger(RunningServerScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // render
+        System.out.println("Server running");
     }
 
     @Override
+    
     public int getID() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return ID;
     }
     
 }

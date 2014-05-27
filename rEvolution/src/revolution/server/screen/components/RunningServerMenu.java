@@ -11,53 +11,46 @@ import org.newdawn.slick.state.transition.EmptyTransition;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import revolution.res.ClientImages;
 import revolution.server.screen.MainScreen;
-import revolution.server.screen.RunningServerScreen;
+import revolution.server.screen.NewServerScreen;
 import revolution.ui.Button;
 import revolution.ui.ComponentGroup;
 import revolution.ui.ScreenManager;
-import revolution.ui.TextField;
-import revolution.ui.TypeFace;
 
 /**
  *
  * @author Chris
  */
-public class NewServerMenu extends ComponentGroup{
+public class RunningServerMenu extends ComponentGroup{
     
-    private Button start, back;
-    
-    private TextField txt;
-    
-    public NewServerMenu(GUIContext gc, final ScreenManager sm) {
+    private Button stats, stop;
+
+    public RunningServerMenu(GUIContext gc, final ScreenManager sm) {
         super(gc, 0, 0);
         
-        start = new Button(gc,
+        stats = new Button(gc,
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
                 100, 200, 64, 32){
             @Override
             public void onClick() {
-                sm.changeScreen(RunningServerScreen.ID, new EmptyTransition(), new FadeInTransition());
+                sm.changeScreen(MainScreen.ID, new EmptyTransition(), new FadeInTransition());
             }
             
         };
         
-        back = new Button(gc,
+        stop = new Button(gc,
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
                 100, 300, 64, 32){
             @Override
             public void onClick() {
-                sm.changeScreen(MainScreen.ID, new EmptyTransition(), new FadeInTransition());
+                sm.changeScreen(NewServerScreen.ID, new EmptyTransition(), new FadeInTransition());
             }
             
         };
-
-        txt = new TextField(gc, TypeFace.uni(TypeFace.VERDANA, TypeFace.PLAIN, 16) , 100, 400, 150, 25, null);
-        this.addComponent(txt);
-        this.addComponent(start);
-        this.addComponent(back);
-    }    
+        this.addComponent(stats);
+        this.addComponent(stop);
+    }  
 }
