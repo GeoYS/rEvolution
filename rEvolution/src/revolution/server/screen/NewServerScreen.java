@@ -28,8 +28,6 @@ public class NewServerScreen extends Screen{
     
     private NewServerMenu menu;
     
-    private TextField txt;
-    
     public NewServerScreen(ScreenManager sm){
         super(sm);
     }
@@ -37,10 +35,7 @@ public class NewServerScreen extends Screen{
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         this.clearListeners(); // if this screen had been previously initialised.
-        menu = new NewServerMenu(this.getScreenManager().getContainer(), this.getScreenManager());
-        //needs listener and implenetation
-        txt = new TextField(gc, TypeFace.uni(TypeFace.VERDANA, TypeFace.PLAIN, 16) , 100, 200, 50, 50, null);
-        this.addListener(txt);
+        menu = new NewServerMenu(this.getScreenManager().getContainer(), this.getScreenManager());        
         this.addListener(menu);
     }
 

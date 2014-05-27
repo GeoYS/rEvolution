@@ -22,7 +22,7 @@ public class TestClient {
     private static Client client;
     
     public static void main(String[] args) throws UnknownHostException, IOException{
-         client = new Client(/* port */ 9900);
+         client = new Client(/* port */ 9901);
          
          // consider these loops as update/render loops
          while(!client.isConnected()){

@@ -14,6 +14,8 @@ import revolution.server.screen.MainScreen;
 import revolution.ui.Button;
 import revolution.ui.ComponentGroup;
 import revolution.ui.ScreenManager;
+import revolution.ui.TextField;
+import revolution.ui.TypeFace;
 
 /**
  *
@@ -22,6 +24,7 @@ import revolution.ui.ScreenManager;
 public class NewServerMenu extends ComponentGroup{
     
     private Button btn1, back;
+    private TextField txt;
 
     public NewServerMenu(GUIContext gc, final ScreenManager sm) {
         super(gc, 0, 0);
@@ -49,6 +52,9 @@ public class NewServerMenu extends ComponentGroup{
             }
             
         };
+        
+        txt = new TextField(gc, TypeFace.uni(TypeFace.VERDANA, TypeFace.PLAIN, 16) , 100, 400, 150, 25, null);
+        this.addComponent(txt);
         this.addComponent(btn1);
         this.addComponent(back);
     }    

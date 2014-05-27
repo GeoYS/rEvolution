@@ -38,11 +38,11 @@ public class MainMenuScreen extends Screen{
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
-        grphcs.setBackground(Color.yellow);
-        grphcs.drawString("rEvolution", 100, 100);
+        grphcs.setBackground(Color.darkGray);
+        grphcs.drawString("MainScreen", 100, 100);
         menu.render(gc, grphcs);
-        grphcs.drawString("Horizontal Split Transition", 200, 200);
-        grphcs.drawString("Fade Transition", 200, 300);
+        grphcs.drawString("Got To Lobby", 200, 200);
+        grphcs.drawString("(Not Implemented)", 200, 300);
     }
 
     @Override

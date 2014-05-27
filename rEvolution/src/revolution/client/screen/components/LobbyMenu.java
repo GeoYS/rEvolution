@@ -25,20 +25,21 @@ import revolution.ui.ScreenManager;
  *
  * @author geshe9243
  */
-public class MainMenu extends ComponentGroup{
+public class LobbyMenu extends ComponentGroup{
     
-    private Button connect, btn2;
+    private Button add, btn2;
+    public boolean addUser = false;
     
-    public MainMenu(GUIContext context, final ScreenManager sm){
+    public LobbyMenu(GUIContext context, final ScreenManager sm){
         super(context, 0, 0);
-        connect = new Button(context, 
+        add = new Button(context, 
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
                 100, 200, 64, 32){
             @Override
             public void onClick() {
-                sm.changeScreen(LobbyScreen.ID, new EmptyTransition(), new HorizontalSplitTransition());
+                addUser = true;
             }
         };
         btn2 = new Button(context, 
@@ -51,7 +52,7 @@ public class MainMenu extends ComponentGroup{
                 sm.changeScreen(LobbyScreen.ID, new FadeOutTransition(), new FadeInTransition());
             }
         };
-        this.addComponent(connect);
+        this.addComponent(add);
         this.addComponent(btn2);
     }
 }
