@@ -22,6 +22,7 @@ public class ServerScreenManager extends ScreenManager{
         this.addScreen(new MainScreen(this));
         this.addScreen(new NewServerScreen(this));
         this.addScreen(new SavedServerScreen(this));
+        this.addScreen(new RunningServerScreen(this));
         
         this.enterState(MainScreen.ID);
     }
