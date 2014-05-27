@@ -45,15 +45,12 @@ public class LobbyScreen extends Screen{
     
     public LobbyScreen(ScreenManager sm) {
         super(sm);
+        
+        client = Client.session;
     }
 
     @Override
     public void init(GameContainer gc, final StateBasedGame sbg) throws SlickException {
-        try {
-            client = new Client(/* port */ 9800);
-        } catch (IOException ex) {
-            Logger.getLogger(LobbyScreen.class.getName()).log(Level.SEVERE, null, ex);
-        }
         this.clearListeners(); // if this screen had been previously initialised.
         menu = new LobbyMenu(this.getScreenManager().getContainer(), this.getScreenManager());
         this.addListener(menu);
