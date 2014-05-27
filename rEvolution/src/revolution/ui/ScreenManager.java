@@ -41,7 +41,7 @@ public abstract class ScreenManager extends StateBasedGame{
     @Override
     public void keyPressed(int key, char c) {
         System.out.println("Key pressed.");
-        super.keyReleased(key, c);
+        super.keyPressed(key, c);
         if(key == Input.KEY_ESCAPE){
             this.getContainer().exit();
         }

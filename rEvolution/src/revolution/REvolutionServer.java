@@ -22,7 +22,7 @@ public class REvolutionServer {
     public static void main(String[] args) throws SlickException {   
         screen = Toolkit.getDefaultToolkit().getScreenSize();
         AppGameContainer app = new AppGameContainer(new ServerScreenManager());
-        app.setDisplayMode((int) screen.getWidth(), (int) screen.getHeight(), false);
+        app.setDisplayMode(1200, 960, false);
         app.setTargetFrameRate(60);
         app.setShowFPS(false);
         app.setUpdateOnlyWhenVisible(false);

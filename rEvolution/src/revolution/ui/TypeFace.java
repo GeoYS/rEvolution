@@ -7,6 +7,7 @@
 package revolution.ui;
 
 import org.newdawn.slick.Font;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.UnicodeFont;
 
 
@@ -22,8 +23,9 @@ public class TypeFace {
     public static final int BOLD = 1;
     public static final int ITALIC = 2;    
     
-    public static Font uni(String fontType, int fontMode, int size){
-        Font font = new UnicodeFont(new java.awt.Font(fontType, fontMode, size));
-        return font;
+    public static TrueTypeFont uni(String fontType, int fontMode, int size){
+        java.awt.Font font = new java.awt.Font(fontType, fontMode, size);
+        TrueTypeFont ttf = new TrueTypeFont(font, true);
+        return ttf;
     }
 }

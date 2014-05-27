@@ -6,6 +6,7 @@
 
 package revolution.ui;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.gui.ComponentListener;
@@ -16,11 +17,14 @@ import org.newdawn.slick.gui.GUIContext;
  * @author Chris
  */
 public class TextField extends org.newdawn.slick.gui.TextField{
+    
+    private String out = "";
 
-    public TextField(GUIContext container, Font font, int x, int y, int width, int height, ComponentListener listener) {
+    public TextField(GUIContext container, Font font, int x, int y, int width, int height) {
         super(container, font, x, y, width, height);
         container.getInput().removeListener(this);
-        
+        this.setText("Enter Server Name");
+        this.setBackgroundColor(Color.lightGray);
+        this.setTextColor(Color.yellow);        
     }
-
 }

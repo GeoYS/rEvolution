@@ -55,7 +55,7 @@ public class NewServerMenu extends ComponentGroup{
             
         };
 
-        txt = new TextField(gc, TypeFace.uni(TypeFace.VERDANA, TypeFace.PLAIN, 16) , 100, 400, 150, 25, null);
+        txt = new TextField(gc, TypeFace.uni(TypeFace.ARIAL, TypeFace.BOLD, 40) , 100, 400, 150, 50);
         this.addComponent(txt);
         this.addComponent(start);
         this.addComponent(back);
