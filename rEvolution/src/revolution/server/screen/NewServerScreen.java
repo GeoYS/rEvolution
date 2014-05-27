@@ -10,10 +10,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import revolution.server.screen.components.NewServerMenu;
-import revolution.ui.TypeFace;
 import revolution.ui.Screen;
 import revolution.ui.ScreenManager;
-import revolution.ui.TextField;
 
 /**
  * Screen with settings of the new server.
