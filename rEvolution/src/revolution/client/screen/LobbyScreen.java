@@ -35,8 +35,6 @@ public class LobbyScreen extends Screen{
     
     private Client client;
     
-    private Socket socket;
-    
     private String conAdd;
     
     private int conPort;
@@ -99,17 +97,11 @@ public class LobbyScreen extends Screen{
                  }
              }
          }
-         System.out.println("Connected!");
+         //System.out.println("Connected!");
          if(client.isConnected()){
              if(menu.addUser){
-                 
-                 try {
-                     socket.send(out, conAdd, conPort);
-                 } catch (IOException ex) {
-                     Logger.getLogger(LobbyScreen.class.getName()).log(Level.SEVERE, null, ex);
-                 }
                 menu.addUser = false;
-             }
+             
              // receiving game world data from server
              UserData ud = null;
              try {
@@ -120,8 +112,9 @@ public class LobbyScreen extends Screen{
              if(ud != null){
                  System.out.println(ud.message);
              }
+             }
          }
-         System.out.println("Disconnected");
+         //System.out.println("Disconnected");
     }
     
     @Override
