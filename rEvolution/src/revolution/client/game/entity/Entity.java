@@ -12,21 +12,36 @@ import org.newdawn.slick.Image;
  * @author geshe9243
  */
 public abstract class Entity {
-    private double x, y;
-    public Entity(int x, int y){
-        this.x = x;
-        this.y = y;
-    }
-    public int getX(){
-        return (int) x;
-    }
-    public int getY(){
-        return (int) y;
-    }
-    public void setPosition(double x, double y){
-        this.x = x;
-        this.y = y;
-    }
+    
+    /**
+     * Get entity's x coordinate.
+     * @return 
+     */
+    public abstract int getX();
+    
+    /**
+     * Get entity's y coordinate.
+     * @return 
+     */
+    public abstract int getY();
+    
+    /**
+     * Get entity's width.
+     * @return 
+     */
+    public abstract int getWidth();
+    
+    /**
+     * Get entity's height.
+     * @return 
+     */
+    public abstract int getHeight();
+    
+    /**
+     * Define what happens when two entities interact (eg. collision).
+     * @param e Entity that is interacted with
+     */
+    public abstract void interact(Entity e);
     
     /**
      * The image that should be drawn to represent the entity.
