@@ -34,8 +34,6 @@ public class LoadServerMenu extends ComponentGroup{
     private final int WIDTH = 64;
     private final int HEIGHT = 32;
     
-    private int place;
-    
     public LoadServerMenu(GUIContext gc, final ScreenManager sm) {
         super(gc, 0, 0);
         
@@ -89,7 +87,7 @@ public class LoadServerMenu extends ComponentGroup{
         }
         lists.clear();
         for(int i = 0; i < size; i++){
-            place = i;
+            final int place = i;
             lists.add(new Button(gc,
                     ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
                     ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
@@ -103,6 +101,6 @@ public class LoadServerMenu extends ComponentGroup{
             );
             this.addComponent(lists.get(place));
         }
-        System.out.println("out");
+        //System.out.println("out");
     }
 }
