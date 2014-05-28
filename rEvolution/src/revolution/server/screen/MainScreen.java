@@ -42,8 +42,8 @@ public class MainScreen extends Screen{
         grphcs.setBackground(Color.blue);
         grphcs.drawString("MainScreen", 100, 100);
         menu.render(gc, grphcs);
-        grphcs.drawString("New Server Screen", 200, 200);
-        grphcs.drawString("Load Server Screen", 200, 300);
+        grphcs.drawString("New Server Screen", menu.NEW_X + 100, menu.NEW_Y);
+        grphcs.drawString("Load Server Screen", menu.LOAD_X + 100, menu.LOAD_Y);
     }
 
     @Override

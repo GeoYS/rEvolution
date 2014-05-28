@@ -14,6 +14,7 @@ import revolution.server.screen.SavedServerScreen;
 import revolution.ui.Button;
 import revolution.ui.ComponentGroup;
 import revolution.ui.ScreenManager;
+import revolution.util.SSInfo;
 
 /**
  *
@@ -23,13 +24,20 @@ public class MainMenu extends ComponentGroup{
     
     private Button newServer, loadServer;
     
+    public final int NEW_X = SSInfo.WIDTH / 10; 
+    public final int NEW_Y = 9 * SSInfo.HEIGHT /10;
+    public final int LOAD_X = 4 * SSInfo.WIDTH /10;
+    public final int LOAD_Y = 9 * SSInfo.HEIGHT /10;
+    private final int WIDTH = 64;
+    private final int HEIGHT = 32;
+    
     public MainMenu(GUIContext gc, final ScreenManager sm){
         super(gc, 0, 0);
         newServer = new Button(gc, 
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
-                100, 200, 64, 32){
+                NEW_X, NEW_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
                 sm.changeScreen(NewServerScreen.ID, new EmptyTransition(), new FadeInTransition());
@@ -39,10 +47,10 @@ public class MainMenu extends ComponentGroup{
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
-                100, 300, 64, 32){
+                LOAD_X, LOAD_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                sm.changeScreen(SavedServerScreen.ID, new FadeOutTransition(), new FadeInTransition());
+                sm.changeScreen(SavedServerScreen.ID, new EmptyTransition(), new FadeInTransition());
             }
         };
         this.addComponent(newServer);

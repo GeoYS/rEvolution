@@ -10,7 +10,7 @@ package revolution.util;
  *
  * @author Chris
  */
-public class ServerInfo {
+public class CSInfo {
     public static int WIDTH;
     public static int HEIGHT;
     

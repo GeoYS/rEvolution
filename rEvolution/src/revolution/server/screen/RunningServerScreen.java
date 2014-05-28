@@ -14,6 +14,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import revolution.server.Server;
+import revolution.server.ServerInfo;
 import revolution.server.screen.components.MainMenu;
 import revolution.server.screen.components.RunningServerMenu;
 import revolution.ui.Screen;
@@ -54,10 +55,10 @@ public class RunningServerScreen extends Screen{
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
         grphcs.setBackground(Color.blue);
-        grphcs.drawString("RunningServerScreen", 100, 100);
+        grphcs.drawString(ServerInfo.currentServer, 100, 100);
         menu.render(gc, grphcs);
-        grphcs.drawString("Server Info (not implemented)", 200, 200);
-        grphcs.drawString("Stop (not implemented)", 200, 300);
+        grphcs.drawString("Statistics", menu.STATS_X + 100, menu.STATS_Y);
+        grphcs.drawString("Stop", menu.STOP_X + 100, menu.STOP_Y);
     }
 
     @Override

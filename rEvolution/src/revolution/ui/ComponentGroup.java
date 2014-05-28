@@ -182,4 +182,13 @@ public abstract class ComponentGroup extends AbstractComponent{
     public void addComponent(AbstractComponent component){
         components.add(component);
     }
+    
+    /**
+     * Remove a. AbstractComponent implementation, 
+     * eg. buttons.
+     * @param component 
+     */
+    public void removeComponent(AbstractComponent component){
+        components.remove(component);
+    }
 }

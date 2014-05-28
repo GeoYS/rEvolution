@@ -40,10 +40,11 @@ public class NewServerScreen extends Screen{
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
         grphcs.setBackground(Color.blue);
-        grphcs.drawString("NewServerScreen", 100, 100);
+        grphcs.drawString("NewServerScreen", menu.START_X, 100);
         menu.render(gc, grphcs);
-        grphcs.drawString("Horizontal Split Transition", 200, 200);
-        grphcs.drawString("Fade Transition", 200, 300);
+        grphcs.drawString("Server Name", menu.TXT_X - 200, menu.TXT_Y);
+        grphcs.drawString("Continue", menu.START_X + 100, menu.START_Y);
+        grphcs.drawString("Back", menu.BACK_X + 100, menu.BACK_Y);
     }
 
     @Override

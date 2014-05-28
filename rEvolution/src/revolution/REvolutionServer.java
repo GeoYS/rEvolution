@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 import revolution.server.screen.ServerScreenManager;
+import revolution.util.SSInfo;
 
 /**
  *
@@ -21,8 +22,10 @@ public class REvolutionServer {
      */
     public static void main(String[] args) throws SlickException {   
         screen = Toolkit.getDefaultToolkit().getScreenSize();
+        //ScreenSize.init((int) screen.getWidth(), (int) screen.getHeight());
+        SSInfo.init(1200, 960);
         AppGameContainer app = new AppGameContainer(new ServerScreenManager());
-        app.setDisplayMode(1200, 960, false);
+        app.setDisplayMode(SSInfo.WIDTH, SSInfo.HEIGHT, false);
         app.setTargetFrameRate(60);
         app.setShowFPS(false);
         app.setUpdateOnlyWhenVisible(false);

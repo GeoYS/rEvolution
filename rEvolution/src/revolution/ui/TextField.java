@@ -23,7 +23,6 @@ public class TextField extends org.newdawn.slick.gui.TextField{
     public TextField(GUIContext container, Font font, int x, int y, int width, int height) {
         super(container, font, x, y, width, height);
         container.getInput().removeListener(this);
-        this.setText("Enter Server Name");
         this.setBackgroundColor(Color.lightGray);
         this.setTextColor(Color.yellow);        
     }

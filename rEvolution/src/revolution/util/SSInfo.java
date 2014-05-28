@@ -6,11 +6,14 @@
 
 package revolution.util;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  *
  * @author Chris
  */
-public class ClientInfo {
+public class SSInfo {
     public static int WIDTH;
     public static int HEIGHT;
     

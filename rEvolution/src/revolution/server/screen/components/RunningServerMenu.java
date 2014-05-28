@@ -15,6 +15,7 @@ import revolution.server.screen.NewServerScreen;
 import revolution.ui.Button;
 import revolution.ui.ComponentGroup;
 import revolution.ui.ScreenManager;
+import revolution.util.SSInfo;
 
 /**
  *
@@ -23,6 +24,13 @@ import revolution.ui.ScreenManager;
 public class RunningServerMenu extends ComponentGroup{
     
     private Button stats, stop;
+    
+    public final int STATS_X = SSInfo.WIDTH / 10; 
+    public final int STATS_Y = 9 * SSInfo.HEIGHT /10;
+    public final int STOP_X = 4 * SSInfo.WIDTH /10;
+    public final int STOP_Y = 9 * SSInfo.HEIGHT /10;
+    private final int WIDTH = 64;
+    private final int HEIGHT = 32;
 
     public RunningServerMenu(GUIContext gc, final ScreenManager sm) {
         super(gc, 0, 0);
@@ -31,7 +39,7 @@ public class RunningServerMenu extends ComponentGroup{
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
-                100, 200, 64, 32){
+                STATS_X, STATS_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
                 sm.changeScreen(MainScreen.ID, new EmptyTransition(), new FadeInTransition());
@@ -43,10 +51,10 @@ public class RunningServerMenu extends ComponentGroup{
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
-                100, 300, 64, 32){
+                STOP_X, STOP_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                sm.changeScreen(NewServerScreen.ID, new EmptyTransition(), new FadeInTransition());
+                sm.changeScreen(MainScreen.ID, new EmptyTransition(), new FadeInTransition());
             }
             
         };
