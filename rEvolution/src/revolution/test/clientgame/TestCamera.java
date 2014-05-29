@@ -4,6 +4,8 @@
  */
 package revolution.test.clientgame;
 
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.MouseListener;
 import org.newdawn.slick.geom.Vector2f;
@@ -13,36 +15,57 @@ import revolution.client.game.Camera;
  *
  * @author GeoYS_2
  */
-public class TestCamera implements MouseListener, Camera{
+public class TestCamera extends Camera implements MouseListener{
 
-    private float x, y, 
-            sx, sy;
+    private float cx, cy, 
+            scale;
     
-    public TestCamera(float x,float y){
-        this.x = x;
-        this.y = y;
-        this.sx = this.sy = 1;
+    public TestCamera(GameContainer gc, 
+            float x, // centre x
+            float y  // centre y
+            ){
+        super(gc);
+        this.cx = x;
+        this.cy = y;
+        scale = 1;
+    }    
+
+    public float getX(){
+        return cx;
+    }
+    
+    public float getY(){
+        return cy;
     }
     
     @Override
-    public Translation getTranslation() {
-        return new Translation(x,y);
+    public void applyTranslation(Graphics graphics) {
+        graphics.translate(cx + this.getWidth() / 2,
+                cy + this.getHeight() / 2);
     }
 
     @Override
-    public Rotation getRotation() {
-        return new Rotation(0,0,0);
+    public void applyRotation(Graphics graphics) {
     }
 
     @Override
-    public Scale getScale() {
-        return new Scale(sy, sx);
+    public void applyZoom(Graphics graphics) {
+        graphics.translate(cx * scale  - cx, cy * scale  - cy);
+        graphics.scale(scale, scale);
     }
 
+    @Override
+    public void applyParallax(Graphics graphics, float parallax) {
+    }
+
+    @Override
+    public void resetParallax(Graphics graphics, float parallax) {
+    }
+    
     @Override
     public void mouseWheelMoved(int i) {
         System.out.println("Mouse wheel moved: " + i);
-        sx = sy = sx + (float) i / 360;
+        scale += (float) i / 360;
     }
 
     @Override
@@ -63,9 +86,9 @@ public class TestCamera implements MouseListener, Camera{
 
     @Override
     public void mouseDragged(int i, int i1, int i2, int i3) {
-        int deltaX = i2 - i, deltaY = i3 - i1;
-        x += deltaX;
-        y += deltaY;
+        float deltaX = i2 - i, deltaY = i3 - i1;
+        cx += deltaX / scale;
+        cy += deltaY / scale;
     }
 
     @Override

@@ -17,25 +17,25 @@ public abstract class Entity {
      * Get entity's x coordinate.
      * @return 
      */
-    public abstract int getX();
+    public abstract float getX();
     
     /**
      * Get entity's y coordinate.
      * @return 
      */
-    public abstract int getY();
+    public abstract float getY();
     
     /**
      * Get entity's width.
      * @return 
      */
-    public abstract int getWidth();
+    public abstract float getWidth();
     
     /**
      * Get entity's height.
      * @return 
      */
-    public abstract int getHeight();
+    public abstract float getHeight();
     
     /**
      * Define what happens when two entities interact (eg. collision).

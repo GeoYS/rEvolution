@@ -4,55 +4,77 @@
  */
 package revolution.client.game;
 
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
 /**
  * A class that hold transformation information for the graphics context
- * so that the right area of the world is drawn.
+ * so that the right area of the world is drawn (ie. represents 
+ * the view).
  * @author GeoYS_2
  */
-public interface Camera {
+public abstract class Camera {
+    
+    private GameContainer gc;
     
     /**
-     * Gets the (x,y) position of the camera.
-     * @return Vector with translation to apply to the graphics context
+     * Game container serves the purpose of having a reference to the window's
+     * width and height.
+     * @param gc 
      */
-    public Translation getTranslation();
-    
-    /**
-     * Gets the rotation of the camera.
-     * @return Rotation to apply to the graphics context.
-     */
-    public Rotation getRotation();
-    
-    /**
-     * Gets the scaling factor (eg. represents zoom) of the camera.
-     * @return Scaling factors for x and y to apply to graphics context.
-     */
-    public Scale getScale();
-    
-    public class Scale{
-        public float xScalingFactor, yScalingFactor;
-        public Scale(float sx, float sy){
-            this.xScalingFactor = sx;
-            this.yScalingFactor = sy;
-        }
-    }  
-    
-    public class Translation{
-        public float x, y;
-        public Translation(float x, float y){
-            this.x = x;
-            this.y = y;
-        }
-    }  
-    
-    public class Rotation{
-        public float centreX, centreY, angle;
-        public Rotation(float centreX, float centreY, float angle){
-            this.angle = angle;
-            this.centreX = centreX;
-            this.centreY = centreY;
-        }
+    public Camera(GameContainer gc){
+        this.gc = gc;
     }
+    
+    /**
+     * Get width of the window.
+     * @return width
+     */
+    public int getWidth(){
+        return gc.getWidth();
+    }
+    
+    /**
+     * Get height of the window.
+     * @return height
+     */
+    public int getHeight(){
+        return gc.getHeight();
+    }
+    
+    /**
+     * Translate the graphics context to the camera's position.
+     * @param graphics 
+     */
+    public abstract void applyTranslation(Graphics graphics);
+    
+    /**
+     * Rotate the camera/view.
+     * @param graphics 
+     */
+    public abstract void applyRotation(Graphics graphics);
+    
+    /**
+     * Apply a scale factor to simulate zooming in and out.
+     * @param graphics 
+     */
+    public abstract void applyZoom(Graphics graphics);
+    
+    /**
+     * Apply transformations to create a feeling of depth.
+     * If parallax < 1, less scrolling speed (ie. background).
+     * If parallax == 1, no change (ie. middleground).
+     * If parallax > 1, faster scrolling speed (ie. foreground).
+     * @param graphics
+     * @param parallax 
+     */
+    public abstract void applyParallax(Graphics graphics, float parallax);
+    
+    /**
+     * Reset any previously applied parallax.
+     * @param graphics
+     * @param parallax 
+     */
+    public abstract void resetParallax(Graphics graphics, float parallax);
 }

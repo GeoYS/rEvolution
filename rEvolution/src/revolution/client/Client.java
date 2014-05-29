@@ -22,11 +22,15 @@ import revolution.ui.ScreenManager;
 import revolution.util.Stopwatch;
 
 /**
- *
+ * Represents the client connection portal to the server.
+ * Contains methods to communicate with a "Server."
  * @author Chris
  */
 public class Client {
     
+    /**
+     * Initialized when program, in REvolutionClient main method.
+     */
     public static Client session;
     
     private static final long RECEIVE_BROADCAST_TIMEOUT = 500,

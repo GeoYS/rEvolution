@@ -27,27 +27,27 @@ public class TestEntity extends Entity{
         width = 10 * (float)Math.random();
         height = 10 * (float)Math.random();
         image = new Image("res/sampleButtonNormal.png")
-                .getScaledCopy(this.getWidth(), this.getHeight());
+                .getScaledCopy((int)this.getWidth(), (int)this.getHeight());
     }
 
     @Override
-    public int getX() {
-        return (int)x;
+    public float getX() {
+        return x;
     }
 
     @Override
-    public int getY() {
-        return (int)y;
+    public float getY() {
+        return y;
     }
 
     @Override
-    public int getWidth() {
-        return (int)width;
+    public float getWidth() {
+        return width;
     }
 
     @Override
-    public int getHeight() {
-        return (int)height;
+    public float getHeight() {
+        return height;
     }
 
     @Override

@@ -33,7 +33,7 @@ public class TestGame extends BasicGame{
                     new TestEntity(90 + 10 * (float)Math.random(),
                         90 + 10 * (float)Math.random()));
         }
-        cam = new TestCamera(0, 0);
+        cam = new TestCamera(gc, 0, 0);
         gc.getInput().addMouseListener(cam);
     }
 
@@ -44,12 +44,19 @@ public class TestGame extends BasicGame{
 
     @Override
     public void render(GameContainer gc, Graphics grphcs) throws SlickException {
-        grphcs.translate(cam.getTranslation().x, cam.getTranslation().y);
-        grphcs.scale(cam.getScale().xScalingFactor, cam.getScale().yScalingFactor);
+        cam.applyTranslation(grphcs);
+        cam.applyZoom(grphcs);
         entityManager.render(grphcs, cam);
-        grphcs.drawOval(0, 0, 10, 10);
+        grphcs.drawOval(-5, -5, 10, 10); // origin
         grphcs.resetTransform();
         
+        //cross hair
+        grphcs.drawRect(gc.getWidth() / 2 - 10,
+                gc.getHeight() / 2 - 10,
+                20, 20);
+        grphcs.drawOval(gc.getWidth() / 2 - 1, gc.getHeight() / 2 - 1,
+                2, 2);
+        grphcs.drawString(-cam.getX() + " " + -cam.getY(), gc.getWidth() / 2 + 20, gc.getHeight() / 2 - 10);
     }
     
     public static void main (String[] args) throws SlickException{
