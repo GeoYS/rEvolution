@@ -2,14 +2,14 @@ package revolution.server;
 
 import java.io.IOException;
 
-public class SerializeUser {
+public class SerializeObject {
 
-	public static void Convert(String fileName, User user) {
+	public static void Convert(Object object, String fileName) {
 		fileName = fileName + ".ser";
                 
 		//serialize to file
 		try {
-			ConversionUtil.serialize(user, fileName);
+			ConversionUtil.serialize(object, fileName);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return;

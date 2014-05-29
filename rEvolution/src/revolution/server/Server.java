@@ -7,6 +7,7 @@
 package revolution.server;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
@@ -95,9 +96,13 @@ public class Server {
     
     public void sendInvitationBroadcast() throws IOException{
         // send lobby broadcast
-        socket.sendMulticast(new ServerInfo(
+        socket.sendMulticast(new ServerData(
                 socket.getAddress().getHostName(),
                 socket.getPort()));
+    }
+    
+    public int getPort(){
+        return GROUP_PORT;
     }
     
     public void save(){

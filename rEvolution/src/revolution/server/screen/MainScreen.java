@@ -44,6 +44,7 @@ public class MainScreen extends Screen{
         menu.render(gc, grphcs);
         grphcs.drawString("New Server Screen", menu.NEW_X + 100, menu.NEW_Y);
         grphcs.drawString("Load Server Screen", menu.LOAD_X + 100, menu.LOAD_Y);
+        grphcs.drawString("Save Servers", menu.EXIT_X + 100, menu.EXIT_Y);
     }
 
     @Override

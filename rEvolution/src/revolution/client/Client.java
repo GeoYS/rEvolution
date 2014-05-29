@@ -16,7 +16,7 @@ import revolution.net.Socket;
 import revolution.server.ClientRequest;
 import static revolution.server.Server.GROUP_NAME;
 import static revolution.server.Server.GROUP_PORT;
-import revolution.server.ServerInfo;
+import revolution.server.ServerData;
 import revolution.server.UserData;
 import revolution.ui.ScreenManager;
 import revolution.util.Stopwatch;
@@ -48,13 +48,13 @@ public class Client {
      * Receives any broadcasts that are sent out for duration of 0.5 seconds.
      * @return ArrayList of all ServerInfo's it receives
      */
-    public ArrayList<ServerInfo> receiveServerBroadcasts() throws IOException{
+    public ArrayList<ServerData> receiveServerBroadcasts() throws IOException{
         long last = System.currentTimeMillis();
-        ArrayList<ServerInfo> servers = new ArrayList<>();
+        ArrayList<ServerData> servers = new ArrayList<>();
         do{
             ObjectPacket o = socket.receiveMulticast();
-            if(o != null && o.object instanceof ServerInfo){
-                servers.add((ServerInfo)o.object);
+            if(o != null && o.object instanceof ServerData){
+                servers.add((ServerData)o.object);
             }
         }while(System.currentTimeMillis() - last< RECEIVE_BROADCAST_TIMEOUT);
         return servers;//socket.receiveMulticast();

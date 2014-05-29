@@ -18,7 +18,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import revolution.client.Client;
 import revolution.client.screen.components.LobbyMenu;
 import revolution.net.Socket;
-import revolution.server.ServerInfo;
+import revolution.server.ServerData;
 import revolution.server.UserData;
 import revolution.ui.Screen;
 import revolution.ui.ScreenManager;
@@ -68,13 +68,13 @@ public class LobbyScreen extends Screen{
          // consider these loops as update/render loops
          if(!client.isConnected()){
              // receiving server information for lobby
-             ArrayList<ServerInfo> servers = null;
+             ArrayList<ServerData> servers = null;
              try {
                  servers = client.receiveServerBroadcasts();
              } catch (IOException ex) {
                  Logger.getLogger(LobbyScreen.class.getName()).log(Level.SEVERE, null, ex);
              }
-             for(ServerInfo si : servers){
+             for(ServerData si : servers){
                  System.out.println("Host name: " + si.hostName + " Port: " + si.port);
                  System.out.println("Attempting to connect/log in.");
                  

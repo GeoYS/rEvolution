@@ -11,7 +11,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import revolution.net.Socket;
 import revolution.server.Server;
-import revolution.server.ServerInfo;
+import revolution.server.ServerData;
 
 /**
  *

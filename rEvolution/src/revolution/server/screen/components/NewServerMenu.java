@@ -7,13 +7,16 @@
 package revolution.server.screen.components;
 
 import java.io.IOException;
+import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.newdawn.slick.gui.GUIContext;
 import org.newdawn.slick.state.transition.EmptyTransition;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import revolution.res.ClientImages;
-import revolution.server.ServerInfo;
+import revolution.server.Server;
+import revolution.server.ServerData;
+import revolution.server.ServerFactory;
 import revolution.server.screen.MainScreen;
 import revolution.server.screen.RunningServerScreen;
 import revolution.ui.Button;
@@ -57,10 +60,11 @@ public class NewServerMenu extends ComponentGroup{
             @Override
             public void onClick() {
                 try {
-                    ServerInfo.add(txt.getText());
+                    ServerFactory.add(txt.getText(), /* port */ 7999);
                 } catch (IOException ex) {
                     Logger.getLogger(NewServerMenu.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                }  
+                RunningServerScreen.serverOverride();
                 sm.changeScreen(RunningServerScreen.ID, new EmptyTransition(), new FadeInTransition());
             }
             

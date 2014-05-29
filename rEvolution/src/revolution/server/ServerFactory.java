@@ -8,9 +8,9 @@ package revolution.server;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.net.SocketException;
 import java.util.HashMap;
-import java.util.Map.Entry;
+import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -19,7 +19,6 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -30,9 +29,11 @@ import org.xml.sax.SAXException;
  *
  * @author Chris
  */
-public class UserFactory {
-    private static HashMap<String, User> accounts = new HashMap<>();
-    public static void saveUser(HashMap<String, User> accounts) {
+public class ServerFactory {
+    public static HashMap<String, Server> servers = new HashMap<>();
+    public static String currentServer;
+    
+    public static void saveServer(HashMap<String, Server> server) {
 		try {
 
 			DocumentBuilderFactory documentFactory = DocumentBuilderFactory
@@ -42,18 +43,19 @@ public class UserFactory {
 
 			// define root elements
 			Document document = documentBuilder.newDocument();
-			Element rootElement = document.createElement("Accounts");
+			Element rootElement = document.createElement("Servers");
 			document.appendChild(rootElement);                     
 			
                         
-                        for(Entry<String, User> entry : accounts.entrySet()) {
+                        for(Map.Entry<String, Server> entry : server.entrySet()) {
                             String key = entry.getKey();
-                            User value = entry.getValue();
+                            Server value = entry.getValue();
                             
-                            Element user = document.createElement(key);
-                            rootElement.appendChild(user);
+                            Element data = document.createElement(key);
+                            rootElement.appendChild(data);
                             
                             //pribaly putting it in a bad spot
+                            System.out.println(value.getPort());
                             SerializeObject.Convert(value, key);
                         }                        
 
@@ -63,7 +65,7 @@ public class UserFactory {
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource domSource = new DOMSource(document);
 			StreamResult streamResult = new StreamResult(new File(
-					"clientAccounts/Accounts.xml"));
+					"serverBackups/Backups.xml"));
 
 			transformer.transform(domSource, streamResult);
 
@@ -72,11 +74,11 @@ public class UserFactory {
 		} catch (ParserConfigurationException | TransformerException pce) {
 		}
 	}
-    public static HashMap<String, User> loadUser(){
+    public static HashMap<String, Server> loadServer(){
 
         
          try{
-			File xmlFile = new File("clientAccounts/Accounts.xml");
+			File xmlFile = new File("serverBackups/Backups.xml");
 			DocumentBuilderFactory documentFactory = DocumentBuilderFactory
 					.newInstance();
 			DocumentBuilder documentBuilder = documentFactory
@@ -93,13 +95,13 @@ public class UserFactory {
             }catch(SAXException | IOException saxe){
             }
         
-        return accounts;        
+        return servers;        
     }
     
     private static void Iterate(Node node) {
         if(!"Accounts".equals(node.getNodeName())){
             //probaly looking in the wrong folder
-            accounts.put(node.getNodeName(), (User) DeserializeObject.Convert(node.getNodeName()));
+            servers.put(node.getNodeName(), (Server) DeserializeObject.Convert(node.getNodeName()));
         }
 
         NodeList nodeList = node.getChildNodes();
@@ -110,5 +112,11 @@ public class UserFactory {
                 Iterate(currentNode);
             }
         }
+    }
+    
+    
+    public static void add(String name, int port) throws SocketException, IOException{
+        servers.put(name, new Server(port));
+        currentServer = name;
     }
 }

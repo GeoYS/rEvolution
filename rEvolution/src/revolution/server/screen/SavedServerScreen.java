@@ -11,7 +11,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import revolution.server.Server;
-import revolution.server.ServerInfo;
+import revolution.server.ServerData;
+import revolution.server.ServerFactory;
 import revolution.server.User;
 import revolution.server.screen.components.LoadServerMenu;
 import revolution.ui.Screen;
@@ -48,7 +49,7 @@ public class SavedServerScreen extends Screen{
         grphcs.drawString("Continue", menu.START_X + 100, menu.START_Y);
         grphcs.drawString("Back", menu.BACK_X + 100, menu.BACK_Y);
         int i = 0;
-        for(Map.Entry<String, Server> entry : ServerInfo.names.entrySet()) {
+        for(Map.Entry<String, Server> entry : ServerFactory.servers.entrySet()) {
             grphcs.drawString(entry.getKey(), 200 + 100, 200 + (100 * i));
             i++;
         }
@@ -59,7 +60,7 @@ public class SavedServerScreen extends Screen{
         //System.out.println("Server List Size : " + ServerInfo.names.size());
         menu.createList(this.getScreenManager().getContainer(), 
                 this.getScreenManager(), 
-                ServerInfo.names.size());
+                ServerFactory.servers.size());
     }
 
     @Override

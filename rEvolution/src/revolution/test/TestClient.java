@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import revolution.client.Client;
 import revolution.net.ObjectPacket;
 import revolution.net.Socket;
-import revolution.server.ServerInfo;
+import revolution.server.ServerData;
 import revolution.server.UserData;
 
 /**
@@ -27,8 +27,8 @@ public class TestClient {
          // consider these loops as update/render loops
          while(!client.isConnected()){
              // receiving server information for lobby
-             ArrayList<ServerInfo> servers = client.receiveServerBroadcasts();
-             for(ServerInfo si : servers){
+             ArrayList<ServerData> servers = client.receiveServerBroadcasts();
+             for(ServerData si : servers){
                  System.out.println("Host name: " + si.hostName + " Port: " + si.port);
                  System.out.println("Attempting to connect/log in.");
                  
