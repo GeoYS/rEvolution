@@ -9,20 +9,18 @@ package revolution.game.creature;
 import revolution.game.creature.properties.Property;
 import java.util.ArrayList;
 import java.util.HashMap;
-import revolution.game.creature.properties.PropertyType;
+import revolution.game.creature.properties.PropertySet;
 
 /**
  *
  * @author Chris
  */
 public class Creature {
-    private HashMap<PropertyType, Double> properties;
-    public Creature(ArrayList<Property> properties){
-        for(Property p : properties){
-            this.properties.put(p.type, p.value);
-        }
-    }
-    public double getPropertyValue(PropertyType type){
-        return properties.containsKey(type) ? properties.get(type) : 0;
+    private HashMap<String, PropertySet> properties = new HashMap<>();
+    public Creature(){
+        properties.put(Constants.PropertySets.BODY_SET, new PropertySet());
+        properties.put(Constants.PropertySets.PERSONALITY_SET, new PropertySet());
+        properties.put(Constants.PropertySets.ENVIRONMENT_SET, new PropertySet());
+        
     }
 }

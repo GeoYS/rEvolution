@@ -11,10 +11,8 @@ package revolution.game.creature.properties;
  * @author Chris
  */
 public class Property {
-    public PropertyType type;
-    public double value;
-    public Property(PropertyType type, double value){
-        this.type = type;
+    private double value;
+    public Property(double value){
         this.value = value;
     }
 }
