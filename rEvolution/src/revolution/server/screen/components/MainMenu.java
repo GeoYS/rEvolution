@@ -8,6 +8,7 @@ import org.newdawn.slick.gui.GUIContext;
 import org.newdawn.slick.state.transition.EmptyTransition;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+import revolution.game.creature.Creature;
 import revolution.res.ClientImages;
 import revolution.server.Server;
 import revolution.server.ServerFactory;

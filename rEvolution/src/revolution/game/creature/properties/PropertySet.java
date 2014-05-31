@@ -9,6 +9,7 @@ package revolution.game.creature.properties;
 import java.util.HashMap;
 import revolution.game.creature.Creature;
 import revolution.game.creature.Constants;
+import revolution.game.creature.Rate;
 
 /**
  *
@@ -18,26 +19,51 @@ public class PropertySet {
     
           
     HashMap<String, Property> properties = new HashMap<>();
+    public Body body;
+    public Personality personality;
+    public Environment environment;
     
-    public PropertySet(){
+    public class Body{
+        public Property height;
+        public Property lenght;
+        public Property weight;
         
+        public Body(){
+            this.height = new Property(this, new Rate(10));
+            this.lenght = new Property(this, new Rate(10));
+            this.weight = new Property(this, new Rate(10));
+        }
+    }
+
+    public class Personality{
+        public Property aggression;
+        public Property intelligence;
+        public Property fertility;
+        public Property food;
+        public Property family;
+        
+        public Personality(){
+            this.aggression = new Property(this, new Rate(10));
+            this.intelligence = new Property(this, new Rate(10));
+            this.fertility = new Property(this, new Rate(10));
+            this.food = new Property(this);
+            this.family = new Property(this);
+        }
     }
     
-    public PropertySet(String DEFAULT_PROFILE){
-        if(DEFAULT_PROFILE.equals(Constants.PropertySets.BODY_SET)){
-            properties.put(Constants.Properties.HEIGHT, null);
-            properties.put(Constants.Properties.LENGHT, null);
-            properties.put(Constants.Properties.WEIGHT, null);
-        }else if(DEFAULT_PROFILE.equals(Constants.PropertySets.PERSONALITY_SET)){
-            properties.put(Constants.Properties.AGGRESSION, null);
-            properties.put(Constants.Properties.INTELLIGENCE, null);
-            properties.put(Constants.Properties.FERTILIY, null);
-            properties.put(Constants.Properties.FOOD_TYPE, null);
-            properties.put(Constants.Properties.FAMILY_STRUCTURE, null);
-            
-        }else if(DEFAULT_PROFILE.equals(Constants.PropertySets.ENVIRONMENT_SET)){
-            properties.put(Constants.Properties.MEDIAN, null);
-            properties.put(Constants.Properties.IDEAL_SPACE, null);            
+    public class Environment{
+        public Property median;
+        public Property area;
+        
+        public Environment(){
+            this.median = new Property(this);
+            this.area = new Property(this);
         }
+    }
+    public PropertySet(){
+        this.body = new Body();
+        this.personality = new Personality();
+        this.environment = new Environment();
+        
     }
 }

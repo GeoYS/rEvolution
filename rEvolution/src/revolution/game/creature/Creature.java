@@ -17,10 +17,8 @@ import revolution.game.creature.properties.PropertySet;
  */
 public class Creature {
     private HashMap<String, PropertySet> properties = new HashMap<>();
+    public PropertySet properies = new PropertySet();    
     public Creature(){
-        properties.put(Constants.PropertySets.BODY_SET, new PropertySet());
-        properties.put(Constants.PropertySets.PERSONALITY_SET, new PropertySet());
-        properties.put(Constants.PropertySets.ENVIRONMENT_SET, new PropertySet());
-        
+            
     }
 }
