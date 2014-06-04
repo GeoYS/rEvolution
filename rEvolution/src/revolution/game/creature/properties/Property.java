@@ -17,8 +17,13 @@ import revolution.game.creature.Rate;
  */
 public class Property {
     private double value;
+    private Object object;
     public Property(double value){
         this.value = value;
+    }
+    
+    public Property(Object object){
+        this.object = object;
     }
     
     public Property(Body body, Rate rate){
@@ -34,5 +39,9 @@ public class Property {
     }
             
     public void set(){
+    }
+    
+    public Object get(){
+        return object;
     }
 }

@@ -16,9 +16,15 @@ import revolution.game.creature.properties.PropertySet;
  * @author Chris
  */
 public class Creature {
-    private HashMap<String, PropertySet> properties = new HashMap<>();
-    public PropertySet properies = new PropertySet();    
-    public Creature(){
-            
+    public History history = new History();
+    public PropertySet properies = new PropertySet();
+    public MindState mind = new MindState();
+    private boolean isAnimal = false;
+    public Creature(Boolean isAnimal){
+            this.isAnimal = isAnimal;
+    }
+    
+    public boolean checkAnimal(){
+        return isAnimal;
     }
 }

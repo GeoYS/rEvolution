@@ -7,9 +7,12 @@
 package revolution.game.creature.properties;
 
 import java.util.HashMap;
-import revolution.game.creature.Creature;
 import revolution.game.creature.Constants;
+import revolution.game.creature.Creature;
 import revolution.game.creature.Rate;
+import revolution.game.creature.properties.Types.Characteristics;
+import revolution.game.creature.properties.Types.Food;
+import revolution.game.creature.properties.Types.Size;
 
 /**
  *
@@ -24,30 +27,20 @@ public class PropertySet {
     public Environment environment;
     
     public class Body{
-        public Property height;
-        public Property lenght;
-        public Property weight;
+        public Size size;
         
         public Body(){
-            this.height = new Property(this, new Rate(10));
-            this.lenght = new Property(this, new Rate(10));
-            this.weight = new Property(this, new Rate(10));
+            this.size = new Size(1,2,3);
         }
     }
 
     public class Personality{
-        public Property aggression;
-        public Property intelligence;
-        public Property fertility;
-        public Property food;
-        public Property family;
+        public Characteristics characteristic;
+        public Food food;
         
         public Personality(){
-            this.aggression = new Property(this, new Rate(10));
-            this.intelligence = new Property(this, new Rate(10));
-            this.fertility = new Property(this, new Rate(10));
-            this.food = new Property(this);
-            this.family = new Property(this);
+            this.characteristic = new Characteristics(1, 2, 3);
+            this.food = new Food(new Size(1,2,3), 2, 3, 4);
         }
     }
     
