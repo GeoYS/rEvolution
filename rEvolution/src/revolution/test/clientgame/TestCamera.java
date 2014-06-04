@@ -17,6 +17,7 @@ import revolution.client.game.Camera;
  */
 public class TestCamera extends Camera implements MouseListener{
 
+    private static final float MAX_ZOOM = 5;
     private float cx, cy, 
             scale;
     
@@ -29,6 +30,10 @@ public class TestCamera extends Camera implements MouseListener{
         this.cy = y;
         scale = 1;
     }    
+    
+    public float getZoom(){
+        return 1 / scale;
+    }
 
     public float getX(){
         return cx;
@@ -65,7 +70,10 @@ public class TestCamera extends Camera implements MouseListener{
     @Override
     public void mouseWheelMoved(int i) {
         System.out.println("Mouse wheel moved: " + i);
-        scale += (float) i / 360;
+        scale *=  Math.pow(2.0, (float) i / 360);
+        if (scale > 1.0f) {
+            scale = 1.0f;
+        }
     }
 
     @Override

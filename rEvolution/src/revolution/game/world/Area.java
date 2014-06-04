@@ -11,5 +11,6 @@ package revolution.game.world;
  * @author Chris
  */
 public class Area {
-    
+    public class Portion{
+    }
 }
