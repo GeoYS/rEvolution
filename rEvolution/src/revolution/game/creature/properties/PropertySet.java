@@ -12,6 +12,7 @@ import revolution.game.creature.Creature;
 import revolution.game.creature.Rate;
 import revolution.game.creature.properties.Types.Characteristics;
 import revolution.game.creature.properties.Types.Food;
+import revolution.game.creature.properties.Types.Location;
 import revolution.game.creature.properties.Types.Size;
 
 /**
@@ -35,22 +36,22 @@ public class PropertySet {
     }
 
     public class Personality{
-        public Characteristics characteristic;
+        public Characteristics characteristicSet;
         public Food food;
         
         public Personality(){
-            this.characteristic = new Characteristics(1, 2, 3);
+            this.characteristicSet = new Characteristics(1, 2, 3);
             this.food = new Food(new Size(1,2,3), 2, 3, 4);
         }
     }
     
     public class Environment{
         public Property median;
-        public Property area;
+        public Location location;
         
         public Environment(){
             this.median = new Property(this);
-            this.area = new Property(this);
+            this.location = new Location();
         }
     }
     public PropertySet(){
