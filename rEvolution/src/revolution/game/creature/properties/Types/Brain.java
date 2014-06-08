@@ -10,26 +10,29 @@ package revolution.game.creature.properties.Types;
  *
  * @author Christopher Stokes
  */
-public class Characteristics {
+public class Brain {
     private int aggression;
     private int intelligence;
-    private int family;
     
-    public Characteristics(int aggression, int intelligence, int family){
+    public Brain(int aggression, int intelligence){
         this.aggression = aggression;
         this.intelligence = intelligence;
-        this.family = family;
+    }
+    
+    public void setAggression(int aggression){
+        this.aggression = aggression;
     }
     
     public int getAggression(){
         return aggression;
     }
     
+    public void setIntelligence(int intelligence){
+        this.intelligence = intelligence;
+    }
+    
     public int getIntelligence(){
         return intelligence;
     }
     
-    public int getFamily(){
-        return family;
-    }
 }

@@ -16,32 +16,16 @@ import revolution.game.creature.Rate;
  * @author Chris
  */
 public class Property {
-    private double value;
-    private Object object;
-    public Property(double value){
+    private Object value;
+    public Property(Object value){
+        this.value = value;
+    }
+            
+    public void set(Object value){
         this.value = value;
     }
     
-    public Property(Object object){
-        this.object = object;
-    }
-    
-    public Property(Body body, Rate rate){
-    }
-    
-    public Property(Personality personality, Rate rate){
-    }
-    
-    public Property(Environment environment, Rate rate){
-    }
-    
-    public Property(){
-    }
-            
-    public void set(){
-    }
-    
     public Object get(){
-        return object;
+        return value;
     }
 }

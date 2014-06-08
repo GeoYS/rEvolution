@@ -11,6 +11,12 @@ package revolution.game.world;
  * @author Chris
  */
 public class Area {
+    
     public class Portion{
+    }
+    
+    public void update(long delta){
+        // update everything in this area, eg. for each population
+        // population.update(delta)
     }
 }

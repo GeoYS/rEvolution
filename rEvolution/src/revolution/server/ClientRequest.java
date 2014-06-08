@@ -7,6 +7,7 @@
 package revolution.server;
 
 import java.io.Serializable;
+import revolution.game.creature.Creature;
 
 /**
  *
@@ -14,10 +15,12 @@ import java.io.Serializable;
  */
 public class ClientRequest implements Serializable{
     public String username, password; 
+    public Creature creature;
     public boolean newUser;
-    public ClientRequest(String username, String password, boolean newUser){
+    public ClientRequest(String username, String password, Creature creature, boolean newUser){
         this.password = password;
         this.username = username;
+        this.creature = creature;
         this.newUser = newUser;
     }
 }

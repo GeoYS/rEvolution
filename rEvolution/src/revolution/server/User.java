@@ -8,6 +8,7 @@ package revolution.server;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import revolution.game.creature.Creature;
 
 /**
  *
@@ -18,15 +19,17 @@ public class User implements Serializable{
     public String userName, password;
     public String hostName;
     public String pathToXML = null;
+    public Creature creature;
 
     public User(String pathToXML){
         this.pathToXML = pathToXML;
     }
 
-    public User(int port, String hostName, String password){
+    public User(int port, String hostName, String password, Creature creature){
         this.port = port;
         this.hostName = hostName;
         this.password = password;
+        this.creature = creature;
     }
 
     public void setPort(int port){            

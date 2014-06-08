@@ -7,12 +7,15 @@
 package revolution.game.creature.properties;
 
 import java.util.HashMap;
+import javax.print.attribute.standard.MediaName;
 import revolution.game.creature.Constants;
 import revolution.game.creature.Creature;
 import revolution.game.creature.Rate;
-import revolution.game.creature.properties.Types.Characteristics;
+import revolution.game.creature.properties.Types.Brain;
+import revolution.game.creature.properties.Types.Family;
 import revolution.game.creature.properties.Types.Food;
 import revolution.game.creature.properties.Types.Location;
+import revolution.game.creature.properties.Types.Median;
 import revolution.game.creature.properties.Types.Size;
 
 /**
@@ -20,44 +23,36 @@ import revolution.game.creature.properties.Types.Size;
  * @author Christopher Stokes
  */
 public class PropertySet {
-    
           
     HashMap<String, Property> properties = new HashMap<>();
     public Body body;
     public Personality personality;
     public Environment environment;
+    public Relation relation;
     
-    public class Body{
+    public class Body {
         public Size size;
-        
-        public Body(){
-            this.size = new Size(1,2,3);
-        }
     }
 
-    public class Personality{
-        public Characteristics characteristicSet;
+    public class Personality {
+        public Brain brain;
         public Food food;
-        
-        public Personality(){
-            this.characteristicSet = new Characteristics(1, 2, 3);
-            this.food = new Food(new Size(1,2,3), 2, 3, 4);
-        }
+        public Relation family;
     }
     
-    public class Environment{
-        public Property median;
-        public Location location;
-        
-        public Environment(){
-            this.median = new Property(this);
-            this.location = new Location();
-        }
+    public class Environment {
+        public Median median = new Median();
+        public Location location = new Location();
     }
+    
+    public class Relation {
+        public Family family;
+    }
+    
     public PropertySet(){
         this.body = new Body();
         this.personality = new Personality();
         this.environment = new Environment();
-        
+        this.relation = new Relation();
     }
 }

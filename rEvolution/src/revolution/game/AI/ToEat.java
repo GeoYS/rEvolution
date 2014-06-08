@@ -7,6 +7,7 @@
 package revolution.game.AI;
 
 import revolution.game.creature.Creature;
+import revolution.game.creature.History;
 import revolution.game.creature.properties.Types.Food;
 import revolution.game.creature.properties.Types.Size;
 
@@ -18,44 +19,55 @@ public class ToEat {
     private boolean size;
     private boolean frequency;
     private boolean type;
+    public static History eater;
     
-    public boolean getDecision(Creature creature1, Creature creature2){
-        if(size(creature1, creature2) && frequency(creature1, creature2)
+    public static int decisionRating;
+    
+    public static int getDecision(Creature creature1, Creature creature2){
+        if(frequency(creature1, creature2) && size(creature1, creature2)
                 && type(creature1, creature2)){
-            return true;
+            return decisionRating;
         } else {
-            return false;
+            return 0;
         }
     }
     
-    private boolean type(Creature creature1, Creature creature2){
+    private static boolean type(Creature creature1, Creature creature2){
         Food eater = creature1.properies.personality.food;
         boolean eatie = creature2.checkAnimal();
         
         if(eater.getEatMeat() > eater.getEatVeg() && eatie){
+            decisionRating = getHunger(creature1);
             return true;
         } else if(eater.getEatMeat() < eater.getEatVeg() && !eatie){
+            decisionRating = getHunger(creature1);
             return true;
         } else if(eater.getEatVeg() - eater.getEatMeat() > 2 && eater.getEatVeg() < 6 && eatie && getHunger(creature1) > 5){
+            decisionRating = getHunger(creature1) - (eater.getEatVeg() - eater.getEatMeat());
             return true;
         } else if(eater.getEatMeat() - eater.getEatVeg() > 2 && eater.getEatMeat() < 6 && !eatie && getHunger(creature1) > 5){
+            decisionRating = getHunger(creature1) - (eater.getEatVeg() - eater.getEatMeat());
             return true;
         }
         else return false;        
     }
     
-    private boolean frequency(Creature creature1, Creature creature2){
-        Creature eater = creature1;
-        
-        if(System.currentTimeMillis() > 
-                eater.history.lastEat() + eatWait(eater.properies.personality.food.getFoodFrequency())){
-           return true;
-        } else {
-            return false;
+    private static boolean frequency(Creature creature1, Creature creature2){
+        boolean flag = false;
+        for(History i : creature1.population.Instances){ 
+            eater = i;
+            if(System.currentTimeMillis() > 
+                    i.eat.lastEat() + eatWait(creature1.properies.personality.food.getFoodFrequency())){
+               flag = true;
+               break;
+            } else {
+                flag = false;
+            }
         }
+        return flag;
     }
     
-    private boolean size(Creature creature1, Creature creature2){
+    private static boolean size(Creature creature1, Creature creature2){
         Size eater = creature1.properies.personality.food.getFoodSize();
         Size eatie = creature2.properies.body.size;
         
@@ -69,7 +81,7 @@ public class ToEat {
         }
     }
     
-    private boolean isAbout(int args1, int args2){
+    private static boolean isAbout(int args1, int args2){
         if(args1 < args2 + 1 && args1 > args2 - 1){
             return true;
         }
@@ -78,7 +90,7 @@ public class ToEat {
         }
     }
     
-    private long eatWait(int frequencyRating){
+    private static long eatWait(int frequencyRating){
         switch(frequencyRating) {
             case 1:
                 return 100_000;
@@ -105,9 +117,9 @@ public class ToEat {
         }        
     }
     
-    private int getHunger(Creature creature1){
+    private static int getHunger(Creature creature1){
         long hungerRate;
-        hungerRate = (System.currentTimeMillis() - creature1.history.lastEat()) / creature1.properies.personality.food.getFoodFrequency();
+        hungerRate = (System.currentTimeMillis() - eater.eat.lastEat()) / eatWait(creature1.properies.personality.food.getFoodFrequency());
         if(hungerRate <= 2){
             return 1;
         } else if(hungerRate <= 3){

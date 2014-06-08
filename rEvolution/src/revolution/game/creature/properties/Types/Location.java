@@ -15,6 +15,12 @@ import java.util.ArrayList;
 public class Location {
     private ArrayList<Object> Locations = new ArrayList<>();
     
+    public void fillUnspecializedArea(Object uanspecializedArea){
+        for(int i = 0; i < 11; i++){
+            Locations.add(uanspecializedArea);
+        }
+    }
+    
     public void setWaterSource(WaterSources waterSource){
         Locations.add(waterSource);
     }
@@ -56,6 +62,10 @@ public class Location {
     public ArrayList getArrayList(){
         return Locations;
     }
+    
+    public int size(){
+        return Locations.size();
+    }    
     
     public enum WaterSources{
         LAKE, WATERFALL;

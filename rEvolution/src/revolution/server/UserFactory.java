@@ -53,7 +53,7 @@ public class UserFactory {
                             Element user = document.createElement(key);
                             rootElement.appendChild(user);
                             
-                            //pribaly putting it in a bad spot
+                            //probaly putting it in a bad spot
                             SerializeObject.Convert(value, key);
                         }                        
 

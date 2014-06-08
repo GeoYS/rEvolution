@@ -28,7 +28,7 @@ public class Server {
     /** Users online */
     private ArrayList<User> users = new ArrayList<>();
     /** Usernames mapped to the respective User objects */
-    private HashMap<String,User> accounts = new HashMap<>();
+    private static HashMap<String,User> accounts = new HashMap<>();
     
     private Socket socket;
     
@@ -67,7 +67,7 @@ public class Server {
             if(cr.newUser){
                 if(!accounts.containsKey(cr.username)){
                     accounts.put(cr.username,
-                            new User(op.port, op.address.getHostName(), cr.password));
+                            new User(op.port, op.address.getHostName(), cr.password, cr.creature));
                     users.add(accounts.get(cr.username));
                 }
             }
@@ -111,7 +111,11 @@ public class Server {
     
     public void load(){
         accounts = UserFactory.loadUser();
-    }  
+    } 
+    
+    public static HashMap<String, User> getAllUsers(){
+        return accounts;
+    }
 }
 
 
