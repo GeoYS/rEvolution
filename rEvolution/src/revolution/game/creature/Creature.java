@@ -17,7 +17,7 @@ import revolution.game.creature.properties.PropertySet;
  * @author Chris
  */
 public class Creature {
-    //public History history = new History();
+    //  public History history = new History();
     public PropertySet properies = new PropertySet();
     public MindState mind = new MindState();
     public Population population = new Population();
@@ -26,9 +26,9 @@ public class Creature {
     private boolean isVulnerable;
     //not final solution
     private String createdBy, speciesName;
-    public Creature(/*String createdBy, String speciesName,*/ Boolean isAnimal){
-        //this.createdBy = createdBy;
-        //this.speciesName = speciesName;
+    public Creature(String createdBy, String speciesName, boolean isAnimal){
+        this.createdBy = createdBy;
+        this.speciesName = speciesName;
         this.isAnimal = isAnimal;
     }
     

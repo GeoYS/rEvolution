@@ -20,7 +20,7 @@ public class World {
     private ArrayList<Area> areas;
     public World(//ArrayList<Population> populations,
             ArrayList<Area> areas){
-        //this.populations = populations;
+        this.populations = new ArrayList<>();
         this.areas = areas;
     }
     
@@ -30,8 +30,10 @@ public class World {
         // update everything in the world
         // eg. call area.update(); for every area
         
-        for(int c = 0; c < populations.size(); c++){
-            Interact.interact(populations.get(c), populations.get(c));
+        for(int c1 = 0; c1 < populations.size(); c1++){
+            for(int c2 = 0; c2 < populations.size(); c2++){
+                Interact.interact(populations.get(c1), populations.get(c2));   
+            }
         }
     }
 }

@@ -30,7 +30,7 @@ public class Interact {
                     }
                 }
             } else {
-                if(cheackEat(creature1, creature2) != 0){
+                if(checkEat(creature1, creature2) != 0){
                     actionOrder.put(Action.EAT, ToEat.decisionRating);
                 } else {
                     
@@ -67,7 +67,7 @@ public class Interact {
         return ToMate.getDecision(creature1, creature2);
     }
     
-    private static int cheackEat(Creature creature1, Creature creature2){
+    private static int checkEat(Creature creature1, Creature creature2){
         return ToEat.getDecision(creature1, creature2);
     }
     

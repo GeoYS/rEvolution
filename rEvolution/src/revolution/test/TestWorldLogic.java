@@ -19,6 +19,7 @@ import revolution.game.creature.properties.Types.Food;
 import revolution.game.creature.properties.Types.Location;
 import revolution.game.creature.properties.Types.Median;
 import revolution.game.creature.properties.Types.Size;
+import revolution.game.world.Area;
 import revolution.game.world.World;
 import revolution.server.SerializeObject;
 import revolution.server.Server;
@@ -31,11 +32,13 @@ import revolution.server.User;
 public class TestWorldLogic {    
     
     private static World world;
+    private static ArrayList<Area> areas = new ArrayList<>();
     
     private static void initializeWorld(){
-        Creature cow = new Creature(true);
-        Creature grass = new Creature(false);
-        Creature wolf = new Creature(true);
+        world = new World(areas);
+        Creature cow = new Creature("Christopher Stokes", "cow", true);
+        Creature grass = new Creature("Christopher Stokes", "grass",false);
+        Creature wolf = new Creature("Christopher Stokes", "wolf",true);
         
         cow.properies.body.size = new Size(5, 5, 6);
         cow.properies.personality.brain = new Brain(1, 1);
