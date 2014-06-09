@@ -23,7 +23,7 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public abstract class ComponentGroup extends AbstractComponent{    
     
-    private ArrayList<AbstractComponent> components;
+    private ArrayList<AbstractComponent> components = null;
     private int xOffset, yOffset;
     private GUIContext gc;
     
@@ -75,8 +75,15 @@ public abstract class ComponentGroup extends AbstractComponent{
      */
     @Override
     public void setLocation(int xOffset, int yOffset) {
+        int xDif = xOffset - this.xOffset, yDif = yOffset - this.yOffset;
         this.xOffset = xOffset;
         this.yOffset = yOffset;
+        if(this.components == null){
+            return;
+        }
+        for(AbstractComponent c : this.components){
+            c.setLocation(c.getX() + xDif, c.getY() + yDif);
+        }
     }
     
     

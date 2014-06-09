@@ -130,7 +130,9 @@ public class Client {
         socket.send(
                 new ClientRequest(
                     username,
-                    password, newUser),
+                    password, 
+                    null, // for user created creature
+                    newUser),
                 hostName,
                 port);
         return true;
