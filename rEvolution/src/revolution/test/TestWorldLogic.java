@@ -12,6 +12,7 @@ import java.util.Map.Entry;
 import javax.print.attribute.standard.MediaName;
 import org.w3c.dom.Element;
 import revolution.game.creature.Creature;
+import revolution.game.creature.History;
 import revolution.game.creature.properties.PropertySet;
 import revolution.game.creature.properties.Types.Brain;
 import revolution.game.creature.properties.Types.Family;
@@ -55,9 +56,11 @@ public class TestWorldLogic {
         cow.population.addToPopulation(100);
         
         grass.properies.body.size = new Size(1, 1, 1);
+        grass.properies.relation.family = new Family(0, 7, 1, 2);
         grass.properies.environment.median.setMedian(Median.Medians.GROUND);
         grass.properies.environment.location.fillUnspecializedArea(Location.FeedingArea.SAVAHNNA);
-        grass.population.addUnitToCount(Integer.MAX_VALUE);
+        grass.population.addUnitsToCount(1_000_000_000);
+        System.out.println("test num " + grass.population.getCount());
         
         wolf.properies.body.size = new Size(3, 3, 4);
         wolf.properies.personality.brain = new Brain(7, 4);

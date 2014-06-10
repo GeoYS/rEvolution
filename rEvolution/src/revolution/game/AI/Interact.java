@@ -24,7 +24,11 @@ public class Interact {
         
         if(wouldInteract(creature1, creature2)){
             if(checkSameSpecies(creature1, creature2)){
-                if(genGender()){
+                if(!creature1.checkAnimal() && !creature2.checkAnimal()){
+                    if(checkMate(creature1, creature2) != 0){
+                        actionOrder.put(Action.MATE, ToMate.decisionRating);
+                    }
+                } else if(genGender()){
                     if(checkMate(creature1, creature2) != 0){
                         actionOrder.put(Action.MATE, ToMate.decisionRating);
                     }

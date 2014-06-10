@@ -15,6 +15,14 @@ public class History {
     public Eat eat = new Eat();
     public Mate mate = new Mate();
     
+    public History(){
+        
+    }
+    
+    public History(long Pollinate){
+        mate.lastMate = Pollinate;
+    }
+    
     public class Vulnerability {
         private boolean isVulnerable;
         

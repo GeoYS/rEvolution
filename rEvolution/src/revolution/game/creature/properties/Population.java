@@ -7,6 +7,7 @@
 package revolution.game.creature.properties;
 
 import java.util.ArrayList;
+import static revolution.game.AI.ToMate.mater;
 import revolution.game.creature.Creature;
 import revolution.game.creature.History;
 
@@ -16,6 +17,7 @@ import revolution.game.creature.History;
  */
 public class Population {
     private int count = 0;
+    private long pollinate = 0;
     public ArrayList<History> Instances = new ArrayList<>();
     
     public int getPopulationSize(){
@@ -40,15 +42,23 @@ public class Population {
         Instances.remove(history);
     }
     
-    public void addUnitToCount(int addAmount){
+    public void addUnitsToCount(int addAmount){
         count += addAmount;
     }
     
-    public void removeUnitFromCount(int removeAmount){
+    public void removeUnitsFromCount(int removeAmount){
         count -= removeAmount;
     }
     
     public int getCount(){
         return count;
+    }
+    
+    public void setPollinate(long gameTime){
+        pollinate = gameTime;
+    }
+    
+    public long getPollinate(){
+        return pollinate;
     }
 }
