@@ -66,7 +66,7 @@ public class ToEat {
                 flag = false;
             }
         }
-        System.out.println("");
+        System.out.println(" ");
         return flag;
     }
     
