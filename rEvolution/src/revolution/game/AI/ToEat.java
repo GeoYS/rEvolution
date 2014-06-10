@@ -39,7 +39,8 @@ public class ToEat {
         if(eater.getEatMeat() > eater.getEatVeg() && eatie){
             decisionRating = getHunger(creature1);
             return true;
-        } else if(eater.getEatMeat() < eater.getEatVeg() && !eatie){
+        } else if(eater.getEatVeg() > eater.getEatMeat() && !eatie){
+            System.out.println("in");
             decisionRating = getHunger(creature1);
             return true;
         } else if(eater.getEatVeg() - eater.getEatMeat() > 2 && eater.getEatVeg() < 6 && eatie && getHunger(creature1) > 5){
