@@ -24,6 +24,7 @@ public class Run {
     }
     
     public static void eat(Creature creature1, History history1, Creature creature2){
+        System.out.println("eaten");
         history1.eat.setEat(System.currentTimeMillis());
         if(creature2.checkAnimal()){
             creature2.population.removeFromPopulation(1);

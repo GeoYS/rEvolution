@@ -30,7 +30,7 @@ public class Interact {
                     }
                 }
             } else {
-                if(checkEat(creature1, creature2) != 0){
+                if(creature1.checkAnimal() && checkEat(creature1, creature2) != 0){
                     actionOrder.put(Action.EAT, ToEat.decisionRating);
                 } else {
                     

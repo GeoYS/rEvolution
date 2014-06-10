@@ -55,8 +55,7 @@ public class ToEat {
     private static boolean frequency(Creature creature1, Creature creature2){
         boolean flag = false;
         for(History i : creature1.population.Instances){ 
-            System.out.println(creature1.getSpeciesName());
-            System.out.println(creature2.getSpeciesName());
+            System.out.println(creature1.getSpeciesName() + " v.s " + creature2.getSpeciesName());
             eater = i;
             if(System.currentTimeMillis() > 
                     i.eat.lastEat() + eatWait(creature1.properies.personality.food.getFoodFrequency())){
@@ -66,7 +65,7 @@ public class ToEat {
                 flag = false;
             }
         }
-        System.out.println("out for each");
+        System.out.println("");
         return flag;
     }
     
@@ -85,7 +84,7 @@ public class ToEat {
     }
     
     private static boolean isAbout(int args1, int args2){
-        if(args1 < args2 + 1 && args1 > args2 - 1){
+        if(args1 <= args2 + 1 && args1 >= args2 - 1){
             return true;
         }
         else {
