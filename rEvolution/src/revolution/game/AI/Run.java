@@ -15,6 +15,7 @@ import revolution.game.creature.History;
  */
 public class Run {
     public static void mate(Creature creature1, History history1, Creature creature2, History history2){
+        System.out.println(creature1.getSpeciesName() + " is frothing at the gash for " + creature2.getSpeciesName());
         int minBirthSize = creature1.properies.relation.family.getMinBirthSize();
         int maxBirthSize = creature1.properies.relation.family.getMaxBirthSize();
         int birthSize = (int) (Math.random() * maxBirthSize) - minBirthSize;

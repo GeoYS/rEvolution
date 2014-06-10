@@ -26,7 +26,7 @@ public class Interact {
             if(checkSameSpecies(creature1, creature2)){
                 if(genGender()){
                     if(checkMate(creature1, creature2) != 0){
-                        actionOrder.put(Action.EAT, ToMate.decisionRating);
+                        actionOrder.put(Action.MATE, ToMate.decisionRating);
                     }
                 }
             } else {
@@ -72,9 +72,9 @@ public class Interact {
     }
     
     private static boolean genGender(){
-        int ran;
-        ran = (int) (Math.random() * 100);
-        if (ran % 2 != 0){
+        double ran;
+        ran = Math.random();
+        if (ran <= 0.5){
             return true;
         }
         else {

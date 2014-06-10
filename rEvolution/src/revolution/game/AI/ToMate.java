@@ -19,14 +19,15 @@ public class ToMate {
     public static int decisionRating;
     public static int getDecision(Creature creature1, Creature creature2){
         int re = 0;
-        for(History c1 : creature1.population.Instances){
-            for(History c2 : creature2.population.Instances){
+        outer : for(History c1 : creature1.population.Instances){
+            inner : for(History c2 : creature2.population.Instances){
                 if(System.currentTimeMillis() - c1.mate.lastMate() > mateWait(creature1.properies.relation.family.getReproduceRate()) &&
                         System.currentTimeMillis() - c2.mate.lastMate() > mateWait(creature2.properies.relation.family.getReproduceRate())){
                     mater = c1;
                     matie = c2;
                     decisionRating = getMate(creature1);
                     re = decisionRating;
+                    break outer;
                 }
                 else {
                     re = 0;
