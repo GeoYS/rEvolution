@@ -24,7 +24,8 @@ import org.newdawn.slick.state.StateBasedGame;
 public abstract class ComponentGroup extends AbstractComponent{    
     
     private ArrayList<AbstractComponent> components = null;
-    private int xOffset, yOffset;
+    private float xOffset, yOffset;
+    private int width, height;
     private GUIContext gc;
     
     /**
@@ -38,6 +39,7 @@ public abstract class ComponentGroup extends AbstractComponent{
         components = new ArrayList<>();
         this.xOffset = xOffset;
         this.yOffset = yOffset;
+        this.width = this.height = 0;
         this.gc = gc;
         
         // PROBABLY BAD CONVENTION, BUT THIS IS NECESSARY FOR ALL (!) 
@@ -56,7 +58,7 @@ public abstract class ComponentGroup extends AbstractComponent{
      */
     @Override
     public int getY() {
-        return yOffset;
+        return (int)yOffset;
     }
 
     /**
@@ -65,6 +67,22 @@ public abstract class ComponentGroup extends AbstractComponent{
      */
     @Override
     public int getX() {
+        return (int)xOffset;
+    }
+    
+    /**
+     * Gets the y offset.
+     * @return 
+     */
+    public float getYf(){
+        return yOffset;
+    }
+
+    /**
+     * Gets the x offset.
+     * @return 
+     */
+    public float getXf() {
         return xOffset;
     }
 
@@ -75,17 +93,34 @@ public abstract class ComponentGroup extends AbstractComponent{
      */
     @Override
     public void setLocation(int xOffset, int yOffset) {
-        int xDif = xOffset - this.xOffset, yDif = yOffset - this.yOffset;
+        //int xDif = xOffset - this.xOffset, yDif = yOffset - this.yOffset;
         this.xOffset = xOffset;
         this.yOffset = yOffset;
-        if(this.components == null){
+        /*if(this.components == null){
             return;
         }
         for(AbstractComponent c : this.components){
             c.setLocation(c.getX() + xDif, c.getY() + yDif);
-        }
+        }*/
     }
     
+    /**
+     * Sets the offset on all the components.
+     * @param xOffset
+     * @param yOffset 
+     */
+    
+    public void setLocation(float xOffset, float yOffset) {
+        //int xDif = xOffset - this.xOffset, yDif = yOffset - this.yOffset;
+        this.xOffset = xOffset;
+        this.yOffset = yOffset;
+        /*if(this.components == null){
+            return;
+        }
+        for(AbstractComponent c : this.components){
+            c.setLocation(c.getX() + xDif, c.getY() + yDif);
+        }*/
+    }    
     
     @Override
     public void keyPressed(int key, char c) {
@@ -107,7 +142,7 @@ public abstract class ComponentGroup extends AbstractComponent{
     public void mouseClicked(int button, int x, int y, int clickCount) {
         super.mouseClicked(button, x, y, clickCount);
         for(InputListener il : this.getComponents()){
-            il.mouseClicked(button, x, y, clickCount);
+            il.mouseClicked(button, x - this.getX(), y - this.getY(), clickCount);
         }        
     }
 
@@ -115,7 +150,8 @@ public abstract class ComponentGroup extends AbstractComponent{
     public void mouseDragged(int oldx, int oldy, int newx, int newy) {
         super.mouseDragged(oldx, oldy, newx, newy);
         for(InputListener il : this.getComponents()){
-            il.mouseDragged(oldx, oldy, newx, newy);
+            il.mouseDragged(oldx - this.getX(), oldy - this.getY(),
+                    newx - this.getX(), newy - this.getY());
         }        
     }
 
@@ -123,7 +159,8 @@ public abstract class ComponentGroup extends AbstractComponent{
     public void mouseMoved(int oldx, int oldy, int newx, int newy) {
         super.mouseMoved(oldx, oldy, newx, newy);
         for(InputListener il : this.getComponents()){
-            il.mouseMoved(oldx, oldy, newx, newy);
+            il.mouseMoved(oldx - this.getX(), oldy - this.getY(),
+                    newx - this.getX(), newy - this.getY());
         }        
     }
 
@@ -131,7 +168,7 @@ public abstract class ComponentGroup extends AbstractComponent{
     public void mousePressed(int button, int x, int y) {
         super.mousePressed(button, x, y);
         for(InputListener il : this.getComponents()){
-            il.mousePressed(button, x, y);
+            il.mousePressed(button, x - this.getX(), y - this.getY());
         }        
     }
 
@@ -139,7 +176,7 @@ public abstract class ComponentGroup extends AbstractComponent{
     public void mouseReleased(int button, int x, int y) {
         super.mouseReleased(button, x, y);
         for(InputListener il : this.getComponents()){
-            il.mouseReleased(button, x, y);
+            il.mouseReleased(button, x - this.getX(), y - this.getY());
         }        
     }
 
@@ -153,13 +190,21 @@ public abstract class ComponentGroup extends AbstractComponent{
 
     @Override
     public int getHeight() {
-        return 0;
+        return height;
     }
 
     @Override
     public int getWidth() {
-        return 0;
+        return width;
     }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }    
     
     public ArrayList<AbstractComponent> getComponents(){
         return components;
@@ -187,6 +232,7 @@ public abstract class ComponentGroup extends AbstractComponent{
      * @param component 
      */
     public void addComponent(AbstractComponent component){
+        //component.setLocation(component.getX() + xOffset, component.getY() + yOffset);
         components.add(component);
     }
     

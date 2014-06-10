@@ -16,6 +16,8 @@ import revolution.client.game.entity.EntityManager;
 import revolution.client.game.map.Map;
 import revolution.client.game.map.MapObject;
 import revolution.client.game.map.MapParser;
+import revolution.client.screen.components.InGameMenu;
+import revolution.res.ClientImages;
 
 /**
  *
@@ -25,6 +27,7 @@ public class TestGame extends BasicGame{
 
     private EntityManager entityManager;
     private TestCamera cam;
+    private InGameMenu menu;
     //private Map map;
     
     public TestGame(){
@@ -33,6 +36,8 @@ public class TestGame extends BasicGame{
     
     @Override
     public void init(GameContainer gc) throws SlickException {
+        ClientImages.initiateLoading();
+        while(!ClientImages.loadNext()){}
         entityManager = new EntityManager();
         for(int i = 0; i < 10; i ++){
             entityManager.addEntity(
@@ -41,6 +46,8 @@ public class TestGame extends BasicGame{
         }
         cam = new TestCamera(gc, 0, 0);
         gc.getInput().addMouseListener(cam);
+        menu = new InGameMenu(gc);
+        gc.getInput().addMouseListener(menu);
         /*map = new Map("Y:/Forest Map/ForestCorrect.tmx", new MapParser(){
 
             @Override
@@ -76,6 +83,9 @@ public class TestGame extends BasicGame{
         grphcs.drawOval(gc.getWidth() / 2 - 1, gc.getHeight() / 2 - 1,
                 2, 2);
         grphcs.drawString(-cam.getX() + " " + -cam.getY(), gc.getWidth() / 2 + 20, gc.getHeight() / 2 - 10);
+        
+        grphcs.resetTransform();
+        menu.render(gc, grphcs);
     }
     
     public static void main (String[] args) throws SlickException{
