@@ -42,6 +42,7 @@ public class Run {
     
     public static void eat(Creature creature1, History history1, Creature creature2){
         System.out.println("eaten");
+        System.out.println(creature2.population.Instances.size());
         int eater = creature1.population.Instances.indexOf(history1);
         history1.eat.setEat(System.currentTimeMillis());
         creature1.population.Instances.set(eater, history1);

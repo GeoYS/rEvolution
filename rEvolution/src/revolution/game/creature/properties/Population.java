@@ -33,6 +33,7 @@ public class Population {
     public void removeFromPopulation(int removeAmount){
         if(removeAmount < Instances.size()){
             for(int i = 0; i < removeAmount; i++){
+                System.out.println("in");
                 Instances.remove(i);
             }
         }

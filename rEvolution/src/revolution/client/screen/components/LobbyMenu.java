@@ -15,11 +15,14 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.state.transition.HorizontalSplitTransition;
 import revolution.client.screen.LobbyScreen;
+import revolution.client.screen.LogInScreen;
 import revolution.client.screen.MainMenuScreen;
+import revolution.client.screen.NewUserScreen;
 import revolution.res.ClientImages;
 import revolution.ui.Button;
 import revolution.ui.ComponentGroup;
 import revolution.ui.ScreenManager;
+import revolution.util.CSInfo;
 
 /**
  *
@@ -27,32 +30,53 @@ import revolution.ui.ScreenManager;
  */
 public class LobbyMenu extends ComponentGroup{
     
-    private Button add, btn2;
-    public boolean addUser = false;
+    private Button add, load, exit;
     
+    public final int NEW_X = CSInfo.WIDTH / 10; 
+    public final int NEW_Y = 9 * CSInfo.HEIGHT /10;
+    public final int LOAD_X = 3 * CSInfo.WIDTH / 10; 
+    public final int LOAD_Y = 9 * CSInfo.HEIGHT /10;
+    public final int EXIT_X = 7 * CSInfo.WIDTH /10;
+    public final int EXIT_Y = 9 * CSInfo.HEIGHT /10;
+    private final int WIDTH = 64;
+    private final int HEIGHT = 32;
+    
+    public boolean addUser = false;
     public LobbyMenu(GUIContext context, final ScreenManager sm){
         super(context, 0, 0);
         add = new Button(context, 
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
-                100, 200, 64, 32){
+                NEW_X, NEW_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
                 addUser = true;
+                sm.changeScreen(NewUserScreen.ID, new FadeOutTransition(), new FadeInTransition());
             }
         };
-        btn2 = new Button(context, 
+        load = new Button(context, 
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
-                100, 300, 64, 32){
+                LOAD_X, LOAD_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                sm.changeScreen(LobbyScreen.ID, new FadeOutTransition(), new FadeInTransition());
+                sm.changeScreen(LogInScreen.ID, new FadeOutTransition(), new FadeInTransition());
+            }
+        };
+        exit = new Button(context, 
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
+                EXIT_X, EXIT_Y, WIDTH, HEIGHT){
+            @Override
+            public void onClick() {
+                sm.changeScreen(LogInScreen.ID, new FadeOutTransition(), new FadeInTransition());
             }
         };
         this.addComponent(add);
-        this.addComponent(btn2);
+        this.addComponent(load);
+        this.addComponent(exit);
     }
 }

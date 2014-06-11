@@ -25,6 +25,6 @@ public class TextField extends org.newdawn.slick.gui.TextField{
         container.getInput().removeListener(this);
         this.setText("");
         this.setBackgroundColor(Color.lightGray);
-        this.setTextColor(Color.yellow);        
+        this.setTextColor(Color.red);        
     }
 }

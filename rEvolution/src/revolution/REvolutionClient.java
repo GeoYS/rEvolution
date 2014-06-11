@@ -13,6 +13,7 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 import revolution.client.Client;
 import revolution.client.screen.ClientScreenManager;
+import revolution.util.CSInfo;
 
 /**
  *
@@ -24,15 +25,16 @@ public class REvolutionClient {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SlickException, IOException{
-        //screen = Toolkit.getDefaultToolkit().getScreenSize();
+        screen = Toolkit.getDefaultToolkit().getScreenSize();
         int port = 1000;
         while(!available(port)){
             port ++;
         }
         Client.session = new Client(port);
         AppGameContainer app = new AppGameContainer(new ClientScreenManager());
-        //app.setDisplayMode((int) screen.getWidth(), (int) screen.getHeight(), true);
-        app.setDisplayMode(600, 480, false);
+        app.setDisplayMode((int) screen.getWidth(), (int) screen.getHeight(), true);
+        CSInfo.init((int) screen.getWidth(), (int) screen.getHeight());
+        //app.setDisplayMode(600, 480, false);
         app.setTargetFrameRate(60);
         app.setShowFPS(true);
         app.setUpdateOnlyWhenVisible(false);

@@ -6,11 +6,12 @@
 
 package revolution.client;
 
-import revolution.client.screen.ClientScreenManager;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import revolution.client.screen.ClientScreenManager;
+import revolution.game.creature.Creature;
 import revolution.net.ObjectPacket;
 import revolution.net.Socket;
 import revolution.server.ClientRequest;
@@ -33,7 +34,7 @@ public class Client {
      */
     public static Client session;
     
-    private static final long RECEIVE_BROADCAST_TIMEOUT = 500,
+    private static final long RECEIVE_BROADCAST_TIMEOUT = 500, // for lobby info
             CONNECTION_TIMEOUT = 10000; // milliseconds
     
     private Socket socket;
@@ -46,6 +47,14 @@ public class Client {
             GROUP_NAME,
             GROUP_PORT);
         lastData.start();
+    }
+    
+    public int getPort(){
+        return socket.getPort();
+    }
+    
+    public String getHostName(){
+        return socket.getAddress().getHostName();
     }
     
     /**
@@ -113,11 +122,12 @@ public class Client {
      * @param hostName
      * @param username
      * @param password
+     * @param newUser whether or not logging in or new user
      * @throws IOException 
      * @return requestSent
      */
     public boolean connect(int port, String hostName,
-            String username, String password, boolean newUser) throws IOException{
+            String username, String password, Creature creature, boolean newUser) throws IOException{
         if(connectionStart.isRunning()){
             if(connectionStart.time() > CONNECTION_TIMEOUT){
                 connectionStart.stop();
@@ -131,7 +141,7 @@ public class Client {
                 new ClientRequest(
                     username,
                     password, 
-                    null, // for user created creature
+                    creature, // for user created creature
                     newUser),
                 hostName,
                 port);

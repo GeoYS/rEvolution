@@ -32,8 +32,8 @@ import java.nio.ByteBuffer;
  */
 public class Socket {
     
-    public static int TIMEOUT = 100; // milliseconds to block recieve() call
-    public static int TTL = 100; // Time To Live of multicasted packets in milliseconds
+    public static int TIMEOUT = 1; // milliseconds to block recieve() call
+    public static int TTL = 500; // Time To Live of multicasted packets in milliseconds
     
     private DatagramSocket socket = null;
     private MulticastSocket groupSocket = null;

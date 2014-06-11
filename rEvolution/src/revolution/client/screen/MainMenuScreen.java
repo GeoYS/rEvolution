@@ -41,8 +41,8 @@ public class MainMenuScreen extends Screen{
         grphcs.setBackground(Color.darkGray);
         grphcs.drawString("MainScreen", 100, 100);
         menu.render(gc, grphcs);
-        grphcs.drawString("Got To Lobby", 200, 200);
-        grphcs.drawString("(Not Implemented)", 200, 300);
+        grphcs.drawString("Got To Lobby", menu.NEW_X + 100, menu.NEW_Y);
+        grphcs.drawString("(Not Implemented)", menu.EXIT_X + 100, menu.EXIT_Y);
     }
 
     @Override

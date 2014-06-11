@@ -44,7 +44,7 @@ public class LobbyScreen extends Screen{
     public LobbyScreen(ScreenManager sm) {
         super(sm);
         
-        client = Client.session;
+        //client = Client.session;
     }
 
     @Override
@@ -59,62 +59,63 @@ public class LobbyScreen extends Screen{
         grphcs.setBackground(Color.darkGray);
         grphcs.drawString("LobbyScreen", 100, 100);
         menu.render(gc, grphcs);      
-        grphcs.drawString("Add User", 200, 200);
-        grphcs.drawString("(Not Implemented)", 200, 300);
+        grphcs.drawString("Add New User", menu.NEW_X + 100, menu.NEW_Y);
+        grphcs.drawString("Log in", menu.LOAD_X + 100, menu.LOAD_Y);
+        grphcs.drawString("Exit", menu.EXIT_X + 100, menu.EXIT_Y);
     }
 
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {         
          // consider these loops as update/render loops
-         if(!client.isConnected()){
-             // receiving server information for lobby
-             ArrayList<ServerData> servers = null;
-             try {
-                 servers = client.receiveServerBroadcasts();
-             } catch (IOException ex) {
-                 Logger.getLogger(LobbyScreen.class.getName()).log(Level.SEVERE, null, ex);
-             }
-             for(ServerData si : servers){
-                 System.out.println("Host name: " + si.hostName + " Port: " + si.port);
-                 System.out.println("Attempting to connect/log in.");
-                 
-                 try {
-                     // attempt to connect to server
-                     client.connect(si.port, si.hostName, "", "", true);
-                 } catch (IOException ex) {
-                     Logger.getLogger(LobbyScreen.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-                 try {
-                     // if userdata is received, than client has connected
-                     client.receiveUserData();
-                 } catch (IOException ex) {
-                     Logger.getLogger(LobbyScreen.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-                 if(client.isConnected()){
-                     conAdd = si.hostName;
-                     conPort = si.port;
-                     break;
-                 }
-             }
-         }
-         //System.out.println("Connected!");
-         if(client.isConnected()){
-             if(menu.addUser){
-                menu.addUser = false;
-             
-             // receiving game world data from server
-             UserData ud = null;
-             try {
-                 ud = client.receiveUserData();
-             } catch (IOException ex) {
-                 Logger.getLogger(LobbyScreen.class.getName()).log(Level.SEVERE, null, ex);
-             }
-             if(ud != null){
-                 System.out.println(ud.message);
-             }
-             }
-         }
-         //System.out.println("Disconnected");
+//         if(!client.isConnected()){
+//             // receiving server information for lobby
+//             ArrayList<ServerData> servers = null;
+//             try {
+//                 servers = client.receiveServerBroadcasts();
+//             } catch (IOException ex) {
+//                 Logger.getLogger(LobbyScreen.class.getName()).log(Level.SEVERE, null, ex);
+//             }
+//             for(ServerData si : servers){
+//                 System.out.println("Host name: " + si.hostName + " Port: " + si.port);
+//                 System.out.println("Attempting to connect/log in.");
+//                 
+//                 try {
+//                     // attempt to connect to server
+//                     client.connect(si.port, si.hostName, "", "", true);
+//                 } catch (IOException ex) {
+//                     Logger.getLogger(LobbyScreen.class.getName()).log(Level.SEVERE, null, ex);
+//                 }
+//                 try {
+//                     // if userdata is received, than client has connected
+//                     client.receiveUserData();
+//                 } catch (IOException ex) {
+//                     Logger.getLogger(LobbyScreen.class.getName()).log(Level.SEVERE, null, ex);
+//                 }
+//                 if(client.isConnected()){
+//                     conAdd = si.hostName;
+//                     conPort = si.port;
+//                     break;
+//                 }
+//             }
+//         }
+//         //System.out.println("Connected!");
+//         if(client.isConnected()){
+//             if(menu.addUser){
+//                menu.addUser = false;
+//             
+//             // receiving game world data from server
+//             UserData ud = null;
+//             try {
+//                 ud = client.receiveUserData();
+//             } catch (IOException ex) {
+//                 Logger.getLogger(LobbyScreen.class.getName()).log(Level.SEVERE, null, ex);
+//             }
+//             if(ud != null){
+//                 System.out.println(ud.message);
+//             }
+//             }
+//         }
+//         //System.out.println("Disconnected");
     }
     
     @Override
