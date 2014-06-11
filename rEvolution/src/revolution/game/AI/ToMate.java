@@ -22,18 +22,23 @@ public class ToMate {
         if(creature1.checkAnimal() && creature2.checkAnimal()){
             outer : for(History c1 : creature1.population.Instances){
                 inner : for(History c2 : creature2.population.Instances){
-                    if(System.currentTimeMillis() - c1.mate.lastMate() > mateWait(creature1.properies.relation.family.getReproduceRate()) &&
-                            System.currentTimeMillis() - c2.mate.lastMate() > mateWait(creature2.properies.relation.family.getReproduceRate())){
-                        mater = c1;
-                        matie = c2;
-                        decisionRating = getMate(creature1);
-                        re = decisionRating;
+                    long age = creature2.properies.body.size.getHeight() * creature2.properies.body.size.getLength() * creature2.properies.body.size.getWeight() * 100;
+                    if(System.currentTimeMillis() - c2.getBornTime() > age){
+                        Run.die(creature1, c2);
                         break outer;
-                    }
-                    else {
-                        re = 0;
-                    }
-                }
+                    } else {
+                        if(System.currentTimeMillis() - c1.mate.lastMate() > mateWait(creature1.properies.relation.family.getReproduceRate()) &&
+                                System.currentTimeMillis() - c2.mate.lastMate() > mateWait(creature2.properies.relation.family.getReproduceRate())){
+                            mater = c1;
+                            matie = c2;
+                            decisionRating = getMate(creature1);
+                            re = decisionRating;
+                            break outer;
+                        } else {
+                            re = 0;
+                        }
+                    }   
+                }   
             }
         } else {
             mater = new History(creature1.population.getPollinate());

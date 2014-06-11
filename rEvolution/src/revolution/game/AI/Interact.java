@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import revolution.game.creature.Creature;
 import revolution.game.creature.properties.Types.Location;
+import revolution.game.creature.properties.Types.Size;
 
 /**
  *
@@ -49,7 +50,7 @@ public class Interact {
         }
     }
     
-    private static boolean wouldInteract(Creature creature1, Creature creature2){
+    private static boolean wouldInteract(Creature creature1, Creature creature2){        
         Location location1 = creature1.properies.environment.location;
         Location location2  = creature2.properies.environment.location;
         if((Math.random() * (location1.size() + location2.size())) <= location1.shares(location2)){
@@ -74,7 +75,7 @@ public class Interact {
     private static int checkEat(Creature creature1, Creature creature2){
         return ToEat.getDecision(creature1, creature2);
     }
-    
+
     private static boolean genGender(){
         double ran;
         ran = Math.random();

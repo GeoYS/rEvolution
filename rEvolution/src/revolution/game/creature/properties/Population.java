@@ -24,9 +24,9 @@ public class Population {
         return Instances.size();
     }
     
-    public void addToPopulation(int addAmount){
+    public void addToPopulation(int addAmount, long bornTime){
         for(int i = 0; i < addAmount; i++){
-            Instances.add(new History());
+            Instances.add(new History(bornTime));
         }
     }
     

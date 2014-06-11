@@ -15,24 +15,10 @@ public class History {
     public Eat eat = new Eat();
     public Mate mate = new Mate();
     
-    public History(){
-        
-    }
+    private long bornTime = 0;
     
-    public History(long Pollinate){
-        mate.lastMate = Pollinate;
-    }
-    
-    public class Vulnerability {
-        private boolean isVulnerable;
-        
-        public void setVulnerability(boolean isVulnerability){
-            this.isVulnerable = isVulnerability;
-        }
-    
-        public boolean getVulnerability(){
-            return isVulnerable; 
-        }
+    public History(long bornTime){
+        this.bornTime = bornTime;
     }
     
     public class Eat {
@@ -48,6 +34,15 @@ public class History {
     }
     
     public class Mate {
+        
+        public Mate(){
+            
+        }
+        
+        public Mate(long Pollinate){
+            lastMate = Pollinate;
+        }
+        
         private long lastMate = 0;
         
         public void setMate(long gameTime){
@@ -57,5 +52,9 @@ public class History {
         public long lastMate(){
             return lastMate;
         }
+    }
+    
+    public long getBornTime(){
+        return bornTime;
     }
 }

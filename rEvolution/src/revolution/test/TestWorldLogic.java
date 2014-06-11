@@ -53,7 +53,7 @@ public class TestWorldLogic {
         cow.properies.environment.location.setMigrationStart(null);
         cow.properies.environment.location.setMigrationThrough(null);
         cow.properies.environment.location. setMigrationStart(null);
-        cow.population.addToPopulation(100);
+        cow.population.addToPopulation(100, System.currentTimeMillis());
         
         grass.properies.body.size = new Size(1, 1, 1);
         grass.properies.relation.family = new Family(0, 7, 1, 2);
@@ -74,7 +74,7 @@ public class TestWorldLogic {
         wolf.properies.environment.location.setMigrationStart(Location.MigrationArea.SAVAHNNA);
         wolf.properies.environment.location.setMigrationThrough(null);
         wolf.properies.environment.location. setMigrationStart(Location.MigrationArea.FORREST);
-        wolf.population.addToPopulation(50);
+        wolf.population.addToPopulation(50, System.currentTimeMillis());
 
         world.populations.add(cow);
         world.populations.add(grass);

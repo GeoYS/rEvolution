@@ -21,7 +21,7 @@ public class Run {
             int minBirthSize = creature1.properies.relation.family.getMinBirthSize();
             int maxBirthSize = creature1.properies.relation.family.getMaxBirthSize();
             int birthSize = minBirthSize + (int) (Math.random() * maxBirthSize);
-            creature1.population.addToPopulation(birthSize);
+            creature1.population.addToPopulation(birthSize, System.currentTimeMillis());
             int mater = creature1.population.Instances.indexOf(history1);
             int matie = creature2.population.Instances.indexOf(history2);
             history1.mate.setMate(System.currentTimeMillis());
@@ -50,5 +50,10 @@ public class Run {
         }else {
             creature2.population.removeUnitsFromCount(1);
         }
+    }
+    
+    public static void die(Creature creature1, History history1){
+        System.out.println("Oh Shit a " + creature1.getSpeciesName() + " has died. Probably deserved it!");
+        creature1.population.Instances.remove(history1);
     }
 }
