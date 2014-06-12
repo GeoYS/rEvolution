@@ -21,6 +21,11 @@ import org.newdawn.slick.gui.MouseOverArea;
  */
 public abstract class Button extends MouseOverArea{
     
+    /**
+     * Text displayed in button
+     */
+    private String text = "";
+    
     public Button(GUIContext gc, Image normal,
             Image pressed, Image hover,
             Shape shape){
@@ -57,6 +62,21 @@ public abstract class Button extends MouseOverArea{
         if(this.isMouseOver()){
             onClick();
         }
+    }
+    
+    public void setText(String text){
+        this.text = text;
+    }
+    
+    public String getText(String text){
+        return this.text;
+    }
+
+    @Override
+    public void render(GUIContext container, Graphics g) {
+        super.render(container, g); //To change body of generated methods, choose Tools | Templates.
+        g.drawString(text, this.getX() + this.getWidth() / 2 - 5 * text.length() / 2,
+                this.getY() + this.getHeight() / 2);
     }
     
     public abstract void onClick();
