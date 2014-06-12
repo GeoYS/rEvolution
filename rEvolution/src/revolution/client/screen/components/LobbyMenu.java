@@ -17,6 +17,7 @@ import org.newdawn.slick.state.transition.HorizontalSplitTransition;
 import revolution.client.screen.LobbyScreen;
 import revolution.client.screen.LogInScreen;
 import revolution.client.screen.MainMenuScreen;
+import revolution.client.screen.NewCreatureScreen;
 import revolution.client.screen.NewUserScreen;
 import revolution.res.ClientImages;
 import revolution.ui.Button;
@@ -52,7 +53,7 @@ public class LobbyMenu extends ComponentGroup{
             @Override
             public void onClick() {
                 addUser = true;
-                sm.changeScreen(NewUserScreen.ID, new FadeOutTransition(), new FadeInTransition());
+                sm.changeScreen(NewCreatureScreen.ID, new FadeOutTransition(), new FadeInTransition());
             }
         };
         load = new Button(context, 

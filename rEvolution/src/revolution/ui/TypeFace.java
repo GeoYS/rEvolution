@@ -6,9 +6,7 @@
 
 package revolution.ui;
 
-import org.newdawn.slick.Font;
 import org.newdawn.slick.TrueTypeFont;
-import org.newdawn.slick.UnicodeFont;
 
 
 
