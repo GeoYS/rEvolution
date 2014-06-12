@@ -14,6 +14,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import revolution.client.screen.components.MainMenu;
 import revolution.client.screen.components.NewCreatureFamilyMenu;
 import revolution.client.screen.components.NewCreatureFoodMenu;
+import revolution.client.screen.components.NewCreatureMedianMenu;
 import revolution.client.screen.components.NewCreatureMenu;
 import revolution.ui.Screen;
 import revolution.ui.ScreenManager;
@@ -22,20 +23,20 @@ import revolution.ui.ScreenManager;
  *
  * @author Chris
  */
-public class NewCreatureFoodScreen extends Screen {
+public class NewCreatureMedianScreen extends Screen {
     
-    public static final int ID = 7;
+    public static final int ID = 9;
     
-    private NewCreatureFoodMenu menu;
+    private NewCreatureMedianMenu menu;
 
-    public NewCreatureFoodScreen(ScreenManager sm) {
+    public NewCreatureMedianScreen(ScreenManager sm) {
         super(sm);
     }
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         this.clearListeners(); // if this screen had been previously initialised.
-        menu = new NewCreatureFoodMenu(this.getScreenManager().getContainer(), this.getScreenManager());
+        menu = new NewCreatureMedianMenu(this.getScreenManager().getContainer(), this.getScreenManager());
         this.addListener(menu);
     }
 

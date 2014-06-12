@@ -25,11 +25,9 @@ import revolution.util.CSInfo;
  *
  * @author Chris
  */
-public class NewCreatureFoodMenu extends ComponentGroup{
+public class NewCreatureMedianMenu extends ComponentGroup{
     
-    private Button connect, back;
-    
-    private TextField height, length, weight, frequency, meat, veg;
+    private Button connect, back, air, water, ground;
     
     public final int NEW_X = CSInfo.WIDTH / 10; 
     public final int NEW_Y = 9 * CSInfo.HEIGHT /10;
@@ -38,25 +36,22 @@ public class NewCreatureFoodMenu extends ComponentGroup{
     private final int WIDTH = 64;
     private final int HEIGHT = 32;
     
-    public final int HEIGHT_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int HEIGTH_Y = 2 * CSInfo.HEIGHT /10;
-    public final int LENGTH_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int LENGTH_Y = 3 * CSInfo.HEIGHT /10;
-    public final int WEIGHT_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int WEIGHT_Y = 4 * CSInfo.HEIGHT /10;
-    public final int MEAT_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int MEAT_Y = 5 * CSInfo.HEIGHT /10;
-    public final int VEG_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int VEG_Y = 6 * CSInfo.HEIGHT /10;
-    public final int FREQUENCY_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int FREQUENCY_Y = 7 * CSInfo.HEIGHT /10;
+    public final int AIR_X = (CSInfo.WIDTH / 10) + 300; 
+    public final int AIR_Y = 2 * CSInfo.HEIGHT /10;
+    public final int WATER_X = (CSInfo.WIDTH / 10) + 300; 
+    public final int WATER_Y = 3 * CSInfo.HEIGHT /10;
+    public final int GROUND_X = (CSInfo.WIDTH / 10) + 300; 
+    public final int GROUND_Y = 4 * CSInfo.HEIGHT /10;
     private final int TXT_WIDTH = 250;
     private final int TXT_HEIGHT = 30;
     
     public static int foodHeight, foodLength, foodWeight, feedFrequency, feedMeat, feedVeg;
 
-    public NewCreatureFoodMenu(GUIContext gc, final ScreenManager sm) {        
+    public NewCreatureMedianMenu(GUIContext gc, final ScreenManager sm) {        
         super(gc, 0, 0);
+        air.setText("Air");
+        water.setText("Water");
+        ground.setText("Ground");
         connect = new Button(gc, 
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
@@ -87,6 +82,38 @@ public class NewCreatureFoodMenu extends ComponentGroup{
                 sm.changeScreen(NewCreatureFamilyScreen.ID, new FadeOutTransition(), new FadeInTransition());
             }
         };
+        air = new Button(gc, 
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
+                EXIT_X, EXIT_Y, WIDTH, HEIGHT){
+            @Override
+            public void onClick() {
+                air.setAcceptingInput(true);
+                sm.changeScreen(NewCreatureFamilyScreen.ID, new FadeOutTransition(), new FadeInTransition());
+            }
+        };
+        ground = new Button(gc, 
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
+                EXIT_X, EXIT_Y, WIDTH, HEIGHT){
+            @Override
+            public void onClick() {
+                sm.changeScreen(NewCreatureFamilyScreen.ID, new FadeOutTransition(), new FadeInTransition());
+            }
+        };
+        ground = new Button(gc, 
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
+                EXIT_X, EXIT_Y, WIDTH, HEIGHT){
+            @Override
+            public void onClick() {
+                
+                sm.changeScreen(NewCreatureFamilyScreen.ID, new FadeOutTransition(), new FadeInTransition());
+            }
+        };        
         height = new TextField(gc, TypeFace.uni(TypeFace.ARIAL, TypeFace.BOLD, 25) , HEIGHT_X, HEIGTH_Y, TXT_WIDTH, TXT_HEIGHT);
         length = new TextField(gc, TypeFace.uni(TypeFace.ARIAL, TypeFace.BOLD, 25) , LENGTH_X, LENGTH_Y, TXT_WIDTH, TXT_HEIGHT);
         weight = new TextField(gc, TypeFace.uni(TypeFace.ARIAL, TypeFace.BOLD, 25) , WEIGHT_X, WEIGHT_Y, TXT_WIDTH, TXT_HEIGHT);

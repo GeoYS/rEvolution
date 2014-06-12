@@ -11,6 +11,7 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import revolution.client.game.entity.NewCreature;
 import revolution.client.screen.LobbyScreen;
+import revolution.client.screen.NewCreatureFoodScreen;
 import revolution.client.screen.NewCreatureScreen;
 import revolution.game.creature.Creature;
 import revolution.res.ClientImages;
@@ -69,7 +70,7 @@ public class NewCreatureFamilyMenu extends ComponentGroup{
                     System.out.println("Bad Input");
                 }
                 
-                sm.changeScreen(LobbyScreen.ID, new FadeOutTransition(), new FadeInTransition());
+                sm.changeScreen(NewCreatureFoodScreen.ID, new FadeOutTransition(), new FadeInTransition());
             }
         };
         exit = new Button(gc, 
