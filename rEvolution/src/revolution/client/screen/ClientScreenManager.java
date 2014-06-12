@@ -28,6 +28,7 @@ public class ClientScreenManager extends ScreenManager{
         this.addScreen(new ConnectionInProgression(this));
         this.addScreen(new NewCreatureScreen(this));
         this.addScreen(new NewCreatureFamilyScreen(this));
+        this.addScreen(new NewCreatureFoodScreen(this));
         
         // Enter first screen
         this.enterState(LoadingScreen.ID);
