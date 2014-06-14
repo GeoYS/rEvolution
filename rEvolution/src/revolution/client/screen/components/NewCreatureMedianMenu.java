@@ -45,7 +45,7 @@ public class NewCreatureMedianMenu extends ComponentGroup{
     private final int TXT_WIDTH = 250;
     private final int TXT_HEIGHT = 30;
     
-    public static int foodHeight, foodLength, foodWeight, feedFrequency, feedMeat, feedVeg;
+    public static int median;
 
     public NewCreatureMedianMenu(GUIContext gc, final ScreenManager sm) {        
         super(gc, 0, 0);
@@ -59,17 +59,7 @@ public class NewCreatureMedianMenu extends ComponentGroup{
                 NEW_X, NEW_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                try {
-                foodHeight = Integer.valueOf(height.getText());
-                foodLength = Integer.valueOf(length.getText());
-                foodWeight = Integer.valueOf(weight.getText());
-                feedFrequency = Integer.valueOf(frequency.getText());
-                feedMeat = Integer.valueOf(meat.getText());
-                feedVeg = Integer.valueOf(veg.getText());
                 sm.changeScreen(NewCreatureBrainScreen.ID, new FadeOutTransition(), new FadeInTransition());
-                } catch(NumberFormatException e) {
-                    System.out.println("Bad Input");
-                }
             }
         };
         back = new Button(gc, 
@@ -90,7 +80,22 @@ public class NewCreatureMedianMenu extends ComponentGroup{
             @Override
             public void onClick() {
                 air.setAcceptingInput(true);
-                sm.changeScreen(NewCreatureFamilyScreen.ID, new FadeOutTransition(), new FadeInTransition());
+                water.setAcceptingInput(false);
+                ground.setAcceptingInput(false);
+                median = 0;
+            }
+        };
+        water = new Button(gc, 
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
+                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
+                EXIT_X, EXIT_Y, WIDTH, HEIGHT){
+            @Override
+            public void onClick() {
+                air.setAcceptingInput(false);
+                water.setAcceptingInput(true);
+                air.setAcceptingInput(false);
+                median = 1;
             }
         };
         ground = new Button(gc, 
@@ -100,32 +105,15 @@ public class NewCreatureMedianMenu extends ComponentGroup{
                 EXIT_X, EXIT_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                sm.changeScreen(NewCreatureFamilyScreen.ID, new FadeOutTransition(), new FadeInTransition());
-            }
-        };
-        ground = new Button(gc, 
-                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
-                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
-                ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
-                EXIT_X, EXIT_Y, WIDTH, HEIGHT){
-            @Override
-            public void onClick() {
-                
-                sm.changeScreen(NewCreatureFamilyScreen.ID, new FadeOutTransition(), new FadeInTransition());
+                air.setAcceptingInput(false);
+                water.setAcceptingInput(false);
+                ground.setAcceptingInput(true);
+                median = 2;
             }
         };        
-        height = new TextField(gc, TypeFace.uni(TypeFace.ARIAL, TypeFace.BOLD, 25) , HEIGHT_X, HEIGTH_Y, TXT_WIDTH, TXT_HEIGHT);
-        length = new TextField(gc, TypeFace.uni(TypeFace.ARIAL, TypeFace.BOLD, 25) , LENGTH_X, LENGTH_Y, TXT_WIDTH, TXT_HEIGHT);
-        weight = new TextField(gc, TypeFace.uni(TypeFace.ARIAL, TypeFace.BOLD, 25) , WEIGHT_X, WEIGHT_Y, TXT_WIDTH, TXT_HEIGHT);
-        frequency = new TextField(gc, TypeFace.uni(TypeFace.ARIAL, TypeFace.BOLD, 25) , FREQUENCY_X, FREQUENCY_Y, TXT_WIDTH, TXT_HEIGHT);
-        meat = new TextField(gc, TypeFace.uni(TypeFace.ARIAL, TypeFace.BOLD, 25) , MEAT_X, MEAT_Y, TXT_WIDTH, TXT_HEIGHT);
-        veg = new TextField(gc, TypeFace.uni(TypeFace.ARIAL, TypeFace.BOLD, 25) , VEG_X, VEG_Y, TXT_WIDTH, TXT_HEIGHT);
-        this.addComponent(height);
-        this.addComponent(length);
-        this.addComponent(weight);
-        this.addComponent(frequency);
-        this.addComponent(meat);
-        this.addComponent(veg);
+        this.addComponent(air);
+        this.addComponent(water);
+        this.addComponent(ground);
         this.addComponent(connect);
         this.addComponent(back);
     }
