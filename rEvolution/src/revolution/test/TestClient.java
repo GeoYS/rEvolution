@@ -33,7 +33,7 @@ public class TestClient {
                  System.out.println("Attempting to connect/log in.");
                  
                  // attempt to connect to server
-                 client.connect(si.port, si.hostName, "", "", true);
+                 client.connect(si.port, si.hostName, "", "", null, true);
                  // if userdata is received, than client has connected
                  client.receiveUserData();
                  if(client.isConnected()){

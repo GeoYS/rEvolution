@@ -13,6 +13,8 @@ import org.newdawn.slick.Image;
  */
 public abstract class Entity {
     
+    public abstract Info getInfo();
+    
     /**
      * Get entity's x coordinate.
      * @return 

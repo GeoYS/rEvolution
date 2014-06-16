@@ -7,6 +7,8 @@ package revolution.client.game.map;
 import java.util.ArrayList;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.tiled.GroupObject;
+import org.newdawn.slick.tiled.ObjectGroup;
 import org.newdawn.slick.tiled.TiledMap;
 
 /**
@@ -16,10 +18,32 @@ import org.newdawn.slick.tiled.TiledMap;
  */
 public class Map extends TiledMap{
     private final ArrayList<MapObject> mapObjects;
-    public Map(String path, MapParser parser) throws SlickException{
+    private String path;
+    public Map(String path) throws SlickException{
         super(path);
-        mapObjects = parser.parseMapObjects((TiledMap)this);
+        this.path = path;
+        mapObjects = new ArrayList<>();
+        for(ObjectGroup og : objectGroups){
+            for(GroupObject go : og.getObjects()){
+                mapObjects.add(new MapObject(go));
+            }
+        }
     }
+    
+    public String getPath(){
+        return path;
+    }
+    
+    public ArrayList<MapObject> getAreas(){
+        ArrayList<MapObject> areas = new ArrayList<>();
+        for(MapObject mo : mapObjects){
+            if(mo.getProperty("type").equals("area")){
+                areas.add(mo);
+            }
+        }
+        return areas;
+    }
+    
     public ArrayList<MapObject> getMapObjects(){
         return mapObjects;
     }

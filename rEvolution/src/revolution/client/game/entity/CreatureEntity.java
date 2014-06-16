@@ -6,7 +6,9 @@
 
 package revolution.client.game.entity;
 
+import java.util.ArrayList;
 import org.newdawn.slick.Image;
+import revolution.client.game.entity.Info.Fact;
 import revolution.game.creature.Creature;
 
 /**
@@ -52,6 +54,28 @@ public class CreatureEntity extends Entity{
     @Override
     public void update(long delta) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Info getInfo() {
+        return new Info(){
+
+            @Override
+            public Image getImage() {
+                return getCurrentImage();
+            }
+
+            @Override
+            public ArrayList<Fact> getFacts() {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+
+            @Override
+            public String getName() {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+            
+        };
     }
     
 }

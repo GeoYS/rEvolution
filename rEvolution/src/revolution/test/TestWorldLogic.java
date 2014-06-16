@@ -20,7 +20,7 @@ import revolution.game.creature.properties.Types.Food;
 import revolution.game.creature.properties.Types.Location;
 import revolution.game.creature.properties.Types.Median;
 import revolution.game.creature.properties.Types.Size;
-import revolution.game.world.Area;
+import revolution.game.world.Region;
 import revolution.game.world.World;
 import revolution.server.SerializeObject;
 import revolution.server.Server;
@@ -33,10 +33,9 @@ import revolution.server.User;
 public class TestWorldLogic {    
     
     private static World world;
-    private static ArrayList<Area> areas = new ArrayList<>();
     
     private static void initializeWorld(){
-        world = new World(areas);
+        world = new World(null);
         Creature cow = new Creature("Christopher Stokes", "cow", true);
         Creature grass = new Creature("Christopher Stokes", "grass",false);
         Creature wolf = new Creature("Christopher Stokes", "wolf",true);

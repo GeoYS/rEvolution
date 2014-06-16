@@ -20,12 +20,22 @@ public abstract class AnimatedComponentGroup extends ComponentGroup{
         super(gc, xOffset, yOffset);
     }
 
+    /**
+     * Call update in implemented classes in the render method.
+     * @param guic
+     * @param grphcs
+     * @throws SlickException 
+     */
     @Override
     public void render(GUIContext guic, Graphics grphcs) throws SlickException {
-        long thisRender = System.currentTimeMillis();
-        update(thisRender - lastRender);
-        lastRender = thisRender;
         super.render(guic, grphcs);
+    }
+    
+    public long delta(){
+        long thisRender = System.currentTimeMillis();
+        long delta = thisRender - lastRender;
+        lastRender = thisRender;
+        return delta;
     }
     
     protected abstract void update(long delta);

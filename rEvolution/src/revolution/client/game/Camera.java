@@ -31,7 +31,7 @@ public abstract class Camera {
      * Get width of the window.
      * @return width
      */
-    public int getWidth(){
+    public float getWidth(){
         return gc.getWidth();
     }
     
@@ -39,9 +39,35 @@ public abstract class Camera {
      * Get height of the window.
      * @return height
      */
-    public int getHeight(){
+    public float getHeight(){
         return gc.getHeight();
     }
+    
+    /**
+     * Get zoom.
+     * @return 
+     */
+    public abstract float getZoom();
+    
+    /**
+     * Set zoom.
+     * @return 
+     */
+    public abstract void setZoom(float zoom);
+    
+    /**
+     * Set camera location (centre).
+     * @param x
+     * @param y 
+     */
+    public abstract void setLocation(float x, float y);
+    
+    /**
+     * Get location of camera (centre).
+     * @return 
+     */
+    public abstract float getX();
+    public abstract float getY();
     
     /**
      * Translate the graphics context to the camera's position.

@@ -56,8 +56,7 @@ public abstract class Button extends MouseOverArea{
     }
 
     @Override
-    public void mouseClicked(int button, int x, int y, int clickCount) {        
-        System.out.println("Mouse clicked.");
+    public void mouseClicked(int button, int x, int y, int clickCount) {   
         super.mouseClicked(button, x, y, clickCount);
         if(this.isMouseOver()){
             onClick();

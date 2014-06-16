@@ -30,15 +30,29 @@ public class TestCamera extends Camera implements MouseListener{
         this.cy = y;
         scale = 1;
     }    
+
+    @Override
+    public void setLocation(float x, float y) {
+        cx = x;
+        cy = y;
+    }
     
+    @Override
     public float getZoom(){
-        return 1 / scale;
+        return scale;
     }
 
+    @Override
+    public void setZoom(float zoom){
+        scale = zoom;
+    }
+    
+    @Override
     public float getX(){
         return cx;
     }
     
+    @Override
     public float getY(){
         return cy;
     }
@@ -69,11 +83,11 @@ public class TestCamera extends Camera implements MouseListener{
     
     @Override
     public void mouseWheelMoved(int i) {
-        System.out.println("Mouse wheel moved: " + i);
-        scale *=  Math.pow(2.0, (float) i / 360);
-        if (scale > 1.0f) {
-            scale = 1.0f;
-        }
+        //System.out.println("Mouse wheel moved: " + i);
+        scale *=  Math.pow(2.0, (float) i / 720);
+        /*if (scale > 2f) {
+            scale = 2f;
+        }*/
     }
 
     @Override

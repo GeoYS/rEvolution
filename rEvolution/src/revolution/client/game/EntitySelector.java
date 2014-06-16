@@ -20,10 +20,12 @@ public class EntitySelector implements MouseListener{
     private Entity selected = null;
     private ArrayList<Entity> entities;
     private boolean isDragging;
+    private WorldView view;
     
-    public EntitySelector(ArrayList<Entity> entities){
+    public EntitySelector(ArrayList<Entity> entities, WorldView view){
         this.entities = entities;
         isDragging = false;
+        this.view = view;
     }
     
     public Entity getSelected(){
@@ -35,7 +37,26 @@ public class EntitySelector implements MouseListener{
     }
 
     @Override
-    public void mouseClicked(int i, int i1, int i2, int i3) {
+    public void mouseClicked(int i, int i1, int i2, int i3) {        
+        float x = view.screenToWorldX(i1),
+                y = view.screenToWorldY(i2);
+        System.out.println("Selector mouse released");
+        if(isDragging){
+            isDragging = false;
+        }
+        else{
+            selected = null;
+            for(Entity e : entities){
+                /*System.out.println("Ent pos: " + e.getX() + "," + e.getX() + 
+                        "Mouse pos: " + x + "," + y);*/
+                if(e.getX() <= x && x <= e.getX() + e.getWidth() &&
+                        e.getY() <= y && y <= e.getY() + e.getHeight()){
+                    selected = e;
+                    System.out.println("Entity selected!");
+                    return;
+                }
+            }
+        }
     }
 
     @Override
@@ -44,19 +65,6 @@ public class EntitySelector implements MouseListener{
 
     @Override
     public void mouseReleased(int i, int i1, int i2) {
-        if(isDragging){
-            isDragging = false;
-        }
-        else{
-            selected = null;
-            for(Entity e : entities){
-                if(e.getX() >= i && i <= e.getX() + e.getWidth() &&
-                        e.getY() >= i1 && i1 <= e.getY() + e.getHeight()){
-                    selected = e;
-                    return;
-                }
-            }
-        }
     }
 
     @Override
@@ -65,7 +73,8 @@ public class EntitySelector implements MouseListener{
 
     @Override
     public void mouseDragged(int i, int i1, int i2, int i3) {
-        isDragging = new Vector2f(i, i1).distanceSquared(new Vector2f(i2, i3)) > 9;
+        isDragging = isDragging ? isDragging : new Vector2f(i, i1).distanceSquared(new Vector2f(i2, i3)) > 9;
+        //System.out.print("Selector dragging: " + isDragging);
     }
 
     @Override

@@ -41,6 +41,10 @@ public class EntityManager {
             }
         });
     }
+
+    public ArrayList<Entity> getEntities() {
+        return entities;
+    }
     
     /**
      * Render all the entities.

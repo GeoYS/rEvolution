@@ -29,7 +29,7 @@ public class InGameMenu extends AnimatedComponentGroup{
     private int state;
     private boolean isClosed;
     
-    private static final int WIDTH = 100;
+    private static final int WIDTH = 100, OPENWIDTH = 10;
     
     public InGameMenu(GUIContext gc) {
         super(gc, 0, 0);
@@ -124,13 +124,14 @@ public class InGameMenu extends AnimatedComponentGroup{
 
     @Override
     public void render(GUIContext guic, Graphics grphcs) throws SlickException {
-        grphcs.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        this.update(this.delta());
+        //grphcs.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
         super.render(guic, grphcs);
     }
     
     @Override
     protected void update(long delta) {
-        float SPEED = 400; // pix/s
+        float SPEED = 800; // pix/s
         
         if(state == -1){
             if(this.getX() <= -WIDTH){
@@ -142,11 +143,15 @@ public class InGameMenu extends AnimatedComponentGroup{
                 isClosed = false;
                 float dSeconds= (float) delta / 1000f;
                 this.setLocation(this.getXf() - dSeconds * SPEED, this.getY());
+                if(this.getX() <= -WIDTH){
+                    this.setLocation(-WIDTH, this.getY());
+                    state = 0;
+                    isClosed = true;
+                }
             }
         }
         else if(state == 1){
             isClosed = false;
-            System.out.println("opening");
             if(this.getX() >= 0){
                 this.setLocation(0, this.getY());
                 state = 0;
@@ -154,6 +159,10 @@ public class InGameMenu extends AnimatedComponentGroup{
             else{
                 float dSeconds= (float) delta / 1000f;
                 this.setLocation(this.getXf() + dSeconds * SPEED, this.getY());
+                if(this.getX() >= 0){
+                    this.setLocation(0, this.getY());
+                    state = 0;
+                }
             }
         }
     }
@@ -161,11 +170,14 @@ public class InGameMenu extends AnimatedComponentGroup{
     @Override
     public void mouseMoved(int oldx, int oldy, int newx, int newy) {
         super.mouseMoved(oldx, oldy, newx, newy);
-        if(0 <= newx && newx <= this.getWidth() &&
+        if(0 <= newx && newx <= OPENWIDTH &&
+                0 <= newy && newy <= this.getHeight()){
+            state = 1;
+        }
+        else if(0 <= newx && newx <= this.getWidth() &&
                 0 <= newy && newy <= this.getHeight()){
         }
-        else {
-            System.out.println("State -1");
+        else{
             state = -1;
         }
     }
