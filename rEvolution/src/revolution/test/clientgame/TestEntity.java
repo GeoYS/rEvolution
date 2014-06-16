@@ -116,11 +116,13 @@ public class TestEntity extends Entity{
     public void update(long delta) {
         if(isMoving){
             currentAnimation.update(delta);
-            this.x += vx;
-            this.y += vy;
+            this.x += vx * delta / 1000;
+            this.y += vy * delta / 1000;
             if(new Vector2f(this.x, this.y)
                     .distance(new Vector2f(target.getCenterX(), target.getCenterY())) 
-                    > target.radius){
+                    < 2){
+                this.x = target.getCenterX();
+                this.y = target.getCenterY();
                 isMoving = false;
                 currentAnimation.setCurrentFrame(0);
             }
@@ -130,13 +132,13 @@ public class TestEntity extends Entity{
                 isMoving = true;
                 float x,y;
                 do{
-                    x = (float)Math.random() * 50 - 25;
-                    y = (float)Math.random() * 50 - 25;
+                    x = (float)Math.random() * 100 - 50;
+                    y = (float)Math.random() * 100 - 50;
                 }while(!(0 < this.x + x && this.x + x < map.getWidth() * map.getTileWidth() &&
                         0 < this.y + y && this.y + y < map.getHeight() * map.getTileHeight()));
-                target = new Circle(this.x + x, this.y + y, this.width);
-                vx = (target.getCenterX() - this.x) / 10;
-                vy = (target.getCenterY() - this.y) / 10;
+                target = new Circle(this.x + x, this.y + y, this.width / 2);
+                vx = (target.getCenterX() - this.x);
+                vy = (target.getCenterY() - this.y);
                 
                 if(Math.abs(x) > Math.abs(y)){
                     if(x > 0){
