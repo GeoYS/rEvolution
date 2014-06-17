@@ -143,7 +143,7 @@ public class Socket {
             groupSocket.receive(packet);
         }
         catch(IOException e){
-            System.out.println("Debugging: Nothing to receive.");
+            //System.out.println("Debugging: Nothing to receive.");
             return null;
         }
         
