@@ -9,9 +9,11 @@ package revolution.client.screen.components;
 import org.newdawn.slick.gui.GUIContext;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+import revolution.client.game.entity.NewCreature;
 import revolution.client.screen.LobbyScreen;
 import revolution.client.screen.NewCreatureBrainScreen;
 import revolution.client.screen.NewCreatureFamilyScreen;
+import revolution.client.screen.NewCreatureLocationScreen;
 import revolution.client.screen.NewCreatureScreen;
 import revolution.res.ClientImages;
 import revolution.ui.Button;
@@ -49,9 +51,6 @@ public class NewCreatureMedianMenu extends ComponentGroup{
 
     public NewCreatureMedianMenu(GUIContext gc, final ScreenManager sm) {        
         super(gc, 0, 0);
-        air.setText("Air");
-        water.setText("Water");
-        ground.setText("Ground");
         connect = new Button(gc, 
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
@@ -59,7 +58,7 @@ public class NewCreatureMedianMenu extends ComponentGroup{
                 NEW_X, NEW_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                sm.changeScreen(NewCreatureBrainScreen.ID, new FadeOutTransition(), new FadeInTransition());
+                sm.changeScreen(NewCreatureLocationScreen.ID, new FadeOutTransition(), new FadeInTransition());
             }
         };
         back = new Button(gc, 
@@ -76,7 +75,7 @@ public class NewCreatureMedianMenu extends ComponentGroup{
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
-                EXIT_X, EXIT_Y, WIDTH, HEIGHT){
+                AIR_X, AIR_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
                 air.setAcceptingInput(true);
@@ -89,7 +88,7 @@ public class NewCreatureMedianMenu extends ComponentGroup{
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
-                EXIT_X, EXIT_Y, WIDTH, HEIGHT){
+                WATER_X, WATER_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
                 air.setAcceptingInput(false);
@@ -102,7 +101,7 @@ public class NewCreatureMedianMenu extends ComponentGroup{
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_PRESSED),
-                EXIT_X, EXIT_Y, WIDTH, HEIGHT){
+                GROUND_X, GROUND_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
                 air.setAcceptingInput(false);
@@ -111,6 +110,9 @@ public class NewCreatureMedianMenu extends ComponentGroup{
                 median = 2;
             }
         };        
+        air.setText("Air");
+        water.setText("Water");
+        ground.setText("Ground");
         this.addComponent(air);
         this.addComponent(water);
         this.addComponent(ground);

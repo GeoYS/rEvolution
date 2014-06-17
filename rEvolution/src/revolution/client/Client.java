@@ -66,7 +66,7 @@ public class Client {
         ArrayList<ServerData> servers = new ArrayList<>();
         do{
             ObjectPacket o = socket.receiveMulticast();
-            if(o != null && o.object instanceof ServerData){
+            if(o != null && o.object instanceof ServerData && !servers.contains(o)){
                 servers.add((ServerData)o.object);
             }
         }while(System.currentTimeMillis() - last< RECEIVE_BROADCAST_TIMEOUT);

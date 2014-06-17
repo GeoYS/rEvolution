@@ -41,7 +41,7 @@ import revolution.util.SSInfo;
  *
  * @author Christopher Stokes
  */
-public class NewUserMenu extends ComponentGroup{
+public class LogInMenu extends ComponentGroup{
     private Button add, btn2;
     public boolean addUser = false;
     private Button submit, back;
@@ -67,7 +67,7 @@ public class NewUserMenu extends ComponentGroup{
     private final int TXT_WIDTH = 250;
     private final int TXT_HEIGHT = 30;
     
-    public NewUserMenu(GUIContext gc, final ScreenManager sm) {
+    public LogInMenu(GUIContext gc, final ScreenManager sm) {
         super(gc, 0, 0);
         
         submit = new Button(gc,
@@ -107,20 +107,20 @@ public class NewUserMenu extends ComponentGroup{
     }    
     
     private void newCreature(){
-        creature = new Creature(user, NewCreatureMenu.creatureName, true);
-        creature.properies.body.size = new Size(5, 5, 6);
-        creature.properies.personality.brain = new Brain(1, 1);
-        creature.properies.personality.food = new Food(new Size(1, 1, 1), 9, 1, 10);
-        creature.properies.relation.family = new Family(3, 8, 1, 1);
-        creature.properies.environment.median.setMedian(Median.Medians.GROUND);
-        creature.properies.environment.location.setWaterSource(waterSource(NewCreatureLocationMenu.waterSource));
-        creature.properies.environment.location.setFeedingArea(feedingArea(NewCreatureLocationMenu.feedingArea));
-        creature.properies.environment.location.setNestingArea(nestingArea(NewCreatureLocationMenu.nestingArea));
-        creature.properies.environment.location.setSleepingArea(sleepingArea(NewCreatureLocationMenu.sleepingArea));
-        creature.properies.environment.location.setMigrationStart(migrationArea(NewCreatureLocationMenu.migrationStart));
-        creature.properies.environment.location.setMigrationThrough(migrationArea(NewCreatureLocationMenu.migrationThrough));
-        creature.properies.environment.location. setMigrationStart(migrationArea(NewCreatureLocationMenu.migrationEnd));
-        creature.population.addToPopulation(100, System.currentTimeMillis()); 
+        NewCreature.creature = new Creature(user, NewCreatureMenu.creatureName, true);
+        NewCreature.creature.properies.body.size = new Size(5, 5, 6);
+        NewCreature.creature.properies.personality.brain = new Brain(1, 1);
+        NewCreature.creature.properies.personality.food = new Food(new Size(1, 1, 1), 9, 1, 10);
+        NewCreature.creature.properies.relation.family = new Family(3, 8, 1, 1);
+        NewCreature.creature.properies.environment.median.setMedian(Median.Medians.GROUND);
+        NewCreature.creature.properies.environment.location.setWaterSource(waterSource(NewCreatureLocationMenu.waterSource));
+        NewCreature.creature.properies.environment.location.setFeedingArea(feedingArea(NewCreatureLocationMenu.feedingArea));
+        NewCreature.creature.properies.environment.location.setNestingArea(nestingArea(NewCreatureLocationMenu.nestingArea));
+        NewCreature.creature.properies.environment.location.setSleepingArea(sleepingArea(NewCreatureLocationMenu.sleepingArea));
+        NewCreature.creature.properies.environment.location.setMigrationStart(migrationArea(NewCreatureLocationMenu.migrationStart));
+        NewCreature.creature.properies.environment.location.setMigrationThrough(migrationArea(NewCreatureLocationMenu.migrationThrough));
+        NewCreature.creature.properies.environment.location. setMigrationStart(migrationArea(NewCreatureLocationMenu.migrationEnd));
+        NewCreature.creature.population.addToPopulation(100, System.currentTimeMillis()); 
     }
     
     

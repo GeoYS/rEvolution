@@ -9,17 +9,14 @@ package revolution.client.screen.components;
 import org.newdawn.slick.gui.GUIContext;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
-import revolution.client.game.entity.NewCreature;
-import revolution.client.screen.LobbyScreen;
-import revolution.client.screen.NewCreatureFoodScreen;
+import revolution.client.screen.LogInScreen;
+import revolution.client.screen.NewCreatureLocationScreen;
 import revolution.client.screen.NewCreatureScreen;
-import revolution.game.creature.Creature;
+import revolution.client.screen.NewUserScreen;
 import revolution.res.ClientImages;
 import revolution.ui.Button;
 import revolution.ui.ComponentGroup;
 import revolution.ui.ScreenManager;
-import revolution.ui.TextField;
-import revolution.ui.TypeFace;
 import revolution.util.CSInfo;
 
 /**
@@ -38,35 +35,35 @@ public class NewCreatureLocationMenu extends ComponentGroup{
     private final int HEIGHT = 32;
     
     public final int ONE_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int ONE_Y = 2 * CSInfo.HEIGHT /10;
-    public final int TWO_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int TWO_Y = 2 * CSInfo.HEIGHT /10;
+    public final int ONE_Y = (2 * CSInfo.HEIGHT /10);
+    public final int TWO_X = (CSInfo.WIDTH / 10) + 500; 
+    public final int TWO_Y = (2 * CSInfo.HEIGHT /10);
     public final int THREE_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int THREE_Y = 3 * CSInfo.HEIGHT /10;
-    public final int FOUR_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int FOUR_Y = 3 * CSInfo.HEIGHT /10;
+    public final int THREE_Y = (3 * CSInfo.HEIGHT /10);
+    public final int FOUR_X = (CSInfo.WIDTH / 10) + 500; 
+    public final int FOUR_Y = (3 * CSInfo.HEIGHT /10);
     public final int FIVE_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int FIVE_Y = 4 * CSInfo.HEIGHT /10;
-    public final int SIX_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int SIX_Y = 4 * CSInfo.HEIGHT /10;
+    public final int FIVE_Y = (4 * CSInfo.HEIGHT /10);
+    public final int SIX_X = (CSInfo.WIDTH / 10) + 500; 
+    public final int SIX_Y = (4 * CSInfo.HEIGHT /10);
     public final int SEVEN_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int SEVEN_Y = 5 * CSInfo.HEIGHT /10;
-    public final int EIGHT_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int EIGTH_Y = 5 * CSInfo.HEIGHT /10;
+    public final int SEVEN_Y = (5 * CSInfo.HEIGHT /10);
+    public final int EIGHT_X = (CSInfo.WIDTH / 10) + 500; 
+    public final int EIGTH_Y = (5 * CSInfo.HEIGHT /10);
     public final int NINE_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int NINE_Y = 6 * CSInfo.HEIGHT /10;
-    public final int TEN_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int TEN_Y = 6 * CSInfo.HEIGHT /10;
+    public final int NINE_Y = (6 * CSInfo.HEIGHT /10);
+    public final int TEN_X = (CSInfo.WIDTH / 10) + 500; 
+    public final int TEN_Y = (6 * CSInfo.HEIGHT /10);
     public final int ELEVEN_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int ELEVEN_Y = 7 * CSInfo.HEIGHT /10;
-    public final int TWELEVE_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int TWELEVE_Y = 7 * CSInfo.HEIGHT /10;
+    public final int ELEVEN_Y = (7 * CSInfo.HEIGHT /10);
+    public final int TWELEVE_X = (CSInfo.WIDTH / 10) + 500; 
+    public final int TWELEVE_Y = (7 * CSInfo.HEIGHT /10);
     public final int THERTEEN_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int THERTEEN_Y = 8 * CSInfo.HEIGHT /10;
-    public final int FOURTEEN_X = (CSInfo.WIDTH / 10) + 300; 
-    public final int FOURTEEN_Y = 8 * CSInfo.HEIGHT /10;
+    public final int THERTEEN_Y = (8 * CSInfo.HEIGHT /10);
+    public final int FOURTEEN_X = (CSInfo.WIDTH / 10) + 500; 
+    public final int FOURTEEN_Y = (8 * CSInfo.HEIGHT /10) ;
     
-    public static int familyStringth, reproductionRate, minBirthSize, maxBirthSize;
+    public static int waterSource, sleepingArea, feedingArea, nestingArea, migrationStart, migrationThrough, migrationEnd;
 
     public NewCreatureLocationMenu(GUIContext gc, final ScreenManager sm) {        
         super(gc, 0, 0);
@@ -81,7 +78,7 @@ public class NewCreatureLocationMenu extends ComponentGroup{
                 } catch(NumberFormatException e){
                     System.out.println("Bad Input");
                 }
-                sm.changeScreen(NewCreatureFoodScreen.ID, new FadeOutTransition(), new FadeInTransition());
+                sm.changeScreen(NewUserScreen.ID, new FadeOutTransition(), new FadeInTransition());
             }
         };
         exit = new Button(gc, 
@@ -91,8 +88,6 @@ public class NewCreatureLocationMenu extends ComponentGroup{
                 EXIT_X, EXIT_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                water.setAcceptingInput(false);
-                ground.setAcceptingInput(false);
                 sm.changeScreen(NewCreatureScreen.ID, new FadeOutTransition(), new FadeInTransition());
             }
         };
@@ -103,8 +98,9 @@ public class NewCreatureLocationMenu extends ComponentGroup{
                 ONE_X, ONE_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                water.setAcceptingInput(false);
-                ground.setAcceptingInput(false);
+                one.setAcceptingInput(false);
+                two.setAcceptingInput(false);
+                waterSource = 0;
             }
         };
         two = new Button(gc, 
@@ -114,8 +110,9 @@ public class NewCreatureLocationMenu extends ComponentGroup{
                 TWO_X, TWO_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                water.setAcceptingInput(false);
-                ground.setAcceptingInput(false);
+                one.setAcceptingInput(false);
+                two.setAcceptingInput(false);
+                waterSource = 1;
             }
         };
         three = new Button(gc, 
@@ -125,8 +122,9 @@ public class NewCreatureLocationMenu extends ComponentGroup{
                 THREE_X, THREE_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                water.setAcceptingInput(false);
-                ground.setAcceptingInput(false);
+                three.setAcceptingInput(false);
+                four.setAcceptingInput(false);
+                sleepingArea = 0;
             }
         };
         four = new Button(gc, 
@@ -136,8 +134,9 @@ public class NewCreatureLocationMenu extends ComponentGroup{
                 FOUR_X, FOUR_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                water.setAcceptingInput(false);
-                ground.setAcceptingInput(false);
+                three.setAcceptingInput(false);
+                four.setAcceptingInput(false);
+                sleepingArea = 1;
             }
         };
         five = new Button(gc, 
@@ -147,8 +146,9 @@ public class NewCreatureLocationMenu extends ComponentGroup{
                 FIVE_X, FIVE_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                water.setAcceptingInput(false);
-                ground.setAcceptingInput(false);
+                five.setAcceptingInput(false);
+                six.setAcceptingInput(false);
+                feedingArea = 0;
             }
         };
         six = new Button(gc, 
@@ -158,8 +158,9 @@ public class NewCreatureLocationMenu extends ComponentGroup{
                 SIX_X, SIX_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                water.setAcceptingInput(false);
-                ground.setAcceptingInput(false);
+                five.setAcceptingInput(false);
+                six.setAcceptingInput(false);
+                feedingArea = 1;
             }
         };
         seven = new Button(gc, 
@@ -169,8 +170,9 @@ public class NewCreatureLocationMenu extends ComponentGroup{
                 SEVEN_X, SEVEN_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                water.setAcceptingInput(false);
-                ground.setAcceptingInput(false);
+                seven.setAcceptingInput(false);
+                eight.setAcceptingInput(false);
+                nestingArea = 0;
             }
         };
         eight = new Button(gc, 
@@ -180,8 +182,9 @@ public class NewCreatureLocationMenu extends ComponentGroup{
                 EIGHT_X, EIGTH_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                water.setAcceptingInput(false);
-                ground.setAcceptingInput(false);
+                seven.setAcceptingInput(false);
+                eight.setAcceptingInput(false);
+                nestingArea = 1;
             }
         };
         nine = new Button(gc, 
@@ -191,8 +194,9 @@ public class NewCreatureLocationMenu extends ComponentGroup{
                 NINE_X, NINE_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                water.setAcceptingInput(false);
-                ground.setAcceptingInput(false);
+                nine.setAcceptingInput(false);
+                ten.setAcceptingInput(false);
+                migrationStart = 0;
             }
         };
         ten = new Button(gc, 
@@ -202,8 +206,9 @@ public class NewCreatureLocationMenu extends ComponentGroup{
                 TEN_X, TEN_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                water.setAcceptingInput(false);
-                ground.setAcceptingInput(false);
+                nine.setAcceptingInput(false);
+                ten.setAcceptingInput(false);
+                migrationStart = 1;
             }
         };
         eleven = new Button(gc, 
@@ -213,8 +218,9 @@ public class NewCreatureLocationMenu extends ComponentGroup{
                 ELEVEN_X, ELEVEN_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                water.setAcceptingInput(false);
-                ground.setAcceptingInput(false);
+                eleven.setAcceptingInput(false);
+                twelve.setAcceptingInput(false);
+                migrationThrough = 0;
             }
         };
         twelve = new Button(gc, 
@@ -224,8 +230,9 @@ public class NewCreatureLocationMenu extends ComponentGroup{
                 TWELEVE_X, TWELEVE_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                water.setAcceptingInput(false);
-                ground.setAcceptingInput(false);
+                eleven.setAcceptingInput(false);
+                twelve.setAcceptingInput(false);
+                migrationThrough = 1;
             }
         };
         therteen = new Button(gc, 
@@ -235,8 +242,9 @@ public class NewCreatureLocationMenu extends ComponentGroup{
                 THERTEEN_X, THERTEEN_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                water.setAcceptingInput(false);
-                ground.setAcceptingInput(false);
+                therteen.setAcceptingInput(false);
+                fourteen.setAcceptingInput(false);
+                migrationEnd = 0;
             }
         };
         fourteen = new Button(gc, 
@@ -246,10 +254,25 @@ public class NewCreatureLocationMenu extends ComponentGroup{
                 FOURTEEN_X, FOURTEEN_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                water.setAcceptingInput(false);
-                ground.setAcceptingInput(false);
+                therteen.setAcceptingInput(false);
+                fourteen.setAcceptingInput(false);
+                migrationEnd = 1;
             }
-        };
+        };        
+        one.setText("Lake");
+        two.setText("Waterfall");
+        three.setText("FOREST");
+        four.setText("SAVAHNNA");
+        five.setText("FOREST");
+        six.setText("SAVAHNNA");
+        seven.setText("FOREST");
+        eight.setText("SAVAHNNA");
+        nine.setText("FOREST");
+        ten.setText("SAVAHNNA");
+        eleven.setText("FOREST");
+        twelve.setText("SAVAHNNA");
+        therteen.setText("FOREST");
+        fourteen.setText("SAVAHNNA");
         this.addComponent(connect);
         this.addComponent(exit);
         this.addComponent(one);

@@ -25,7 +25,7 @@ import revolution.ui.ScreenManager;
  */
 public class NewCreatureBrainScreen extends Screen {
     
-    public static final int ID = 9;
+    public static final int ID = 8;
     
     private NewCreatureBrainMenu menu;
 
@@ -43,10 +43,10 @@ public class NewCreatureBrainScreen extends Screen {
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
         grphcs.setBackground(Color.darkGray);
-        grphcs.drawString("NewCreatureFoodScreen", 100, 25);
+        grphcs.drawString("NewCreatureBrainScreen", 100, 25);
         menu.render(gc, grphcs);
-        grphcs.drawString("Creature Food Heigth(1-10)", menu.INTELLIGENCE_X - 300, menu.INTELLIGENCE_Y);
-        grphcs.drawString("Creature Food Length (1-10)", menu.AGGRESSION_X - 300, menu.AGGRESSION_Y);
+        grphcs.drawString("Creature Intelligence (1-10)", menu.INTELLIGENCE_X - 300, menu.INTELLIGENCE_Y);
+        grphcs.drawString("Creature Aggression (1-10)", menu.AGGRESSION_X - 300, menu.AGGRESSION_Y);
         grphcs.drawString("Continue", menu.NEW_X + 100, menu.NEW_Y);
         grphcs.drawString("Back", menu.EXIT_X + 100, menu.EXIT_Y);
     }

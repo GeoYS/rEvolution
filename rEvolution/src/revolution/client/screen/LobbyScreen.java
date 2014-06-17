@@ -19,6 +19,7 @@ import revolution.client.Client;
 import revolution.client.screen.components.LobbyMenu;
 import revolution.net.Socket;
 import revolution.server.ServerData;
+import static revolution.server.ServerFactory.servers;
 import revolution.server.UserData;
 import revolution.ui.Screen;
 import revolution.ui.ScreenManager;
@@ -33,7 +34,11 @@ public class LobbyScreen extends Screen{
     
     private LobbyMenu menu;
     
-    private Client client;
+    private ArrayList<ServerData> servers = new ArrayList<ServerData>();
+    
+    private int count;
+    
+    //private Client client;
     
     private String conAdd;
     
@@ -62,11 +67,24 @@ public class LobbyScreen extends Screen{
         grphcs.drawString("Add New User", menu.NEW_X + 100, menu.NEW_Y);
         grphcs.drawString("Log in", menu.LOAD_X + 100, menu.LOAD_Y);
         grphcs.drawString("Exit", menu.EXIT_X + 100, menu.EXIT_Y);
+        int i = 0;
+        System.out.println(servers.size());
+        for(ServerData s : Client.session.) {
+            grphcs.drawString(s.hostName, 200 + 100, 200 + (100 * i));
+            i++;
+            count++;
+        }
+        System.out.println(count);
     }
 
     @Override
-    public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {         
-         // consider these loops as update/render loops
+    public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {  
+        try {
+            //servers.clear();
+            servers = Client.session.receiveServerBroadcasts();
+            System.out.println(servers.size());
+            
+            // consider these loops as update/render loops
 //         if(!client.isConnected()){
 //             // receiving server information for lobby
 //             ArrayList<ServerData> servers = null;
@@ -116,6 +134,9 @@ public class LobbyScreen extends Screen{
 //             }
 //         }
 //         //System.out.println("Disconnected");
+        } catch (IOException ex) {
+            Logger.getLogger(LobbyScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Override

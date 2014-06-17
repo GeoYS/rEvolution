@@ -50,6 +50,7 @@ public class MainMenu extends ComponentGroup{
                 sm.changeScreen(LobbyScreen.ID, new FadeOutTransition(), new FadeInTransition());
             }
         };
+        connect.setText("Lobby");
         exit = new Button(context, 
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_NORMAL),
                 ClientImages.getImage(ClientImages.SAMPLE_BUTTON_HOVER),
@@ -57,9 +58,10 @@ public class MainMenu extends ComponentGroup{
                 EXIT_X, EXIT_Y, WIDTH, HEIGHT){
             @Override
             public void onClick() {
-                sm.changeScreen(LobbyScreen.ID, new FadeOutTransition(), new FadeInTransition());
+                System.exit(0);
             }
         };
+        exit.setText("Exit");
         this.addComponent(connect);
         this.addComponent(exit);
     }

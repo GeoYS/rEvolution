@@ -30,6 +30,8 @@ public class ClientScreenManager extends ScreenManager{
         this.addScreen(new NewCreatureFamilyScreen(this));
         this.addScreen(new NewCreatureFoodScreen(this));
         this.addScreen(new NewCreatureBrainScreen(this));
+        this.addScreen(new NewCreatureMedianScreen(this));
+        this.addScreen(new NewCreatureLocationScreen(this));
         
         // Enter first screen
         this.enterState(LoadingScreen.ID);

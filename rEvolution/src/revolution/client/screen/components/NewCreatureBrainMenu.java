@@ -12,6 +12,8 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 import revolution.client.screen.LobbyScreen;
 import revolution.client.screen.NewCreatureFamilyScreen;
 import revolution.client.screen.NewCreatureFoodScreen;
+import revolution.client.screen.NewCreatureLocationScreen;
+import revolution.client.screen.NewCreatureMedianScreen;
 import revolution.client.screen.NewCreatureScreen;
 import revolution.res.ClientImages;
 import revolution.ui.Button;
@@ -59,10 +61,10 @@ public class NewCreatureBrainMenu extends ComponentGroup{
                 try {
                 creatureIntelligence = Integer.valueOf(intelligence.getText());
                 creatureAggression = Integer.valueOf(aggression.getText());
-                sm.changeScreen(NewCreatureFamilyScreen.ID, new FadeOutTransition(), new FadeInTransition());
                 } catch(NumberFormatException e) {
                     System.out.println("Bad Input");
                 }
+                sm.changeScreen(NewCreatureMedianScreen.ID, new FadeOutTransition(), new FadeInTransition());
             }
         };
         back = new Button(gc, 

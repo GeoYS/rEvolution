@@ -45,12 +45,13 @@ public class NewCreatureLocationScreen extends Screen {
         grphcs.setBackground(Color.darkGray);
         grphcs.drawString("NewCreatureFoodScreen", 100, 25);
         menu.render(gc, grphcs);
-        grphcs.drawString("Creature Food Heigth(1-10)", menu.HEIGHT_X - 300, menu.HEIGTH_Y);
-        grphcs.drawString("Creature Food Length (1-10)", menu.LENGTH_X - 300, menu.LENGTH_Y);
-        grphcs.drawString("Creature Food Weight (1-10)", menu.WEIGHT_X - 300, menu.WEIGHT_Y);
-        grphcs.drawString("Creature Feed Frequency (1-10)", menu.FREQUENCY_X - 300, menu.FREQUENCY_Y);
-        grphcs.drawString("Creature Meat Tolerance (1-10)", menu.MEAT_X - 300, menu.MEAT_Y);
-        grphcs.drawString("Creature Veg Tolerance (1-10)", menu.VEG_X - 300, menu.VEG_Y);
+        grphcs.drawString("Water Source", menu.ONE_X - 300, menu.ONE_Y);
+        grphcs.drawString("Sleeping Area", menu.THREE_X - 300, menu.THREE_Y);
+        grphcs.drawString("Feeding Area", menu.FIVE_X - 300, menu.FIVE_Y);
+        grphcs.drawString("Nesting Area", menu.SEVEN_X - 300, menu.SEVEN_Y);
+        grphcs.drawString("Migration Area Start", menu.NINE_X - 300, menu.NINE_Y);
+        grphcs.drawString("Migration Area Through", menu.ELEVEN_X - 300, menu.ELEVEN_Y);
+        grphcs.drawString("Migration Area End", menu.THERTEEN_X - 300, menu.THERTEEN_Y);
         grphcs.drawString("Continue", menu.NEW_X + 100, menu.NEW_Y);
         grphcs.drawString("Back", menu.EXIT_X + 100, menu.EXIT_Y);
     }

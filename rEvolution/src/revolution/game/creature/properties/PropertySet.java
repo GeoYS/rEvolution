@@ -8,7 +8,6 @@ package revolution.game.creature.properties;
 
 import java.util.HashMap;
 import javax.print.attribute.standard.MediaName;
-import revolution.game.creature.Constants;
 import revolution.game.creature.Creature;
 import revolution.game.creature.Rate;
 import revolution.game.creature.properties.Types.Brain;

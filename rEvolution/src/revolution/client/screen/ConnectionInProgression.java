@@ -16,7 +16,17 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.EmptyTransition;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import revolution.client.Client;
+import revolution.client.game.entity.NewCreature;
+import revolution.client.screen.components.GameScreen;
+import revolution.client.screen.components.NewCreatureLocationMenu;
+import revolution.client.screen.components.NewCreatureMenu;
 import revolution.game.creature.Creature;
+import revolution.game.creature.properties.Types.Brain;
+import revolution.game.creature.properties.Types.Family;
+import revolution.game.creature.properties.Types.Food;
+import revolution.game.creature.properties.Types.Location;
+import revolution.game.creature.properties.Types.Median;
+import revolution.game.creature.properties.Types.Size;
 import revolution.ui.Screen;
 import revolution.ui.ScreenManager;
 import revolution.util.CSInfo;
@@ -38,7 +48,7 @@ public class ConnectionInProgression extends Screen{
 
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        
+
     }
 
     @Override
@@ -49,6 +59,7 @@ public class ConnectionInProgression extends Screen{
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
         // send connection request
+        System.out.println("Update");
         try {
             Client.session.connect(Client.session.getPort(),
                     Client.session.getHostName(),
@@ -67,7 +78,8 @@ public class ConnectionInProgression extends Screen{
         }
         // if session is connected
         if(Client.session.isConnected()){
-            super.getScreenManager().changeScreen(0, // change to main game screen!
+            System.out.println("Connected");
+            super.getScreenManager().changeScreen(GameScreen.ID,
                     new EmptyTransition(), new FadeInTransition());
         }
     }

@@ -71,10 +71,10 @@ public class NewCreatureFoodMenu extends ComponentGroup{
                 feedFrequency = Integer.valueOf(frequency.getText());
                 feedMeat = Integer.valueOf(meat.getText());
                 feedVeg = Integer.valueOf(veg.getText());
-                sm.changeScreen(NewCreatureBrainScreen.ID, new FadeOutTransition(), new FadeInTransition());
                 } catch(NumberFormatException e) {
                     System.out.println("Bad Input");
                 }
+                sm.changeScreen(NewCreatureBrainScreen.ID, new FadeOutTransition(), new FadeInTransition());
             }
         };
         back = new Button(gc, 
