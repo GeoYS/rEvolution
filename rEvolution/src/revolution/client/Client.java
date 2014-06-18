@@ -168,6 +168,38 @@ public class Client {
     }
     
     /**
+     * Sends a request to specified server to join that game.
+     * Returns whether or not it sent the request (false being a timeout).
+     * @param port
+     * @param hostName
+     * @param username
+     * @param password
+     * @param newUser whether or not logging in or new user
+     * @throws IOException 
+     * @return requestSent
+     */
+    public boolean connect(int port, String hostName,
+            String username, String password, boolean newUser) throws IOException{
+        if(connectionStart.isRunning()){
+            if(connectionStart.time() > CONNECTION_TIMEOUT){
+                connectionStart.stop();
+                return false;
+            }
+        }
+        else{
+            connectionStart.start();
+        }
+        socket.send(
+                new ClientRequest(
+                    username,
+                    password, 
+                    newUser),
+                hostName,
+                port);
+        return true;
+    }
+    
+    /**
      * Reset all connection related variables.
      */
     public void reset(){        

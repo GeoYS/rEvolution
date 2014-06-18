@@ -15,7 +15,8 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import revolution.client.Client;
 import revolution.client.game.entity.NewCreature;
-import revolution.client.screen.ConnectionInProgression;
+import revolution.client.screen.LoadConnectionInProgression;
+import revolution.client.screen.NewConnectionInProgression;
 import revolution.client.screen.LobbyScreen;
 import revolution.game.creature.Creature;
 import revolution.game.creature.properties.Types.Brain;
@@ -79,9 +80,8 @@ public class LogInMenu extends ComponentGroup{
             public void onClick() {
                 user = userName.getText();
                 pass = password.getText();
-                newCreature();
-                ConnectionInProgression.setLogin(user, pass, creature, true);
-                sm.changeScreen(ConnectionInProgression.ID, new EmptyTransition(), new FadeInTransition());
+                LoadConnectionInProgression.setLogin(user, pass, false);
+                sm.changeScreen(LoadConnectionInProgression.ID, new EmptyTransition(), new FadeInTransition());
             }
             
         };
@@ -105,62 +105,4 @@ public class LogInMenu extends ComponentGroup{
         this.addComponent(submit);
         this.addComponent(back);
     }    
-    
-    private void newCreature(){
-        NewCreature.creature = new Creature(user, NewCreatureMenu.creatureName, true);
-        NewCreature.creature.properies.body.size = new Size(5, 5, 6);
-        NewCreature.creature.properies.personality.brain = new Brain(1, 1);
-        NewCreature.creature.properies.personality.food = new Food(new Size(1, 1, 1), 9, 1, 10);
-        NewCreature.creature.properies.relation.family = new Family(3, 8, 1, 1);
-        NewCreature.creature.properies.environment.median.setMedian(Median.Medians.GROUND);
-        NewCreature.creature.properies.environment.location.setWaterSource(waterSource(NewCreatureLocationMenu.waterSource));
-        NewCreature.creature.properies.environment.location.setFeedingArea(feedingArea(NewCreatureLocationMenu.feedingArea));
-        NewCreature.creature.properies.environment.location.setNestingArea(nestingArea(NewCreatureLocationMenu.nestingArea));
-        NewCreature.creature.properies.environment.location.setSleepingArea(sleepingArea(NewCreatureLocationMenu.sleepingArea));
-        NewCreature.creature.properies.environment.location.setMigrationStart(migrationArea(NewCreatureLocationMenu.migrationStart));
-        NewCreature.creature.properies.environment.location.setMigrationThrough(migrationArea(NewCreatureLocationMenu.migrationThrough));
-        NewCreature.creature.properies.environment.location. setMigrationStart(migrationArea(NewCreatureLocationMenu.migrationEnd));
-        NewCreature.creature.population.addToPopulation(100, System.currentTimeMillis()); 
-    }
-    
-    
-    public Location.WaterSources waterSource(int option){
-        if(option == 0){
-            return Location.WaterSources.LAKE;
-        } else {
-            return Location.WaterSources.WATERFALL;
-        }
-    }
-    
-    public Location.SleepingArea sleepingArea(int option){
-        if(option == 0){
-            return Location.SleepingArea.FORREST;
-        } else {
-            return Location.SleepingArea.SAVAHNNA;
-        }
-    }
-    
-    public Location.NestingArea nestingArea(int option){
-        if(option == 0){
-            return Location.NestingArea.FORREST;
-        } else {
-            return Location.NestingArea.SAVAHNNA;
-        }
-    }
-    
-    public Location.MigrationArea migrationArea(int option){
-        if(option == 0){
-            return Location.MigrationArea.FORREST;
-        } else {
-            return Location.MigrationArea.SAVAHNNA;
-        }
-    }
-    
-    public Location.FeedingArea feedingArea(int option){
-        if(option == 0){
-            return Location.FeedingArea.FORREST;
-        } else {
-            return Location.FeedingArea.SAVAHNNA;
-        }
-    }
 }

@@ -23,4 +23,10 @@ public class ClientRequest implements Serializable{
         this.creature = creature;
         this.newUser = newUser;
     }
+    public ClientRequest(String username, String password, boolean newUser){
+        this.password = password;
+        this.username = username;
+        this.creature = creature;
+        this.newUser = newUser;
+    }
 }

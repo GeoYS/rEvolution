@@ -28,18 +28,21 @@ public class LoadingScreen extends Screen{
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         ClientImages.initiateLoading();
+        while(!ClientImages.loadNext()){}
     }
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
-        grphcs.drawString("Loading images: " + ClientImages.percentDone(), 100, 100);
-        System.out.println("Loading image...");
-        if(ClientImages.loadNext()){
-            System.out.println("Finished loading images.");
-            this.getScreenManager().reInitScreens();
-            this.getScreenManager().changeScreen(MainMenuScreen.ID, 
+        this.getScreenManager().changeScreen(MainMenuScreen.ID, 
                 new EmptyTransition(), new EmptyTransition());
-        }
+//        grphcs.drawString("Loading images: " + ClientImages.percentDone(), 100, 100);
+//        System.out.println("Loading image...");
+//        if(ClientImages.loadNext()){
+//            System.out.println("Finished loading images.");
+//            this.getScreenManager().reInitScreens();
+//            this.getScreenManager().changeScreen(MainMenuScreen.ID, 
+//                new EmptyTransition(), new EmptyTransition());
+//        }
     }
 
     @Override

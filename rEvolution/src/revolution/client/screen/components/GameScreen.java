@@ -52,8 +52,6 @@ public class GameScreen extends Screen {
     
     @Override
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        ClientImages.initiateLoading();
-        while(!ClientImages.loadNext()){}
         cam = new RunningCamera(gc, 0, 0);
         gc.getInput().addMouseListener(cam);
         menu = new InGameMenu(gc);

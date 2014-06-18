@@ -35,14 +35,13 @@ import revolution.util.CSInfo;
  *
  * @author Christopher Stokes
  */
-public class ConnectionInProgression extends Screen{
+public class LoadConnectionInProgression extends Screen{
 
-    public static final int ID = 4;
+    public static final int ID = 13;
     private static String userName, password; 
     private static boolean newUser; // whether or not new user or lgging in
-    private static Creature creature;
     
-    public ConnectionInProgression(ScreenManager sm) {
+    public LoadConnectionInProgression(ScreenManager sm) {
         super(sm);
     }
 
@@ -65,16 +64,15 @@ public class ConnectionInProgression extends Screen{
                     Client.session.getServerData().hostName,
                     userName,
                     password,
-                    creature,
                     newUser);
                     } catch (IOException ex) {
-            Logger.getLogger(ConnectionInProgression.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoadConnectionInProgression.class.getName()).log(Level.SEVERE, null, ex);
         }
         // check if server sent confirmation back
         try {
             Client.session.receiveUserData();
         } catch (IOException ex) {
-            Logger.getLogger(ConnectionInProgression.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoadConnectionInProgression.class.getName()).log(Level.SEVERE, null, ex);
         }
         // if session is connected
         if(Client.session.isConnected()){
@@ -89,10 +87,9 @@ public class ConnectionInProgression extends Screen{
         return ID;
     }
     
-    public static void setLogin(String userName, String password, Creature creature, boolean newUser){
-        ConnectionInProgression.userName = userName;
-        ConnectionInProgression.password = password;
-        ConnectionInProgression.creature = creature;
-        ConnectionInProgression.newUser = newUser;
+    public static void setLogin(String userName, String password, boolean newUser){
+        LoadConnectionInProgression.userName = userName;
+        LoadConnectionInProgression.password = password;
+        LoadConnectionInProgression.newUser = newUser;
     }
 }

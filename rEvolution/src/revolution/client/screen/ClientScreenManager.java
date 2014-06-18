@@ -26,13 +26,15 @@ public class ClientScreenManager extends ScreenManager{
         this.addScreen(new MainMenuScreen(this));
         this.addScreen(new LobbyScreen(this));
         this.addScreen(new NewUserScreen(this));
-        this.addScreen(new ConnectionInProgression(this));
+        this.addScreen(new NewConnectionInProgression(this));
         this.addScreen(new NewCreatureScreen(this));
         this.addScreen(new NewCreatureFamilyScreen(this));
         this.addScreen(new NewCreatureFoodScreen(this));
         this.addScreen(new NewCreatureBrainScreen(this));
         this.addScreen(new NewCreatureMedianScreen(this));
         this.addScreen(new NewCreatureLocationScreen(this));
+        this.addScreen(new LoadConnectionInProgression(this));
+        this.addScreen(new LogInScreen(this));
         this.addScreen(new GameScreen(this));
         
         // Enter first screen

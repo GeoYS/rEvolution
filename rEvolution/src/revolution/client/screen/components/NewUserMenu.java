@@ -15,7 +15,7 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import revolution.client.Client;
 import revolution.client.game.entity.NewCreature;
-import revolution.client.screen.ConnectionInProgression;
+import revolution.client.screen.NewConnectionInProgression;
 import revolution.client.screen.LobbyScreen;
 import revolution.game.creature.Creature;
 import revolution.game.creature.properties.Types.Brain;
@@ -80,8 +80,8 @@ public class NewUserMenu extends ComponentGroup{
                 user = userName.getText();
                 pass = password.getText();
                 newCreature();
-                ConnectionInProgression.setLogin(user, pass, creature, true);
-                sm.changeScreen(ConnectionInProgression.ID, new EmptyTransition(), new FadeInTransition());
+                NewConnectionInProgression.setLogin(user, pass, creature, true);
+                sm.changeScreen(NewConnectionInProgression.ID, new EmptyTransition(), new FadeInTransition());
             }
             
         };
