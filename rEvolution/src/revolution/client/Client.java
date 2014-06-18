@@ -34,12 +34,14 @@ public class Client {
      */
     public static Client session;
     
-    private static final long RECEIVE_BROADCAST_TIMEOUT = 500, // for lobby info
+    private static final long RECEIVE_BROADCAST_TIMEOUT = 200, // for lobby info
             CONNECTION_TIMEOUT = 10000; // milliseconds
     
     private Socket socket;
     private boolean connected = false, disconnected = false;
     private Stopwatch lastData = new Stopwatch(), connectionStart = new Stopwatch();
+    
+    private ServerData serverData;
     
     public Client(int port) throws UnknownHostException, IOException{
         socket = new Socket(InetAddress.getLocalHost().getHostName(),
@@ -47,6 +49,14 @@ public class Client {
             GROUP_NAME,
             GROUP_PORT);
         lastData.start();
+    }
+    
+    public void setServerData(ServerData server){
+        this.serverData = server;
+    }
+
+    public ServerData getServerData() {
+        return serverData;
     }
     
     public int getPort(){
@@ -66,8 +76,17 @@ public class Client {
         ArrayList<ServerData> servers = new ArrayList<>();
         do{
             ObjectPacket o = socket.receiveMulticast();
-            if(o != null && o.object instanceof ServerData && !servers.contains(o)){
-                servers.add((ServerData)o.object);
+            if(o != null && o.object instanceof ServerData){
+                boolean alreadyContains = false;
+                serverLoop : for(ServerData s : servers){
+                    if(s.hostName.equals(((ServerData) o.object).hostName)){
+                        alreadyContains = true;
+                        break serverLoop;
+                    }
+                }
+                if(!alreadyContains){
+                    servers.add((ServerData)o.object);
+                }
             }
         }while(System.currentTimeMillis() - last< RECEIVE_BROADCAST_TIMEOUT);
         return servers;//socket.receiveMulticast();

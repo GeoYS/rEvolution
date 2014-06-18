@@ -61,8 +61,8 @@ public class ConnectionInProgression extends Screen{
         // send connection request
         System.out.println("Update");
         try {
-            Client.session.connect(Client.session.getPort(),
-                    Client.session.getHostName(),
+            Client.session.connect(Client.session.getServerData().port,
+                    Client.session.getServerData().hostName,
                     userName,
                     password,
                     creature,

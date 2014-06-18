@@ -6,6 +6,7 @@
 
 package revolution.game.creature;
 
+import java.io.Serializable;
 import revolution.game.creature.properties.Property;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,11 +17,10 @@ import revolution.game.creature.properties.PropertySet;
  *
  * @author Chris
  */
-public class Creature {
+public class Creature implements Serializable {
     //  public History history = new History();
-    public PropertySet properies = new PropertySet();
-    public MindState mind = new MindState();
-    public Population population = new Population();
+    public transient PropertySet properies = new PropertySet();
+    public transient Population population = new Population();
     private int populationSize = 0;
     private boolean isAnimal;
     private boolean isVulnerable;

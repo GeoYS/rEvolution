@@ -6,11 +6,13 @@
 
 package revolution.game.creature;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Christopher Stokes
  */
-public class History {
+public class History implements Serializable{
     
     public Eat eat = new Eat();
     public Mate mate = new Mate();

@@ -4,6 +4,7 @@
  */
 package revolution.ui;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
@@ -25,6 +26,8 @@ public abstract class Button extends MouseOverArea{
      * Text displayed in button
      */
     private String text = "";
+    
+    private Color textColor = Color.red;
     
     public Button(GUIContext gc, Image normal,
             Image pressed, Image hover,
@@ -71,11 +74,18 @@ public abstract class Button extends MouseOverArea{
         return this.text;
     }
 
+    public void setTextColor(Color textColor) {
+        this.textColor = textColor;
+    }
+
     @Override
     public void render(GUIContext container, Graphics g) {
         super.render(container, g); //To change body of generated methods, choose Tools | Templates.
+        Color prevColor = g.getColor();
+        g.setColor(textColor);
         g.drawString(text, this.getX() + this.getWidth() / 2 - 5 * text.length() / 2,
                 this.getY() + this.getHeight() / 2);
+        g.setColor(prevColor);
     }
     
     public abstract void onClick();

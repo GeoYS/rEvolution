@@ -6,11 +6,13 @@
 
 package revolution.game.creature;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Chris
  */
-public class Rate {
+public class Rate implements Serializable{
     private int outOf;
     private int rating;
     public Rate(int outOf){

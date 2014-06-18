@@ -69,7 +69,7 @@ public class LobbyScreen extends Screen{
         grphcs.drawString("Exit", menu.EXIT_X + 100, menu.EXIT_Y);
         int i = 0;
         System.out.println(servers.size());
-        for(ServerData s : Client.session.) {
+        for(ServerData s : servers) {
             grphcs.drawString(s.hostName, 200 + 100, 200 + (100 * i));
             i++;
             count++;
@@ -80,7 +80,13 @@ public class LobbyScreen extends Screen{
     @Override
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {  
         try {
-            //servers.clear();
+            menu.createList(servers, this.getScreenManager().getContainer(),
+                    this.getScreenManager());
+        } catch (IOException ex) {
+            Logger.getLogger(LobbyScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            servers.clear();
             servers = Client.session.receiveServerBroadcasts();
             System.out.println(servers.size());
             
