@@ -14,6 +14,14 @@ import revolution.game.creature.History;
  * @author Christopher Stokes
  */
 public class Run {
+    
+    /**
+     * Runs the mating procedure
+     * @param creature1
+     * @param history1
+     * @param creature2
+     * @param history2 
+     */
     public static void mate(Creature creature1, History history1, Creature creature2, History history2){
         System.out.println(creature1.getSpeciesName() + " is frothing at the gash for " + creature2.getSpeciesName());
         if(creature1.checkAnimal() && creature2.checkAnimal()){
@@ -40,6 +48,12 @@ public class Run {
         }
     }
     
+    /**
+     * Runs the eating procedure
+     * @param creature1
+     * @param history1
+     * @param creature2 
+     */
     public static void eat(Creature creature1, History history1, Creature creature2){
         System.out.println("eaten");
         System.out.println(creature2.population.Instances.size());
@@ -53,6 +67,11 @@ public class Run {
         }
     }
     
+    /**
+     * Runs the dieing procedure
+     * @param creature1
+     * @param history1 
+     */
     public static void die(Creature creature1, History history1){
         System.out.println("Oh Shit a " + creature1.getSpeciesName() + " has died. Probably deserved it!");
         creature1.population.Instances.remove(history1);

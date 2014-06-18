@@ -20,6 +20,11 @@ public class Interact {
     
     private static HashMap<Action, Integer> actionOrder = new HashMap<>();
     
+    /**
+     * Decides what should happen when 2 animals interact
+     * @param creature1
+     * @param creature2 
+     */
     public static void interact(Creature creature1, Creature creature2){
         actionOrder.clear();
         
@@ -50,6 +55,12 @@ public class Interact {
         }
     }
     
+    /**
+     * Returns if 2 animals should interact
+     * @param creature1
+     * @param creature2
+     * @return shouldInteract
+     */
     private static boolean wouldInteract(Creature creature1, Creature creature2){        
         Location location1 = creature1.properies.environment.location;
         Location location2  = creature2.properies.environment.location;
@@ -60,6 +71,12 @@ public class Interact {
         }        
     }
     
+    /**
+     * Returns if the creatures are the same species
+     * @param creature1
+     * @param creature2
+     * @return sameSpecies
+     */
     private static boolean checkSameSpecies(Creature creature1, Creature creature2){
             if(creature1.equals(creature2)){
                 return true;
@@ -68,14 +85,30 @@ public class Interact {
             }
     }
     
+    /**
+     * Decides if 2 creatures should mate
+     * @param creature1
+     * @param creature2
+     * @return shouldMate
+     */
     private static int checkMate(Creature creature1, Creature creature2){
         return ToMate.getDecision(creature1, creature2);
     }
     
+    /**
+     * Decides if the creature should be eaten
+     * @param creature1
+     * @param creature2
+     * @return shouldEat
+     */
     private static int checkEat(Creature creature1, Creature creature2){
         return ToEat.getDecision(creature1, creature2);
     }
 
+    /**
+     * Decides if the creatures are the same gender
+     * @return sameGen
+     */
     private static boolean genGender(){
         double ran;
         ran = Math.random();
@@ -87,6 +120,11 @@ public class Interact {
         }
     }
     
+    /**
+     * Returns what the creature should do first
+     * @param actionOrder
+     * @return firstAction
+     */
     private static Action getFirstAction(HashMap<Action, Integer> actionOrder){
         Action maxAction = null;
         Integer maxOrder = null;

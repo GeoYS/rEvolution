@@ -32,14 +32,26 @@ public class Creature implements Serializable {
         this.isAnimal = isAnimal;
     }
     
+    /**
+     * Returns true if the creature is an animal
+     * @return 
+     */
     public boolean checkAnimal(){
         return isAnimal;
     }
     
+    /**
+     * Returns the username of the creatures creator
+     * @return createdBy
+     */
     public String getCreator(){
         return createdBy;
     }
     
+    /**
+     * Returns the name of the creature species
+     * @return speciesName
+     */
     public String getSpeciesName(){
         return speciesName;
     }

@@ -23,13 +23,22 @@ public class History implements Serializable{
         this.bornTime = bornTime;
     }
     
+    
     public class Eat {
         private long lastEat = 0;
     
+        /**
+         * Sets the time the creature last eat
+         * @param gameTime 
+         */
         public void setEat(long gameTime){
             lastEat = gameTime;
         }
     
+        /**
+         * Returns when the creature last eat
+         * @return lastEat
+         */
         public long lastEat(){
             return lastEat;
         }
@@ -47,15 +56,27 @@ public class History implements Serializable{
         
         private long lastMate = 0;
         
+        /**
+         * Sets the time when creature reproduced
+         * @param gameTime 
+         */
         public void setMate(long gameTime){
             lastMate = gameTime;
         }
         
+        /**
+         * Returns when the creature last reproduced
+         * @return lastMate
+         */
         public long lastMate(){
             return lastMate;
         }
     }
     
+    /**
+     * Returns when the creature was born
+     * @return bornTime
+     */
     public long getBornTime(){
         return bornTime;
     }

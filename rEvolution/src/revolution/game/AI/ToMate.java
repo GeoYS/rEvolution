@@ -17,6 +17,13 @@ public class ToMate {
     public static History mater;
     public static History matie;
     public static int decisionRating;
+    
+    /**
+     * Determines if the creature should mate with the other creature. Instatnces based on time.
+     * @param creature1
+     * @param creature2
+     * @return DecigionRating
+     */
     public static int getDecision(Creature creature1, Creature creature2){
         int re = 0;
         if(creature1.checkAnimal() && creature2.checkAnimal()){
@@ -48,6 +55,11 @@ public class ToMate {
         return re;
     }
     
+    /**
+     * Returns mills to wait
+     * @param frequencyRating
+     * @return waitTime
+     */
     private static long mateWait(int frequencyRating){
         switch(frequencyRating) {
             case 1:
@@ -75,6 +87,11 @@ public class ToMate {
         }        
     }
     
+    /**
+     * Returns matting need
+     * @param creature1
+     * @return mateRate
+     */
     private static int getMate(Creature creature1){
         long mateRate;
         mateRate = (System.currentTimeMillis() - mater.mate.lastMate()) / mateWait(creature1.properies.relation.family.getReproduceRate());

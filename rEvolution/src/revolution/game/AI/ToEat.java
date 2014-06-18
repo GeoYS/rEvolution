@@ -23,6 +23,12 @@ public class ToEat {
     
     public static int decisionRating;
     
+    /**
+     * Decides if creature1 should eat creature2. Based on frequency, size,type.
+     * @param creature1
+     * @param creature2
+     * @return eatWant
+     */
     public static int getDecision(Creature creature1, Creature creature2){
         if(frequency(creature1, creature2) && size(creature1, creature2)
                 && type(creature1, creature2)){
@@ -32,6 +38,12 @@ public class ToEat {
         }
     }
     
+    /**
+     * Returns if the animals are the correct type to be eaten
+     * @param creature1
+     * @param creature2
+     * @return shouldEat
+     */
     private static boolean type(Creature creature1, Creature creature2){
         Food eater = creature1.properies.personality.food;
         boolean eatie = creature2.checkAnimal();
@@ -53,6 +65,12 @@ public class ToEat {
         else return false;        
     }
     
+    /**
+     * Returns if it is time to eat another animal 
+     * @param creature1
+     * @param creature2
+     * @return eatTime
+     */
     private static boolean frequency(Creature creature1, Creature creature2){
         boolean flag = false;
         for(History i : creature1.population.Instances){ 
@@ -70,6 +88,12 @@ public class ToEat {
         return flag;
     }
     
+    /**
+     * Returns if the creature is the correct size to eat
+     * @param creature1
+     * @param creature2
+     * @return eatSize
+     */
     private static boolean size(Creature creature1, Creature creature2){
         Size eater = creature1.properies.personality.food.getFoodSize();
         Size eatie = creature2.properies.body.size;
@@ -84,6 +108,12 @@ public class ToEat {
         }
     }
     
+    /**
+     * Returns if a number is approximate to another number
+     * @param args1
+     * @param args2
+     * @return about
+     */
     private static boolean isAbout(int args1, int args2){
         if(args1 <= args2 + 1 && args1 >= args2 - 1){
             return true;
@@ -93,6 +123,11 @@ public class ToEat {
         }
     }
     
+    /**
+     * Returns amount of time to wait to eat
+     * @param frequencyRating
+     * @return eatTime
+     */
     private static long eatWait(int frequencyRating){
         switch(frequencyRating) {
             case 1:
@@ -120,6 +155,11 @@ public class ToEat {
         }        
     }
     
+    /**
+     * Returns how hungry an animal is
+     * @param creature1
+     * @return return hunger
+     */
     private static int getHunger(Creature creature1){
         long hungerRate;
         hungerRate = (System.currentTimeMillis() - eater.eat.lastEat()) / eatWait(creature1.properies.personality.food.getFoodFrequency());

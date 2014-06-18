@@ -32,10 +32,10 @@ public class REvolutionClient {
         }
         Client.session = new Client(port);
         AppGameContainer app = new AppGameContainer(new ClientScreenManager());
-        //app.setDisplayMode((int) screen.getWidth(), (int) screen.getHeight(), true);
-        //CSInfo.init((int) screen.getWidth(), (int) screen.getHeight());
-        app.setDisplayMode(1920, 1080, false);
-        CSInfo.init(1920, 1080);
+        app.setDisplayMode((int) screen.getWidth(), (int) screen.getHeight(), true);
+        CSInfo.init((int) screen.getWidth(), (int) screen.getHeight());
+        //app.setDisplayMode(1920, 1080, false);
+        //CSInfo.init(1920, 1080);
         app.setTargetFrameRate(60);
         app.setShowFPS(true);
         app.setUpdateOnlyWhenVisible(false);

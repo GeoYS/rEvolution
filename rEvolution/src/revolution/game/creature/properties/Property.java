@@ -9,7 +9,6 @@ package revolution.game.creature.properties;
 import revolution.game.creature.properties.PropertySet.Body;
 import revolution.game.creature.properties.PropertySet.Personality;
 import revolution.game.creature.properties.PropertySet.Environment;
-import revolution.game.creature.Rate;
 
 /**
  *
