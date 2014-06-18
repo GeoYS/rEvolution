@@ -4,7 +4,6 @@
  */
 package revolution.client.screen.components;
 
-import revolution.test.clientgame.*;
 import java.util.ArrayList;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
@@ -12,6 +11,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 import revolution.client.game.Camera;
 import revolution.client.game.EntitySelector;
@@ -25,12 +25,15 @@ import revolution.client.screen.running.RunningCamera;
 import revolution.client.screen.running.RunningEntity;
 import revolution.client.screen.running.RunningWorld;
 import revolution.res.ClientImages;
+import revolution.test.clientgame.*;
+import revolution.ui.Screen;
+import revolution.ui.ScreenManager;
 
 /**
  *
  * @author GeoYS_2
  */
-public class GameScreen extends BasicGame {
+public class GameScreen extends Screen {
     
     public static final int ID = 100;
 
@@ -43,12 +46,12 @@ public class GameScreen extends BasicGame {
     private WorldView view;
     //private Map map;
     
-    public GameScreen(){
-        super("TestGame");
+    public GameScreen(ScreenManager sm){
+        super(sm);
     }
     
     @Override
-    public void init(GameContainer gc) throws SlickException {
+    public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         ClientImages.initiateLoading();
         while(!ClientImages.loadNext()){}
         cam = new RunningCamera(gc, 0, 0);
@@ -71,16 +74,7 @@ public class GameScreen extends BasicGame {
     }
 
     @Override
-    public void update(GameContainer gc, int i) throws SlickException {
-        view.update();
-        entityManager.update(i);
-        if(selector.getSelected() != null){
-            infobox.setInfo(selector.getSelected().getInfo());
-        }
-    }
-
-    @Override
-    public void render(GameContainer gc, Graphics grphcs) throws SlickException {
+    public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
         cam.applyTranslation(grphcs);
         cam.applyZoom(grphcs);
         
@@ -109,15 +103,18 @@ public class GameScreen extends BasicGame {
         menu.render(gc, grphcs);
         infobox.render(gc, grphcs);
     }
+
+    @Override
+    public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
+        view.update();
+        entityManager.update(i);
+        if(selector.getSelected() != null){
+            infobox.setInfo(selector.getSelected().getInfo());
+        }
+    }
     
+    @Override
     public int getID() {
         return ID;
     }
-    
-//    public static void main (String[] args) throws SlickException{
-//        AppGameContainer app = new AppGameContainer(new GameScreen());
-//        app.setMinimumLogicUpdateInterval(16);
-//        app.setTargetFrameRate(60);
-//        app.start();
-//    }
 }

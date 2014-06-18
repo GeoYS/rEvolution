@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
+import revolution.client.screen.components.GameScreen;
 import revolution.ui.ScreenManager;
 
 /**
@@ -32,6 +33,7 @@ public class ClientScreenManager extends ScreenManager{
         this.addScreen(new NewCreatureBrainScreen(this));
         this.addScreen(new NewCreatureMedianScreen(this));
         this.addScreen(new NewCreatureLocationScreen(this));
+        this.addScreen(new GameScreen(this));
         
         // Enter first screen
         this.enterState(LoadingScreen.ID);

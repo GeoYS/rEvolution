@@ -54,7 +54,7 @@ public class TestGame extends BasicGame{
         testWorld = new TestWorld();
         view = new WorldView(testWorld, cam);
         entityManager = new EntityManager();
-        for(int i = 0; i < 10_000_000; i ++){
+        for(int i = 0; i < 10_000; i ++){
             entityManager.addEntity(
                     new TestEntity(90 + 10 * (float)Math.random(),
                         90 + 10 * (float)Math.random(), i, view.getCurrentMap())
