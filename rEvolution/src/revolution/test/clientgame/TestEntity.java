@@ -15,6 +15,7 @@ import revolution.client.game.entity.Entity;
 import revolution.client.game.entity.Info;
 import revolution.client.game.entity.Info.Fact;
 import revolution.client.game.map.Map;
+import revolution.res.ClientImages;
 
 /**
  *
@@ -41,7 +42,11 @@ public class TestEntity extends Entity{
         vy = -5 + 10 * (float)Math.random();
         width = 32;
         height = 32;
-        spritesheet = new SpriteSheet("res/samplespritesheet.png", 32, 32);
+        Image image = Math.random() > 0.5 ? ClientImages.getImage(ClientImages.RABBIT_SPRITESHEET)
+                : ClientImages.getImage(ClientImages.WOLF_SPRITESHEET);
+        spritesheet = new SpriteSheet(image,
+                image.getWidth() / 3,
+                image.getHeight() / 4);
         int spritespeed = 200;
         down = new Animation(spritesheet, 
                 new int[]{1,0,   0,0,    1,0,   2,0}, 
