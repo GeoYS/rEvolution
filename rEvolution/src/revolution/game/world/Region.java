@@ -23,6 +23,7 @@ public class Region {
         //if(area.getProperty("environment").equals("grass")){
             map = new Map("res/samplemap/samplegrassregion.tmx");
         //}
+        
     }    
     
     public Map getMap(){

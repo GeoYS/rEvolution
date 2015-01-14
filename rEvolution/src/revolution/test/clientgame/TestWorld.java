@@ -15,7 +15,7 @@ import revolution.game.world.World;
 public class TestWorld extends World{
 
     public TestWorld() throws SlickException {
-        super(new Map("res/samplemap/samplemap.tmx"));
+        super(new Map("res/gamemaps/island.tmx"));
     }
     
 }

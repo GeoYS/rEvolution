@@ -51,17 +51,20 @@ public class InGameMenu extends AnimatedComponentGroup{
                 normal,
                 hover,
                 pressed,
-                0, this.getHeight()  * 0 / 5, this.getWidth(), this.getHeight() / 5){
+                0, this.getHeight()  * 4 / 5, this.getWidth(), this.getHeight() / 5){
             @Override
             public void onClick() {
-                //sm.changeScreen(LobbyScreen.ID, new EmptyTransition(), new HorizontalSplitTransition());
+                // TODO implement logout and exit
+                System.err.println("Logout and exit not implemented");
+                System.exit(123456789);
             }
         };
+        logoutExit.setText("Logout/Exit");
         Button accountInfo = new Button(gc, 
                 normal,
                 hover,
                 pressed,
-                0, this.getHeight()  * 1 / 5, this.getWidth(), this.getHeight() / 5){
+                0, this.getHeight()  * 3 / 5, this.getWidth(), this.getHeight() / 5){
             @Override
             public void onClick() {
                 //sm.changeScreen(LobbyScreen.ID, new FadeOutTransition(), new FadeInTransition());
@@ -81,7 +84,7 @@ public class InGameMenu extends AnimatedComponentGroup{
                 normal,
                 hover,
                 pressed,
-                0, this.getHeight() * 3 / 5, this.getWidth(), this.getHeight() / 5){
+                0, this.getHeight() * 1 / 5, this.getWidth(), this.getHeight() / 5){
             @Override
             public void onClick() {
                 //sm.changeScreen(LobbyScreen.ID, new FadeOutTransition(), new FadeInTransition());
@@ -91,7 +94,7 @@ public class InGameMenu extends AnimatedComponentGroup{
                 normal,
                 hover,
                 pressed,
-                0, this.getHeight() * 4 / 5, this.getWidth(), this.getHeight() / 5){
+                0, this.getHeight() * 0 / 5, this.getWidth(), this.getHeight() / 5){
             @Override
             public void onClick() {
                 //sm.changeScreen(LobbyScreen.ID, new FadeOutTransition(), new FadeInTransition());
